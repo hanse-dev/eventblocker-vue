@@ -1,0 +1,29 @@
+// This is your Prisma schema file
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Event {
+  id          Int      @id @default(autoincrement())
+  title       String
+  date        DateTime
+  startTime   DateTime
+  duration    Int      // Duration in minutes
+  location    String
+  room        String?
+  description String?
+  status      String   @default("available") // available/booked
+  bookerName  String?
+  bookerEmail String?
+  bookerPhone String?
+  price       Float?
+  visibility  Boolean  @default(true)
+  maxBookings Int      @default(1)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

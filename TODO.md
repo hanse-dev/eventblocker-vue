@@ -6,7 +6,7 @@ An appointment management system developed with Vue.js and SQLite.
 
 - Frontend: Vue.js 3
 - Backend: Node.js with Express
-- Database: SQLite
+- Database: SQLite with Prisma
 - Language: German
 
 ## Main functions
@@ -32,7 +32,7 @@ An appointment management system developed with Vue.js and SQLite.
    - [ ] Define API routes
 
 2. Database Schema
-   - [ ] Create an events table with fields:
+   - [x] Create an events table with fields:
      - ID
      - Title
      - Date
@@ -89,9 +89,10 @@ An appointment management system developed with Vue.js and SQLite.
    - [x] Set up Pinia state management
    - [x] Install and configure Vuetify
 3. [ ] Set up the backend structure:
-   - Configure SQLite database
-   - Create database models
-   - Set up initial API routes
+   - [x] Configure SQLite database
+   - [x] Install Prisma
+   - [x] Create database models
+   - [ ] Set up initial API routes
 4. [ ] Implement the database schema
 5. [ ] Create the first API endpoints
 6. [ ] Create basic frontend layout and components
