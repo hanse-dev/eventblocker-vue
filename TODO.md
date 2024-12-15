@@ -27,7 +27,7 @@ An appointment management system developed with Vue.js and SQLite.
 
 ### Backend development
 1. Basic structure
-   - [ ] Set up an Express.js server
+   - [x] Set up an Express.js server
    - [ ] Set up a SQLite database
    - [ ] Define API routes
 
@@ -56,7 +56,7 @@ An appointment management system developed with Vue.js and SQLite.
 
 ### Frontend development
 1. Project setup
-   - [ ] Initialize Vue.js project
+   - [x] Initialize Vue.js project
    - [ ] Set up router
    - [ ] Set up state management (Pinia)
    - [ ] Select and integrate UI framework (e.g. Vuetify)
@@ -83,12 +83,18 @@ An appointment management system developed with Vue.js and SQLite.
    - [ ] Booking dialog
 
 ## Next steps
-1. Set up a monorepo structure
-2. Set up the project
-3. Set up the backend structure
-4. Implement the database schema
-5. Create the first API endpoints
-6. Set up the basic frontend structure
+1. [x] Set up a monorepo structure
+2. [ ] Complete frontend setup:
+   - Install and configure Vue Router
+   - Set up Pinia state management
+   - Install and configure Vuetify
+3. [ ] Set up the backend structure:
+   - Configure SQLite database
+   - Create database models
+   - Set up initial API routes
+4. [ ] Implement the database schema
+5. [ ] Create the first API endpoints
+6. [ ] Create basic frontend layout and components
 
 ## Later extensions
 - User management
