@@ -97,8 +97,47 @@ An appointment management system developed with Vue.js and SQLite.
 5. [ ] Create the first API endpoints
 6. [ ] Create basic frontend layout and components
 
-## Later extensions
-- User management
+## TODO List
+
+## High Priority
+- [ ] Test all API endpoints with error cases
+
+## Medium Priority
+- [ ] Add TypeScript support
+- [ ] Add comprehensive documentation
+- [ ] Add unit tests for components
+- [ ] Add integration tests for API endpoints
+- [ ] Add end-to-end tests
+- [ ] Add proper logging system
+- [ ] Implement rate limiting for API endpoints
+- [ ] Add API documentation using Swagger/OpenAPI
+
+## Low Priority
+- [ ] Add dark mode support
+- [ ] Add internationalization support
+- [ ] Add accessibility improvements
+- [ ] Add performance monitoring
+- [ ] Add analytics tracking
+- [ ] Add export functionality for appointments
+- [ ] Add bulk operations for appointments
+
+## Completed
+- [x] Implement JWT authentication
+- [x] Create centralized API service
+- [x] Add notification system
+- [x] Add loading states
+- [x] Add input validation
+- [x] Add proper error handling for network failures
+- [x] Add loading indicators for all async operations
+- [x] Implement input validation for all forms
+- [x] Implement proper configuration management
+
+## Future Features
+- Calendar view for appointments
+- Mobile app
+- SMS notifications
 - E-mail notifications
 - Repeating appointments
 - Waiting list for booked appointments
+- User management
+- Later extensions
