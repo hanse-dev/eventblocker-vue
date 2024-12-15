@@ -48,11 +48,11 @@ An appointment management system developed with Vue.js and SQLite.
      - Maximum number of bookings
 
 3. API endpoints
-   - [ ] GET /api/dates (all available dates)
-   - [ ] POST /api/dates (create new date)
-   - [ ] PUT /api/dates/:id (update date)
-   - [ ] DELETE /api/dates/:id (delete date)
-   - [ ] POST /api/dates/:id/book (book date)
+   - [x] GET /api/dates (all available dates)
+   - [x] POST /api/dates (create new date)
+   - [x] PUT /api/dates/:id (update date)
+   - [x] DELETE /api/dates/:id (delete date)
+   - [x] POST /api/dates/:id/book (book date)
 
 ### Frontend development
 1. Project setup
@@ -88,11 +88,11 @@ An appointment management system developed with Vue.js and SQLite.
    - [x] Install and configure Vue Router
    - [x] Set up Pinia state management
    - [x] Install and configure Vuetify
-3. [ ] Set up the backend structure:
+3. [x] Set up the backend structure:
    - [x] Configure SQLite database
    - [x] Install Prisma
    - [x] Create database models
-   - [ ] Set up initial API routes
+   - [x] Set up initial API routes
 4. [ ] Implement the database schema
 5. [ ] Create the first API endpoints
 6. [ ] Create basic frontend layout and components
