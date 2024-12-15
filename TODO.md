@@ -57,9 +57,9 @@ An appointment management system developed with Vue.js and SQLite.
 ### Frontend development
 1. Project setup
    - [x] Initialize Vue.js project
-   - [ ] Set up router
-   - [ ] Set up state management (Pinia)
-   - [ ] Select and integrate UI framework (e.g. Vuetify)
+   - [x] Set up router
+   - [x] Set up state management (Pinia)
+   - [x] Select and integrate UI framework (e.g. Vuetify)
 
 2. Admin Interface
   - [ ] Login page (simple version)
@@ -84,10 +84,10 @@ An appointment management system developed with Vue.js and SQLite.
 
 ## Next steps
 1. [x] Set up a monorepo structure
-2. [ ] Complete frontend setup:
-   - Install and configure Vue Router
-   - Set up Pinia state management
-   - Install and configure Vuetify
+2. [x] Complete frontend setup:
+   - [x] Install and configure Vue Router
+   - [x] Set up Pinia state management
+   - [x] Install and configure Vuetify
 3. [ ] Set up the backend structure:
    - Configure SQLite database
    - Create database models
