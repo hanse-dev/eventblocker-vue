@@ -1,6 +1,21 @@
 <script setup>
 import { RouterView } from 'vue-router';
+import { useAuthStore } from './stores/auth';
+import { onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 import HelloWorld from './components/HelloWorld.vue'
+
+const authStore = useAuthStore();
+const router = useRouter();
+
+const handleLogout = () => {
+  authStore.logout();
+  router.push('/');
+};
+
+onMounted(() => {
+  authStore.initAuth();
+});
 </script>
 
 <template>
@@ -9,7 +24,11 @@ import HelloWorld from './components/HelloWorld.vue'
       <v-app-bar-title>Termin-Buchungssystem</v-app-bar-title>
       <v-spacer></v-spacer>
       <v-btn to="/" text>Home</v-btn>
-      <v-btn to="/admin" text>Admin</v-btn>
+      <template v-if="authStore.isAuthenticated">
+        <v-btn to="/admin" text>Admin</v-btn>
+        <v-btn @click="handleLogout" text>Logout</v-btn>
+      </template>
+      <v-btn v-else to="/login" text>Login</v-btn>
     </v-app-bar>
 
     <v-main>

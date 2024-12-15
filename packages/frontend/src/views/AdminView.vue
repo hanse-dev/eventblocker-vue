@@ -1,15 +1,32 @@
 <script setup>
 import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+import { useAuthStore } from '../stores/auth';
 import AppointmentList from '../components/AppointmentList.vue';
 import AppointmentForm from '../components/AppointmentForm.vue';
+
+const router = useRouter();
+const authStore = useAuthStore();
 
 const appointments = ref([]);
 const showForm = ref(false);
 const editingAppointment = ref(null);
 
+// Redirect if not authenticated
+if (!authStore.isAuthenticated) {
+  router.push('/login');
+}
+
 const fetchAppointments = async () => {
   try {
-    const response = await fetch('http://localhost:3000/api/dates');
+    const response = await fetch('http://localhost:3000/api/dates', {
+      headers: authStore.getAuthHeader()
+    });
+    
+    if (!response.ok) {
+      throw new Error('Failed to fetch appointments');
+    }
+    
     appointments.value = await response.json();
   } catch (error) {
     console.error('Failed to fetch appointments:', error);
@@ -29,6 +46,7 @@ const handleDelete = async (appointment) => {
   try {
     const response = await fetch(`http://localhost:3000/api/dates/${appointment.id}`, {
       method: 'DELETE',
+      headers: authStore.getAuthHeader()
     });
     
     if (response.ok) {
@@ -53,6 +71,7 @@ const handleSubmit = async (formData) => {
       method,
       headers: {
         'Content-Type': 'application/json',
+        ...authStore.getAuthHeader()
       },
       body: JSON.stringify(formData),
     });
@@ -70,12 +89,14 @@ const handleSubmit = async (formData) => {
 };
 
 onMounted(() => {
-  fetchAppointments();
+  if (authStore.isAuthenticated) {
+    fetchAppointments();
+  }
 });
 </script>
 
 <template>
-  <div>
+  <div v-if="authStore.isAuthenticated">
     <v-row>
       <v-col cols="12" class="d-flex justify-space-between align-center">
         <h1 class="text-h3">Termine verwalten</h1>
