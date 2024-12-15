@@ -62,25 +62,25 @@ An appointment management system developed with Vue.js and SQLite.
    - [x] Select and integrate UI framework (e.g. Vuetify)
 
 2. Admin Interface
-  - [ ] Login page (simple version)
-  - [ ] Dashboard layout
-  - [ ] Form for creating appointments
-  - [ ] Appointment overview with filter options
-  - [ ] Display information for the bookers
-  - [ ] Appointment editing page
-  - [ ] Appointment deletion
+  - [x] Login page (simple version)
+  - [x] Dashboard layout
+  - [x] Form for creating appointments
+  - [x] Appointment overview with filter options
+  - [x] Display information for the bookers
+  - [x] Appointment editing page
+  - [x] Appointment deletion
   - [ ] Copy function
   - [ ] Export function
 
 3. Public pages
-   - [ ] Start page with appointment overview
-   - [ ] Booking form
-   - [ ] Confirmation page
+   - [x] Start page with appointment overview
+   - [x] Booking form
+   - [x] Confirmation page
 
 4. Components
-   - [ ] Appointment form
-   - [ ] Appointment list
-   - [ ] Booking dialog
+   - [x] Appointment form
+   - [x] Appointment list
+   - [x] Booking dialog
 
 ## Next steps
 1. [x] Set up a monorepo structure
