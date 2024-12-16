@@ -1,10 +1,11 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 const props = defineProps({
   appointments: {
     type: Array,
-    required: true
+    required: true,
+    default: () => []
   },
   isAdmin: {
     type: Boolean,
@@ -24,56 +25,186 @@ const formatTime = (timeStr) => {
     minute: '2-digit' 
   });
 };
+
+const currentPage = ref(1);
+const itemsPerPage = 10;
+
+const paginatedAppointments = computed(() => {
+  if (!Array.isArray(props.appointments)) {
+    return [];
+  }
+  const start = (currentPage.value - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  return props.appointments.slice(start, end);
+});
+
+const totalPages = computed(() => {
+  if (!Array.isArray(props.appointments)) {
+    return 0;
+  }
+  return Math.ceil(props.appointments.length / itemsPerPage);
+});
+
+const pages = computed(() => {
+  const pagesArray = [];
+  for (let i = 1; i <= totalPages.value; i++) {
+    pagesArray.push(i);
+  }
+  return pagesArray;
+});
 </script>
 
 <template>
-  <v-container>
-    <v-data-table
-      :headers="[
-        { title: 'Titel', key: 'title' },
-        { title: 'Datum', key: 'date' },
-        { title: 'Zeit', key: 'startTime' },
-        { title: 'Ort', key: 'location' },
-        { title: 'Raum', key: 'room' },
-        { title: 'Aktionen', key: 'actions', sortable: false }
-      ]"
-      :items="appointments"
-      :items-per-page="10"
-    >
-      <template v-slot:item.date="{ item }">
-        {{ formatDate(item.date) }}
-      </template>
+  <div class="container-fluid p-0">
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Titel</th>
+            <th>Datum</th>
+            <th>Zeit</th>
+            <th>Ort</th>
+            <th>Raum</th>
+            <th class="text-end">Aktionen</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-if="!Array.isArray(props.appointments)">
+            <td colspan="6" class="text-center py-4">
+              <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Termine werden geladen...</span>
+              </div>
+            </td>
+          </tr>
+          <template v-else>
+            <tr v-for="item in paginatedAppointments" :key="item.id">
+              <td>{{ item.title }}</td>
+              <td>{{ formatDate(item.date) }}</td>
+              <td>{{ formatTime(item.startTime) }}</td>
+              <td>{{ item.location }}</td>
+              <td>{{ item.room }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <button
+                    v-if="isAdmin"
+                    class="btn btn-outline-primary btn-sm"
+                    @click="emit('edit', item)"
+                    title="Bearbeiten"
+                  >
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                  <button
+                    v-if="isAdmin"
+                    class="btn btn-outline-danger btn-sm"
+                    @click="emit('delete', item)"
+                    title="Löschen"
+                  >
+                    <i class="bi bi-trash"></i>
+                  </button>
+                  <button
+                    v-if="!isAdmin && item.status === 'available'"
+                    class="btn btn-success btn-sm"
+                    @click="emit('book', item)"
+                  >
+                    <i class="bi bi-calendar-check me-1"></i>
+                    Buchen
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr v-if="Array.isArray(props.appointments) && props.appointments.length === 0">
+              <td colspan="6" class="text-center py-4 text-muted">
+                Keine Termine verfügbar
+              </td>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+    </div>
 
-      <template v-slot:item.startTime="{ item }">
-        {{ formatTime(item.startTime) }}
-      </template>
-
-      <template v-slot:item.actions="{ item }">
-        <v-btn
-          v-if="isAdmin"
-          icon="mdi-pencil"
-          size="small"
-          color="primary"
-          class="mr-2"
-          @click="emit('edit', item)"
-        ></v-btn>
-        <v-btn
-          v-if="isAdmin"
-          icon="mdi-delete"
-          size="small"
-          color="error"
-          class="mr-2"
-          @click="emit('delete', item)"
-        ></v-btn>
-        <v-btn
-          v-if="!isAdmin && item.status === 'available'"
-          color="success"
-          size="small"
-          @click="emit('book', item)"
+    <!-- Pagination -->
+    <nav v-if="totalPages > 1" aria-label="Termine Navigation" class="mt-3">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" :class="{ disabled: currentPage === 1 }">
+          <a
+            class="page-link"
+            href="#"
+            @click.prevent="currentPage--"
+            aria-label="Vorherige"
+          >
+            <i class="bi bi-chevron-left"></i>
+          </a>
+        </li>
+        <li
+          v-for="page in pages"
+          :key="page"
+          class="page-item"
+          :class="{ active: currentPage === page }"
         >
-          Buchen
-        </v-btn>
-      </template>
-    </v-data-table>
-  </v-container>
+          <a
+            class="page-link"
+            href="#"
+            @click.prevent="currentPage = page"
+          >
+            {{ page }}
+          </a>
+        </li>
+        <li class="page-item" :class="{ disabled: currentPage === totalPages }">
+          <a
+            class="page-link"
+            href="#"
+            @click.prevent="currentPage++"
+            aria-label="Nächste"
+          >
+            <i class="bi bi-chevron-right"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </template>
+
+<style lang="scss" scoped>
+.table {
+  th {
+    border-top: none;
+    background-color: #f8f9fa;
+  }
+  
+  td {
+    vertical-align: middle;
+  }
+}
+
+.btn-group {
+  .btn {
+    padding: 0.25rem 0.5rem;
+    
+    &:hover {
+      transform: translateY(-1px);
+    }
+    
+    transition: all 0.2s ease-in-out;
+  }
+}
+
+.pagination {
+  .page-link {
+    color: var(--bs-primary);
+    
+    &:focus {
+      box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+    }
+  }
+  
+  .active .page-link {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+  }
+}
+
+.spinner-border {
+  width: 2rem;
+  height: 2rem;
+}
+</style>

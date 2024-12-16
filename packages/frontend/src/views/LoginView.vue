@@ -3,7 +3,6 @@ import { ref } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useAuthStore } from '../stores/auth';
 import { useNotificationStore } from '../stores/notification';
-import { apiService } from '../services/api';
 
 const router = useRouter();
 const route = useRoute();
@@ -17,23 +16,43 @@ const form = ref({
 
 const formRef = ref(null);
 const loading = ref(false);
-const valid = ref(false);
+const errors = ref({
+  username: '',
+  password: ''
+});
 
-const rules = {
-  required: v => !!v || 'Dieses Feld ist erforderlich',
-  username: v => v.length >= 3 || 'Benutzername muss mindestens 3 Zeichen lang sein',
-  password: v => v.length >= 4 || 'Passwort muss mindestens 4 Zeichen lang sein'
+const validateForm = () => {
+  let isValid = true;
+  errors.value = {
+    username: '',
+    password: ''
+  };
+
+  if (!form.value.username) {
+    errors.value.username = 'Benutzername ist erforderlich';
+    isValid = false;
+  } else if (form.value.username.length < 3) {
+    errors.value.username = 'Benutzername muss mindestens 3 Zeichen lang sein';
+    isValid = false;
+  }
+
+  if (!form.value.password) {
+    errors.value.password = 'Passwort ist erforderlich';
+    isValid = false;
+  } else if (form.value.password.length < 4) {
+    errors.value.password = 'Passwort muss mindestens 4 Zeichen lang sein';
+    isValid = false;
+  }
+
+  return isValid;
 };
 
 const login = async () => {
-  const { valid } = await formRef.value.validate();
-  
-  if (!valid) return;
+  if (!validateForm()) return;
 
   loading.value = true;
   try {
-    const response = await apiService.login(form.value);
-    authStore.setToken(response.token);
+    await authStore.login(form.value.username, form.value.password);
     notificationStore.success('Erfolgreich angemeldet');
     const redirectPath = route.query.redirect || '/admin';
     router.push(redirectPath);
@@ -46,105 +65,138 @@ const login = async () => {
 </script>
 
 <template>
-  <div class="login-container">
-    <v-container fluid>
-      <v-row align="center" justify="center">
-        <v-col cols="12" sm="8" md="6" lg="4" xl="3">
-          <v-card class="elevation-12 pa-4">
-            <v-card-title class="text-center text-h4 font-weight-bold mb-6">
-              <v-icon size="36" color="primary" class="mb-4">mdi-calendar-clock</v-icon>
-              <div>Admin Login</div>
-            </v-card-title>
+  <div class="login-page min-vh-100">
+    <div class="container-fluid h-100">
+      <div class="row h-100">
+        <!-- Left side with background -->
+        <div class="col-md-8 d-none d-md-flex login-bg align-items-center justify-content-center text-center text-white">
+          <div>
+            <i class="bi bi-calendar-event display-1 mb-4"></i>
+            <h1 class="display-4 fw-bold mb-4">Termin-Buchungssystem</h1>
+            <p class="h4">Verwalten Sie Ihre Termine einfach und effizient</p>
+          </div>
+        </div>
+        
+        <!-- Right side with login form -->
+        <div class="col-12 col-md-4 login-form d-flex align-items-center">
+          <div class="w-100 p-4">
+            <div class="text-center mb-4">
+              <i class="bi bi-calendar-event h1 text-primary d-block d-md-none"></i>
+              <h2 class="h2 fw-bold">Admin Login</h2>
+            </div>
             
-            <v-card-text>
-              <v-form
-                ref="formRef"
-                v-model="valid"
-                @submit.prevent="login"
-                class="mt-4"
+            <form @submit.prevent="login" ref="formRef" class="needs-validation" novalidate>
+              <div class="mb-4">
+                <div class="form-floating">
+                  <input
+                    type="text"
+                    class="form-control"
+                    :class="{ 'is-invalid': errors.username }"
+                    id="username"
+                    v-model="form.username"
+                    placeholder="Benutzername"
+                    :disabled="loading"
+                    required
+                  >
+                  <label for="username">
+                    <i class="bi bi-person me-2"></i>Benutzername
+                  </label>
+                  <div class="invalid-feedback">{{ errors.username }}</div>
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <div class="form-floating">
+                  <input
+                    type="password"
+                    class="form-control"
+                    :class="{ 'is-invalid': errors.password }"
+                    id="password"
+                    v-model="form.password"
+                    placeholder="Passwort"
+                    :disabled="loading"
+                    required
+                  >
+                  <label for="password">
+                    <i class="bi bi-lock me-2"></i>Passwort
+                  </label>
+                  <div class="invalid-feedback">{{ errors.password }}</div>
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                class="btn btn-primary w-100 py-3 mb-4"
+                :disabled="loading"
               >
-                <v-text-field
-                  v-model="form.username"
-                  label="Benutzername"
-                  name="username"
-                  prepend-icon="mdi-account"
-                  variant="outlined"
-                  class="mb-4"
-                  :rules="[rules.required, rules.username]"
-                  :disabled="loading"
-                  required
-                  autocomplete="username"
-                ></v-text-field>
+                <span v-if="loading" class="spinner-border spinner-border-sm me-2"></span>
+                Anmelden
+              </button>
 
-                <v-text-field
-                  v-model="form.password"
-                  label="Passwort"
-                  name="password"
-                  prepend-icon="mdi-lock"
-                  variant="outlined"
-                  type="password"
-                  :rules="[rules.required, rules.password]"
-                  :disabled="loading"
-                  required
-                  autocomplete="current-password"
-                ></v-text-field>
-
-                <v-btn
-                  color="primary"
-                  size="large"
-                  block
-                  :loading="loading"
-                  :disabled="loading || !valid"
-                  class="mt-6"
-                  @click="login"
-                >
-                  Anmelden
-                </v-btn>
-              </v-form>
-            </v-card-text>
-
-            <v-card-text class="text-center mt-4">
-              <p class="text-caption text-medium-emphasis">
+              <p class="text-center text-muted">
                 Termin-Buchungssystem Administrationsbereich
               </p>
-            </v-card-text>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
-<style scoped>
-.login-container {
+<style lang="scss" scoped>
+.login-page {
+  background-color: #f8f9fa;
+}
+
+.login-bg {
+  background: linear-gradient(135deg, $primary, darken($primary, 10%));
   min-height: 100vh;
-  display: flex;
-  align-items: center;
 }
 
-.v-container {
-  width: 100%;
+.login-form {
+  background-color: white;
+  min-height: 100vh;
 }
 
-.v-card {
-  border-radius: 12px;
-  max-width: 100%;
+.form-floating {
+  > label {
+    padding-left: 2.5rem;
+  }
+  
+  .bi {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+  }
 }
 
-.v-card-title {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.form-control {
+  height: 3.5rem;
+  padding-left: 2.5rem;
+  
+  &:focus {
+    box-shadow: 0 0 0 0.25rem rgba($primary, 0.25);
+  }
 }
 
-.v-text-field {
-  border-radius: 8px;
-}
-
-.v-btn {
-  text-transform: none;
+.btn-primary {
   font-size: 1.1rem;
-  letter-spacing: 0.5px;
-  font-weight: 500;
+  
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  transition: all 0.2s ease-in-out;
+}
+
+@media (max-width: 767.98px) {
+  .login-form {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+  }
 }
 </style>

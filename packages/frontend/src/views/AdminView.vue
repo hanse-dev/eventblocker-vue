@@ -15,7 +15,6 @@ const loading = ref({
   delete: false
 });
 
-const drawer = ref(false);
 const dialog = ref(false);
 const editedItem = ref({
   title: '',
@@ -26,49 +25,45 @@ const editedItem = ref({
 const editedIndex = ref(-1);
 
 const formRef = ref(null);
-const rules = {
-  required: v => !!v || 'Dieses Feld ist erforderlich',
-  title: v => v.length >= 3 || 'Titel muss mindestens 3 Zeichen lang sein',
-  dateTime: v => !!v || 'Datum und Uhrzeit sind erforderlich',
-  endAfterStart: () => {
-    if (!editedItem.value.start || !editedItem.value.end) return true;
-    return new Date(editedItem.value.end) > new Date(editedItem.value.start) || 
-      'Endzeit muss nach Startzeit liegen';
-  }
-};
+const errors = ref({
+  title: '',
+  start: '',
+  end: '',
+  description: ''
+});
 
-const headers = [
-  { 
-    title: 'Titel',
-    key: 'title',
-    sortable: true
-  },
-  { 
-    title: 'Start',
-    key: 'start',
-    sortable: true,
-    align: 'start'
-  },
-  { 
-    title: 'Ende',
-    key: 'end',
-    sortable: true,
-    align: 'start'
-  },
-  { 
-    title: 'Beschreibung',
-    key: 'description',
-    sortable: false,
-    align: 'start',
-    class: 'd-none d-sm-table-cell'
-  },
-  { 
-    title: 'Aktionen',
-    key: 'actions',
-    sortable: false,
-    align: 'end'
+const validateForm = () => {
+  let isValid = true;
+  errors.value = {
+    title: '',
+    start: '',
+    end: '',
+    description: ''
+  };
+
+  if (!editedItem.value.title) {
+    errors.value.title = 'Dieses Feld ist erforderlich';
+    isValid = false;
+  } else if (editedItem.value.title.length < 3) {
+    errors.value.title = 'Titel muss mindestens 3 Zeichen lang sein';
+    isValid = false;
   }
-];
+
+  if (!editedItem.value.start) {
+    errors.value.start = 'Datum und Uhrzeit sind erforderlich';
+    isValid = false;
+  }
+
+  if (!editedItem.value.end) {
+    errors.value.end = 'Datum und Uhrzeit sind erforderlich';
+    isValid = false;
+  } else if (new Date(editedItem.value.end) <= new Date(editedItem.value.start)) {
+    errors.value.end = 'Endzeit muss nach Startzeit liegen';
+    isValid = false;
+  }
+
+  return isValid;
+};
 
 const formatDateTime = (date) => {
   return new Intl.DateTimeFormat(
@@ -119,12 +114,16 @@ const close = () => {
     end: '',
     description: ''
   };
+  errors.value = {
+    title: '',
+    start: '',
+    end: '',
+    description: ''
+  };
 };
 
 const save = async () => {
-  const { valid } = await formRef.value.validate();
-  
-  if (!valid) return;
+  if (!validateForm()) return;
 
   loading.value.save = true;
   try {
@@ -152,199 +151,220 @@ onMounted(fetchEvents);
 </script>
 
 <template>
-  <div class="admin-view">
-    <v-card :class="{ 
-      'elevation-1': $vuetify.display.smAndDown,
-      'elevation-2': $vuetify.display.mdAndUp,
-      'mx-auto': $vuetify.display.mdAndUp
-    }">
-      <v-toolbar
-        :color="$vuetify.display.smAndDown ? 'transparent' : 'primary'"
-        :flat="$vuetify.display.smAndDown"
-      >
-        <v-toolbar-title :class="{
-          'text-primary': $vuetify.display.smAndDown,
-          'text-white': $vuetify.display.mdAndUp
-        }">
-          Termine verwalten
-        </v-toolbar-title>
-        <v-spacer></v-spacer>
-        <v-btn
-          color="primary"
-          :variant="$vuetify.display.smAndDown ? 'outlined' : 'text'"
-          prepend-icon="mdi-plus"
+  <div class="admin-view container-fluid py-4">
+    <div class="card shadow-sm">
+      <div class="card-header bg-primary d-flex justify-content-between align-items-center py-3">
+        <h5 class="card-title mb-0 text-white">Termine verwalten</h5>
+        <button
+          class="btn btn-light"
           @click="dialog = true"
-          :class="{
-            'text-white': $vuetify.display.mdAndUp
-          }"
         >
+          <i class="bi bi-plus-lg me-2"></i>
           Neuer Termin
-        </v-btn>
-      </v-toolbar>
+        </button>
+      </div>
 
-      <v-data-table
-        :headers="headers"
-        :items="events"
-        :loading="loading.list"
-        loading-text="Termine werden geladen..."
-        :hover="$vuetify.display.mdAndUp"
-        density="comfortable"
-      >
-        <template v-slot:item.start="{ item }">
-          <div :class="{ 'text-caption': $vuetify.display.smAndDown }">
-            {{ formatDateTime(item.start) }}
-          </div>
-        </template>
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table table-hover mb-0">
+            <thead class="table-light">
+              <tr>
+                <th>Titel</th>
+                <th>Start</th>
+                <th>Ende</th>
+                <th class="d-none d-md-table-cell">Beschreibung</th>
+                <th class="text-end">Aktionen</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-if="loading.list">
+                <td colspan="5" class="text-center py-4">
+                  <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Termine werden geladen...</span>
+                  </div>
+                </td>
+              </tr>
+              <tr v-else-if="events.length === 0">
+                <td colspan="5" class="text-center py-4">
+                  Keine Termine vorhanden
+                </td>
+              </tr>
+              <tr v-else v-for="item in events" :key="item.id">
+                <td>{{ item.title }}</td>
+                <td>{{ formatDateTime(item.start) }}</td>
+                <td>{{ formatDateTime(item.end) }}</td>
+                <td class="d-none d-md-table-cell">{{ item.description }}</td>
+                <td class="text-end">
+                  <div class="btn-group">
+                    <button
+                      class="btn btn-outline-primary btn-sm"
+                      @click="editItem(item)"
+                      :disabled="loading.delete"
+                    >
+                      <i class="bi bi-pencil"></i>
+                    </button>
+                    <button
+                      class="btn btn-outline-danger btn-sm"
+                      @click="deleteItem(item)"
+                      :disabled="loading.delete"
+                    >
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
-        <template v-slot:item.end="{ item }">
-          <div :class="{ 'text-caption': $vuetify.display.smAndDown }">
-            {{ formatDateTime(item.end) }}
-          </div>
-        </template>
-
-        <template v-slot:item.actions="{ item }">
-          <v-btn
-            icon="mdi-pencil"
-            size="small"
-            variant="text"
-            color="primary"
-            class="mr-1"
-            @click="editItem(item)"
-          ></v-btn>
-          <v-btn
-            icon="mdi-delete"
-            size="small"
-            variant="text"
-            color="error"
-            :loading="loading.delete"
-            @click="deleteItem(item)"
-          ></v-btn>
-        </template>
-      </v-data-table>
-    </v-card>
-
-    <v-dialog
-      v-model="dialog"
-      :fullscreen="$vuetify.display.smAndDown"
-      :max-width="$vuetify.display.smAndDown ? undefined : '600px'"
-      transition="dialog-bottom-transition"
+    <!-- Edit Dialog -->
+    <div
+      v-if="dialog"
+      class="modal fade show"
+      style="display: block; z-index: 1050"
+      tabindex="-1"
+      aria-modal="true"
+      role="dialog"
     >
-      <v-card>
-        <v-toolbar
-          :color="$vuetify.display.smAndDown ? 'primary' : undefined"
-          :dark="$vuetify.display.smAndDown"
-        >
-          <v-btn
-            icon
-            @click="close"
-            v-if="$vuetify.display.smAndDown"
-          >
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
-          <v-toolbar-title>
-            {{ editedIndex > -1 ? 'Termin bearbeiten' : 'Neuer Termin' }}
-          </v-toolbar-title>
-          <v-spacer></v-spacer>
-          <v-toolbar-items v-if="$vuetify.display.smAndDown">
-            <v-btn
-              variant="text"
-              :loading="loading.save"
+      <div class="modal-backdrop fade show"></div>
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">
+              {{ editedIndex > -1 ? 'Termin bearbeiten' : 'Neuer Termin' }}
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              @click="close"
               :disabled="loading.save"
-              @click="save"
+            ></button>
+          </div>
+
+          <div class="modal-body">
+            <form @submit.prevent="save" ref="formRef" class="needs-validation" novalidate>
+              <div class="mb-3">
+                <label for="title" class="form-label">Titel</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  :class="{ 'is-invalid': errors.title }"
+                  id="title"
+                  v-model="editedItem.title"
+                  required
+                >
+                <div class="invalid-feedback">{{ errors.title }}</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="start" class="form-label">Start</label>
+                <input
+                  type="datetime-local"
+                  class="form-control"
+                  :class="{ 'is-invalid': errors.start }"
+                  id="start"
+                  v-model="editedItem.start"
+                  required
+                >
+                <div class="invalid-feedback">{{ errors.start }}</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="end" class="form-label">Ende</label>
+                <input
+                  type="datetime-local"
+                  class="form-control"
+                  :class="{ 'is-invalid': errors.end }"
+                  id="end"
+                  v-model="editedItem.end"
+                  required
+                >
+                <div class="invalid-feedback">{{ errors.end }}</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="description" class="form-label">Beschreibung</label>
+                <textarea
+                  class="form-control"
+                  :class="{ 'is-invalid': errors.description }"
+                  id="description"
+                  v-model="editedItem.description"
+                  rows="3"
+                ></textarea>
+                <div class="invalid-feedback">{{ errors.description }}</div>
+              </div>
+            </form>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-secondary"
+              @click="close"
+              :disabled="loading.save"
             >
-              Speichern
-            </v-btn>
-          </v-toolbar-items>
-        </v-toolbar>
-
-        <v-card-text>
-          <v-container>
-            <v-form ref="formRef">
-              <v-text-field
-                v-model="editedItem.title"
-                label="Titel"
-                :rules="[rules.required, rules.title]"
-                :disabled="loading.save"
-                variant="outlined"
-                class="mb-4"
-              ></v-text-field>
-
-              <v-text-field
-                v-model="editedItem.start"
-                label="Startzeit"
-                type="datetime-local"
-                :rules="[rules.dateTime]"
-                :disabled="loading.save"
-                variant="outlined"
-                class="mb-4"
-              ></v-text-field>
-
-              <v-text-field
-                v-model="editedItem.end"
-                label="Endzeit"
-                type="datetime-local"
-                :rules="[rules.dateTime, rules.endAfterStart]"
-                :disabled="loading.save"
-                variant="outlined"
-                class="mb-4"
-              ></v-text-field>
-
-              <v-textarea
-                v-model="editedItem.description"
-                label="Beschreibung"
-                :disabled="loading.save"
-                variant="outlined"
-                auto-grow
-                rows="3"
-              ></v-textarea>
-            </v-form>
-          </v-container>
-        </v-card-text>
-
-        <v-card-actions v-if="!$vuetify.display.smAndDown">
-          <v-spacer></v-spacer>
-          <v-btn
-            color="primary"
-            variant="text"
-            :disabled="loading.save"
-            @click="close"
-          >
-            Abbrechen
-          </v-btn>
-          <v-btn
-            color="primary"
-            :loading="loading.save"
-            :disabled="loading.save"
-            @click="save"
-          >
-            Speichern
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+              Abbrechen
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              @click="save"
+              :disabled="loading.save"
+            >
+              <span
+                v-if="loading.save"
+                class="spinner-border spinner-border-sm me-2"
+                role="status"
+              ></span>
+              {{ editedIndex > -1 ? 'Speichern' : 'Erstellen' }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .admin-view {
   max-width: 100%;
 }
 
-@media (min-width: 960px) {
-  .admin-view {
-    max-width: 1280px;
-    margin: 0 auto;
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.table {
+  th, td {
+    vertical-align: middle;
   }
 }
 
-/* Mobile optimizations */
-@media (max-width: 600px) {
-  .v-data-table {
-    font-size: 0.875rem;
+.btn-group {
+  .btn {
+    padding: 0.25rem 0.5rem;
+    
+    i {
+      font-size: 1rem;
+    }
   }
+}
+
+.card {
+  border: none;
   
-  .v-btn {
-    min-width: unset;
+  .card-header {
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .btn-group {
+    .btn {
+      padding: 0.375rem 0.75rem;
+    }
   }
 }
 </style>

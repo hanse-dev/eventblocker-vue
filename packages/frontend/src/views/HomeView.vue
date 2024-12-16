@@ -2,7 +2,9 @@
 import { ref, onMounted } from 'vue';
 import AppointmentList from '../components/AppointmentList.vue';
 import BookingDialog from '../components/BookingDialog.vue';
+import { useNotificationStore } from '../stores/notification';
 
+const notificationStore = useNotificationStore();
 const appointments = ref([]);
 const selectedAppointment = ref(null);
 const showBookingDialog = ref(false);
@@ -13,6 +15,7 @@ const fetchAppointments = async () => {
     appointments.value = await response.json();
   } catch (error) {
     console.error('Failed to fetch appointments:', error);
+    notificationStore.error('Fehler beim Laden der Termine');
   }
 };
 
@@ -32,13 +35,14 @@ const submitBooking = async (bookingData) => {
     });
     
     if (response.ok) {
-      // Refresh the appointments list
       fetchAppointments();
-      // TODO: Show success message
+      notificationStore.success('Termin erfolgreich gebucht');
+    } else {
+      throw new Error('Booking failed');
     }
   } catch (error) {
     console.error('Failed to book appointment:', error);
-    // TODO: Show error message
+    notificationStore.error('Fehler beim Buchen des Termins');
   }
 };
 
@@ -48,18 +52,27 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
-    <v-row>
-      <v-col cols="12">
-        <h1 class="text-h3 mb-6">Verfügbare Termine</h1>
-      </v-col>
-    </v-row>
+  <div class="container-fluid py-4">
+    <div class="row mb-4">
+      <div class="col-12">
+        <h1 class="display-4 text-center mb-4">Verfügbare Termine</h1>
+        <div class="text-center mb-5">
+          <p class="lead text-muted">
+            Wählen Sie einen verfügbaren Termin aus und buchen Sie ihn direkt online.
+          </p>
+        </div>
+      </div>
+    </div>
 
-    <AppointmentList
-      :appointments="appointments"
-      :is-admin="false"
-      @book="handleBook"
-    />
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10">
+        <AppointmentList
+          :appointments="appointments"
+          :is-admin="false"
+          @book="handleBook"
+        />
+      </div>
+    </div>
 
     <BookingDialog
       v-if="selectedAppointment"
@@ -69,3 +82,15 @@ onMounted(() => {
     />
   </div>
 </template>
+
+<style lang="scss" scoped>
+.display-4 {
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.lead {
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+</style>

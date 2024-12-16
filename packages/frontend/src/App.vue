@@ -1,7 +1,7 @@
 <script setup>
 import { RouterView } from 'vue-router';
 import { useAuthStore } from './stores/auth';
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import NotificationSnackbar from './components/NotificationSnackbar.vue';
 
@@ -19,138 +19,96 @@ onMounted(() => {
 </script>
 
 <template>
-  <v-app>
-    <v-app-bar
-      color="primary"
-      :elevation="2"
-    >
-      <v-app-bar-nav-icon
-        v-if="$vuetify.display.smAndDown"
-        @click="drawer = !drawer"
-      ></v-app-bar-nav-icon>
-
-      <v-app-bar-title class="text-truncate">
-        <v-icon icon="mdi-calendar-clock" class="mr-2"></v-icon>
-        Termin-Buchungssystem
-      </v-app-bar-title>
-
-      <v-spacer></v-spacer>
-
-      <!-- Desktop Navigation -->
-      <template v-if="$vuetify.display.mdAndUp">
-        <v-btn to="/" text>
-          <v-icon>mdi-home</v-icon>
-          <span class="ml-2">Home</span>
-        </v-btn>
-        <template v-if="authStore.isAuthenticated">
-          <v-btn to="/admin" text>
-            <v-icon>mdi-calendar-edit</v-icon>
-            <span class="ml-2">Admin</span>
-          </v-btn>
-          <v-btn @click="handleLogout" text>
-            <v-icon>mdi-logout</v-icon>
-            <span class="ml-2">Logout</span>
-          </v-btn>
-        </template>
-        <v-btn v-else to="/login" text>
-          <v-icon>mdi-login</v-icon>
-          <span class="ml-2">Login</span>
-        </v-btn>
-      </template>
-    </v-app-bar>
-
-    <!-- Mobile Navigation Drawer -->
-    <v-navigation-drawer
-      v-model="drawer"
-      temporary
-      v-if="$vuetify.display.smAndDown"
-    >
-      <v-list>
-        <v-list-item
-          prepend-icon="mdi-home"
-          title="Home"
-          to="/"
-          :active="$route.path === '/'"
-        ></v-list-item>
+  <div class="min-vh-100 d-flex flex-column">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <i class="bi bi-calendar-event me-2"></i>
+          Termin-Buchungssystem
+        </a>
         
-        <template v-if="authStore.isAuthenticated">
-          <v-list-item
-            prepend-icon="mdi-calendar-edit"
-            title="Admin"
-            to="/admin"
-            :active="$route.path === '/admin'"
-          ></v-list-item>
-          <v-list-item
-            prepend-icon="mdi-logout"
-            title="Logout"
-            @click="handleLogout"
-          ></v-list-item>
-        </template>
-        <v-list-item
-          v-else
-          prepend-icon="mdi-login"
-          title="Login"
-          to="/login"
-          :active="$route.path === '/login'"
-        ></v-list-item>
-      </v-list>
-    </v-navigation-drawer>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <v-main>
-      <v-container :class="{ 
-        'pa-2': $vuetify.display.xs,
-        'pa-4': $vuetify.display.sm,
-        'pa-6': $vuetify.display.mdAndUp
-      }">
-        <RouterView />
-      </v-container>
-    </v-main>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <router-link class="nav-link" to="/">
+                <i class="bi bi-house-door me-1"></i>
+                Home
+              </router-link>
+            </li>
+            <template v-if="authStore.isAuthenticated">
+              <li class="nav-item">
+                <router-link class="nav-link" to="/admin">
+                  <i class="bi bi-calendar-plus me-1"></i>
+                  Admin
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" @click.prevent="handleLogout">
+                  <i class="bi bi-box-arrow-right me-1"></i>
+                  Logout
+                </a>
+              </li>
+            </template>
+            <template v-else>
+              <li class="nav-item">
+                <router-link class="nav-link" to="/login">
+                  <i class="bi bi-box-arrow-in-right me-1"></i>
+                  Login
+                </router-link>
+              </li>
+            </template>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-    <v-footer app class="d-flex flex-column">
-      <div class="px-4 py-2 text-center w-100">
-        <span class="text-caption text-medium-emphasis">
-          &copy; {{ new Date().getFullYear() }} - Termin-Buchungssystem
+    <!-- Main Content -->
+    <main class="flex-grow-1">
+      <RouterView />
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-light py-3 mt-auto">
+      <div class="container text-center">
+        <span class="text-muted">
+          {{ new Date().getFullYear() }} Termin-Buchungssystem
         </span>
       </div>
-    </v-footer>
+    </footer>
 
     <NotificationSnackbar />
-  </v-app>
+  </div>
 </template>
 
-<style>
-.v-application {
-  font-family: "Roboto", sans-serif;
+<style lang="scss">
+// Custom primary color
+$primary: #1976D2;
+$enable-shadows: true;
+$enable-gradients: true;
+
+// Import Bootstrap styles
+@import "bootstrap/scss/bootstrap";
+
+// Custom styles
+.navbar {
+  box-shadow: 0 2px 4px rgba(0,0,0,.1);
 }
 
-.v-btn {
-  text-transform: none !important;
-  letter-spacing: 0.5px;
+.router-link-active {
+  font-weight: 500;
 }
 
-/* Mobile-first responsive adjustments */
-@media (max-width: 600px) {
-  .v-container {
-    padding: 8px !important;
-  }
+// Add smooth transitions
+.nav-link {
+  transition: all 0.2s ease-in-out;
   
-  .v-card {
-    border-radius: 8px !important;
-  }
-}
-
-/* Tablet adjustments */
-@media (min-width: 601px) and (max-width: 960px) {
-  .v-container {
-    padding: 16px !important;
-  }
-}
-
-/* Desktop adjustments */
-@media (min-width: 961px) {
-  .v-container {
-    max-width: 1280px;
-    margin: 0 auto;
+  &:hover {
+    transform: translateY(-1px);
   }
 }
 </style>
