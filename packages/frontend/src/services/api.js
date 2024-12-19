@@ -11,22 +11,37 @@ class ApiService {
     const url = `${API_URL}${endpoint}`;
     const headers = {
       'Content-Type': 'application/json',
-      ...this.authStore.getAuthHeader(),
+      ...(options.requiresAuth ? this.authStore.getAuthHeader() : {}),
       ...options.headers
     };
 
     try {
+      const requestBody = options.body ? JSON.parse(options.body) : undefined;
+      console.log('API Request Details:', {
+        url,
+        method: options.method || 'GET',
+        headers,
+        body: requestBody
+      });
+
       const response = await fetch(url, {
         ...options,
         headers
       });
 
+      const responseData = await response.json();
+      console.log('API Response:', {
+        status: response.status,
+        statusText: response.statusText,
+        headers: Object.fromEntries(response.headers.entries()),
+        data: responseData
+      });
+
       if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error || 'Ein Fehler ist aufgetreten');
+        throw new Error(responseData.message || responseData.error || `Server returned ${response.status}`);
       }
 
-      return response.json();
+      return responseData;
     } catch (error) {
       console.error(`API Error (${endpoint}):`, error);
       throw error;
@@ -43,33 +58,38 @@ class ApiService {
 
   // Event endpoints
   async getEvents() {
-    return this.request('/dates');
+    return this.request('/dates', { requiresAuth: false });
   }
 
   async createEvent(eventData) {
+    console.log('Creating event with data:', eventData);
     return this.request('/dates', {
       method: 'POST',
-      body: JSON.stringify(eventData)
+      body: JSON.stringify(eventData),
+      requiresAuth: true
     });
   }
 
   async updateEvent(id, eventData) {
     return this.request(`/dates/${id}`, {
       method: 'PUT',
-      body: JSON.stringify(eventData)
+      body: JSON.stringify(eventData),
+      requiresAuth: true
     });
   }
 
   async deleteEvent(id) {
     return this.request(`/dates/${id}`, {
-      method: 'DELETE'
+      method: 'DELETE',
+      requiresAuth: true
     });
   }
 
   async bookEvent(id, bookingData) {
     return this.request(`/dates/${id}/book`, {
       method: 'POST',
-      body: JSON.stringify(bookingData)
+      body: JSON.stringify(bookingData),
+      requiresAuth: true
     });
   }
 }

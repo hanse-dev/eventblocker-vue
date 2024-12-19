@@ -12,7 +12,10 @@ app.use(express.json());
 // Auth routes (no authentication required)
 app.use('/api/auth', authRoutes);
 
-// Protected routes
+// Public event routes
+app.get('/api/dates', eventRoutes);
+
+// Protected event routes
 app.use('/api/dates', authenticateToken, eventRoutes);
 
 // Basic route for testing

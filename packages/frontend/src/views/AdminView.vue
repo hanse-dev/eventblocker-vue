@@ -16,29 +16,45 @@ const loading = ref({
 });
 
 const dialog = ref(false);
+const editedIndex = ref(-1);
+
+const getDefaultDate = () => {
+  const today = new Date();
+  return today.toISOString().split('T')[0];
+};
+
 const editedItem = ref({
   title: '',
-  start: '',
-  end: '',
-  description: ''
+  date: getDefaultDate(),
+  startTime: '19:00',
+  duration: 15,
+  description: '',
+  location: '',
+  room: '',
+  price: 15,
+  maxParticipants: 10,
+  visible: true
 });
-const editedIndex = ref(-1);
 
 const formRef = ref(null);
 const errors = ref({
   title: '',
-  start: '',
-  end: '',
-  description: ''
+  date: '',
+  startTime: '',
+  duration: '',
+  price: '',
+  maxParticipants: ''
 });
 
 const validateForm = () => {
   let isValid = true;
   errors.value = {
     title: '',
-    start: '',
-    end: '',
-    description: ''
+    date: '',
+    startTime: '',
+    duration: '',
+    price: '',
+    maxParticipants: ''
   };
 
   if (!editedItem.value.title) {
@@ -49,16 +65,28 @@ const validateForm = () => {
     isValid = false;
   }
 
-  if (!editedItem.value.start) {
-    errors.value.start = 'Datum und Uhrzeit sind erforderlich';
+  if (!editedItem.value.date) {
+    errors.value.date = 'Datum ist erforderlich';
     isValid = false;
   }
 
-  if (!editedItem.value.end) {
-    errors.value.end = 'Datum und Uhrzeit sind erforderlich';
+  if (!editedItem.value.startTime) {
+    errors.value.startTime = 'Startzeit ist erforderlich';
     isValid = false;
-  } else if (new Date(editedItem.value.end) <= new Date(editedItem.value.start)) {
-    errors.value.end = 'Endzeit muss nach Startzeit liegen';
+  }
+
+  if (!editedItem.value.duration || editedItem.value.duration < 15) {
+    errors.value.duration = 'Dauer muss mindestens 15 Minuten betragen';
+    isValid = false;
+  }
+
+  if (editedItem.value.price < 0) {
+    errors.value.price = 'Preis muss größer oder gleich 0 sein';
+    isValid = false;
+  }
+
+  if (editedItem.value.maxParticipants < 1) {
+    errors.value.maxParticipants = 'Mindestens 1 Teilnehmer erforderlich';
     isValid = false;
   }
 
@@ -110,15 +138,23 @@ const close = () => {
   editedIndex.value = -1;
   editedItem.value = {
     title: '',
-    start: '',
-    end: '',
-    description: ''
+    date: getDefaultDate(),
+    startTime: '19:00',
+    duration: 15,
+    description: '',
+    location: '',
+    room: '',
+    price: 15,
+    maxParticipants: 10,
+    visible: true
   };
   errors.value = {
     title: '',
-    start: '',
-    end: '',
-    description: ''
+    date: '',
+    startTime: '',
+    duration: '',
+    price: '',
+    maxParticipants: ''
   };
 };
 
@@ -127,21 +163,35 @@ const save = async () => {
 
   loading.value.save = true;
   try {
+    // Format data for API
+    const eventData = {
+      title: editedItem.value.title.trim(),
+      date: editedItem.value.date,
+      startTime: `${editedItem.value.date}T${editedItem.value.startTime}`,
+      duration: Math.floor(editedItem.value.duration),
+      location: (editedItem.value.location || '').trim(),
+      room: (editedItem.value.room || '').trim(),
+      description: (editedItem.value.description || '').trim(),
+      price: Math.max(0, Math.floor(editedItem.value.price)),
+      maxBookings: Math.max(1, Math.floor(editedItem.value.maxParticipants)),
+      visibility: editedItem.value.visible
+    };
+
+    console.log('Formatted event data:', eventData);
+
     if (editedIndex.value > -1) {
-      const updatedEvent = await apiService.updateEvent(
-        events.value[editedIndex.value].id,
-        editedItem.value
-      );
+      const updatedEvent = await apiService.updateEvent(events.value[editedIndex.value].id, eventData);
       Object.assign(events.value[editedIndex.value], updatedEvent);
       notificationStore.success('Termin erfolgreich aktualisiert');
     } else {
-      const newEvent = await apiService.createEvent(editedItem.value);
+      const newEvent = await apiService.createEvent(eventData);
       events.value.push(newEvent);
       notificationStore.success('Termin erfolgreich erstellt');
     }
     close();
   } catch (error) {
-    notificationStore.error('Fehler beim Speichern des Termins');
+    console.error('Error saving event:', error);
+    notificationStore.error(`Fehler beim Speichern des Termins: ${error.message}`);
   } finally {
     loading.value.save = false;
   }
@@ -170,29 +220,40 @@ onMounted(fetchEvents);
             <thead class="table-light">
               <tr>
                 <th>Titel</th>
-                <th>Start</th>
-                <th>Ende</th>
+                <th>Datum</th>
+                <th>Startzeit</th>
+                <th>Dauer</th>
+                <th>Preis</th>
+                <th>Teilnehmer</th>
+                <th>Sichtbar</th>
                 <th class="d-none d-md-table-cell">Beschreibung</th>
                 <th class="text-end">Aktionen</th>
               </tr>
             </thead>
             <tbody>
               <tr v-if="loading.list">
-                <td colspan="5" class="text-center py-4">
+                <td colspan="9" class="text-center py-4">
                   <div class="spinner-border text-primary" role="status">
                     <span class="visually-hidden">Termine werden geladen...</span>
                   </div>
                 </td>
               </tr>
               <tr v-else-if="events.length === 0">
-                <td colspan="5" class="text-center py-4">
+                <td colspan="9" class="text-center py-4">
                   Keine Termine vorhanden
                 </td>
               </tr>
-              <tr v-else v-for="item in events" :key="item.id">
+              <tr v-for="item in events" :key="item.id">
                 <td>{{ item.title }}</td>
-                <td>{{ formatDateTime(item.start) }}</td>
-                <td>{{ formatDateTime(item.end) }}</td>
+                <td>{{ item.date }}</td>
+                <td>{{ item.startTime }}</td>
+                <td>{{ item.duration }} Min.</td>
+                <td>{{ item.price }}€</td>
+                <td>{{ item.maxParticipants }}</td>
+                <td>
+                  <span v-if="item.visible" class="badge bg-success">Ja</span>
+                  <span v-else class="badge bg-secondary">Nein</span>
+                </td>
                 <td class="d-none d-md-table-cell">{{ item.description }}</td>
                 <td class="text-end">
                   <div class="btn-group">
@@ -259,41 +320,117 @@ onMounted(fetchEvents);
               </div>
 
               <div class="mb-3">
-                <label for="start" class="form-label">Start</label>
+                <label for="date" class="form-label">Datum</label>
                 <input
-                  type="datetime-local"
+                  type="date"
                   class="form-control"
-                  :class="{ 'is-invalid': errors.start }"
-                  id="start"
-                  v-model="editedItem.start"
+                  :class="{ 'is-invalid': errors.date }"
+                  id="date"
+                  v-model="editedItem.date"
                   required
                 >
-                <div class="invalid-feedback">{{ errors.start }}</div>
+                <div class="invalid-feedback">{{ errors.date }}</div>
               </div>
 
               <div class="mb-3">
-                <label for="end" class="form-label">Ende</label>
+                <label for="startTime" class="form-label">Startzeit</label>
                 <input
-                  type="datetime-local"
+                  type="time"
                   class="form-control"
-                  :class="{ 'is-invalid': errors.end }"
-                  id="end"
-                  v-model="editedItem.end"
+                  :class="{ 'is-invalid': errors.startTime }"
+                  id="startTime"
+                  v-model="editedItem.startTime"
                   required
                 >
-                <div class="invalid-feedback">{{ errors.end }}</div>
+                <div class="invalid-feedback">{{ errors.startTime }}</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="duration" class="form-label">Dauer (Minuten)</label>
+                <select
+                  class="form-select"
+                  :class="{ 'is-invalid': errors.duration }"
+                  id="duration"
+                  v-model="editedItem.duration"
+                  required
+                >
+                  <option v-for="minutes in [15, 30, 45, 60, 75, 90, 105, 120]" :key="minutes" :value="minutes">
+                    {{ minutes }} Minuten
+                  </option>
+                </select>
+                <div class="invalid-feedback">{{ errors.duration }}</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="price" class="form-label">Preis (€)</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  :class="{ 'is-invalid': errors.price }"
+                  id="price"
+                  v-model.number="editedItem.price"
+                  min="0"
+                  step="1"
+                  required
+                >
+                <div class="invalid-feedback">{{ errors.price }}</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="maxParticipants" class="form-label">Maximale Teilnehmerzahl</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  :class="{ 'is-invalid': errors.maxParticipants }"
+                  id="maxParticipants"
+                  v-model.number="editedItem.maxParticipants"
+                  min="1"
+                  step="1"
+                  required
+                >
+                <div class="invalid-feedback">{{ errors.maxParticipants }}</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="location" class="form-label">Ort</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="location"
+                  v-model="editedItem.location"
+                >
+              </div>
+
+              <div class="mb-3">
+                <label for="room" class="form-label">Raum</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="room"
+                  v-model="editedItem.room"
+                >
               </div>
 
               <div class="mb-3">
                 <label for="description" class="form-label">Beschreibung</label>
                 <textarea
                   class="form-control"
-                  :class="{ 'is-invalid': errors.description }"
                   id="description"
                   v-model="editedItem.description"
                   rows="3"
                 ></textarea>
-                <div class="invalid-feedback">{{ errors.description }}</div>
+              </div>
+
+              <div class="mb-3">
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="visible"
+                    v-model="editedItem.visible"
+                  >
+                  <label class="form-check-label" for="visible">Termin sichtbar</label>
+                </div>
               </div>
             </form>
           </div>

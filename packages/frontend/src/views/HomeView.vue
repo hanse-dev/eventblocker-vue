@@ -3,43 +3,47 @@ import { ref, onMounted } from 'vue';
 import AppointmentList from '../components/AppointmentList.vue';
 import BookingDialog from '../components/BookingDialog.vue';
 import { useNotificationStore } from '../stores/notification';
+import { useAuthStore } from '../stores/auth';
+import { apiService } from '../services/api';
 
 const notificationStore = useNotificationStore();
+const authStore = useAuthStore();
 const appointments = ref([]);
 const selectedAppointment = ref(null);
 const showBookingDialog = ref(false);
+const loading = ref(false);
+const error = ref(null);
 
 const fetchAppointments = async () => {
+  loading.value = true;
+  error.value = null;
   try {
-    const response = await fetch('http://localhost:3000/api/dates');
-    appointments.value = await response.json();
-  } catch (error) {
-    console.error('Failed to fetch appointments:', error);
-    notificationStore.error('Fehler beim Laden der Termine');
+    const events = await apiService.getEvents();
+    // Filter only visible events for non-authenticated users
+    appointments.value = Array.isArray(events) ? events.filter(event => event.visibility) : [];
+  } catch (err) {
+    console.error('Failed to fetch appointments:', err);
+    error.value = 'Fehler beim Laden der Termine. Bitte versuchen Sie es später erneut.';
+    appointments.value = [];
+  } finally {
+    loading.value = false;
   }
 };
 
 const handleBook = (appointment) => {
+  if (!authStore.isAuthenticated) {
+    notificationStore.error('Bitte melden Sie sich an, um einen Termin zu buchen');
+    return;
+  }
   selectedAppointment.value = appointment;
   showBookingDialog.value = true;
 };
 
 const submitBooking = async (bookingData) => {
   try {
-    const response = await fetch(`http://localhost:3000/api/dates/${bookingData.appointmentId}/book`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(bookingData),
-    });
-    
-    if (response.ok) {
-      fetchAppointments();
-      notificationStore.success('Termin erfolgreich gebucht');
-    } else {
-      throw new Error('Booking failed');
-    }
+    await apiService.bookEvent(bookingData.appointmentId, bookingData);
+    await fetchAppointments();
+    notificationStore.success('Termin erfolgreich gebucht');
   } catch (error) {
     console.error('Failed to book appointment:', error);
     notificationStore.error('Fehler beim Buchen des Termins');
@@ -52,33 +56,38 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="container-fluid py-4">
-    <div class="row mb-4">
+  <div class="home-view container-fluid py-4">
+    <div class="row">
       <div class="col-12">
-        <h1 class="display-4 text-center mb-4">Verfügbare Termine</h1>
-        <div class="text-center mb-5">
-          <p class="lead text-muted">
-            Wählen Sie einen verfügbaren Termin aus und buchen Sie ihn direkt online.
-          </p>
+        <div class="card shadow-sm">
+          <div class="card-header bg-primary text-white py-3">
+            <h5 class="card-title mb-0">Verfügbare Termine</h5>
+          </div>
+          <div class="card-body">
+            <div v-if="loading" class="text-center py-4">
+              <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Termine werden geladen...</span>
+              </div>
+            </div>
+            <div v-else-if="error" class="alert alert-danger" role="alert">
+              {{ error }}
+            </div>
+            <AppointmentList
+              v-else
+              :appointments="appointments"
+              :is-admin="false"
+              @book="handleBook"
+            />
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="row justify-content-center">
-      <div class="col-12 col-lg-10">
-        <AppointmentList
-          :appointments="appointments"
-          :is-admin="false"
-          @book="handleBook"
-        />
-      </div>
-    </div>
-
     <BookingDialog
-      v-if="selectedAppointment"
+      v-if="showBookingDialog"
       v-model="showBookingDialog"
       :appointment="selectedAppointment"
-      @book="submitBooking"
+      @submit="submitBooking"
     />
   </div>
 </template>

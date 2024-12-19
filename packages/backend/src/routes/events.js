@@ -2,10 +2,12 @@ const express = require('express');
 const { PrismaClient } = require('@prisma/client');
 const router = express.Router();
 const prisma = new PrismaClient();
+const logger = require('../utils/logger');
 
 // GET /api/dates - Get all available dates
 router.get('/', async (req, res) => {
   try {
+    logger.info('Fetching all events');
     const events = await prisma.event.findMany({
       where: {
         visibility: true,
@@ -15,8 +17,10 @@ router.get('/', async (req, res) => {
         date: 'asc'
       }
     });
+    logger.info('Successfully fetched events', { count: events.length });
     res.json(events);
   } catch (error) {
+    logger.error('Failed to fetch events', error);
     res.status(500).json({ error: 'Failed to fetch events' });
   }
 });
@@ -24,29 +28,43 @@ router.get('/', async (req, res) => {
 // POST /api/dates - Create new date
 router.post('/', async (req, res) => {
   try {
+    logger.info('Creating new event', { body: req.body });
+    
+    const eventData = {
+      title: req.body.title,
+      date: new Date(req.body.date),
+      startTime: new Date(req.body.startTime),
+      duration: parseInt(req.body.duration),
+      location: req.body.location,
+      room: req.body.room,
+      description: req.body.description,
+      price: req.body.price ? parseFloat(req.body.price) : null,
+      maxBookings: req.body.maxBookings ? parseInt(req.body.maxBookings) : 1,
+      visibility: req.body.visibility !== false
+    };
+    
+    logger.debug('Parsed event data', eventData);
+    
     const event = await prisma.event.create({
-      data: {
-        title: req.body.title,
-        date: new Date(req.body.date),
-        startTime: new Date(req.body.startTime),
-        duration: parseInt(req.body.duration),
-        location: req.body.location,
-        room: req.body.room,
-        description: req.body.description,
-        price: req.body.price ? parseFloat(req.body.price) : null,
-        maxBookings: req.body.maxBookings ? parseInt(req.body.maxBookings) : 1,
-        visibility: req.body.visibility !== false
-      }
+      data: eventData
     });
+    
+    logger.info('Successfully created event', { event });
     res.status(201).json(event);
   } catch (error) {
-    res.status(400).json({ error: 'Failed to create event' });
+    logger.error('Failed to create event', error);
+    res.status(400).json({ 
+      error: 'Failed to create event',
+      details: error.message,
+      validationErrors: error.meta?.cause
+    });
   }
 });
 
 // PUT /api/dates/:id - Update date
 router.put('/:id', async (req, res) => {
   try {
+    logger.info('Updating event', { id: req.params.id, body: req.body });
     const event = await prisma.event.update({
       where: { id: parseInt(req.params.id) },
       data: {
@@ -62,8 +80,10 @@ router.put('/:id', async (req, res) => {
         visibility: req.body.visibility
       }
     });
+    logger.info('Successfully updated event', { event });
     res.json(event);
   } catch (error) {
+    logger.error('Failed to update event', error);
     res.status(404).json({ error: 'Event not found or update failed' });
   }
 });
@@ -71,11 +91,14 @@ router.put('/:id', async (req, res) => {
 // DELETE /api/dates/:id - Delete date
 router.delete('/:id', async (req, res) => {
   try {
+    logger.info('Deleting event', { id: req.params.id });
     await prisma.event.delete({
       where: { id: parseInt(req.params.id) }
     });
+    logger.info('Successfully deleted event', { id: req.params.id });
     res.status(204).send();
   } catch (error) {
+    logger.error('Failed to delete event', error);
     res.status(404).json({ error: 'Event not found or delete failed' });
   }
 });
@@ -83,15 +106,19 @@ router.delete('/:id', async (req, res) => {
 // POST /api/dates/:id/book - Book date
 router.post('/:id/book', async (req, res) => {
   try {
+    logger.info('Booking event', { id: req.params.id, body: req.body });
+    
     const event = await prisma.event.findUnique({
       where: { id: parseInt(req.params.id) }
     });
 
     if (!event) {
+      logger.error('Event not found for booking', { id: req.params.id });
       return res.status(404).json({ error: 'Event not found' });
     }
 
     if (event.status !== 'available') {
+      logger.error('Event not available for booking', { id: req.params.id, status: event.status });
       return res.status(400).json({ error: 'Event is not available for booking' });
     }
 
@@ -105,8 +132,10 @@ router.post('/:id/book', async (req, res) => {
       }
     });
 
+    logger.info('Successfully booked event', { event: updatedEvent });
     res.json(updatedEvent);
   } catch (error) {
+    logger.error('Failed to book event', error);
     res.status(500).json({ error: 'Booking failed' });
   }
 });
