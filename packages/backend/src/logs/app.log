@@ -1,0 +1,71 @@
+[2024-12-16T21:22:47.876Z] INFO: Creating new event
+{
+  "body": {
+    "title": "test",
+    "date": "2024-12-17",
+    "startTime": "2024-12-17T19:00",
+    "duration": 15,
+    "location": "",
+    "room": "",
+    "description": "",
+    "price": 15,
+    "maxBookings": 10,
+    "visibility": true
+  }
+}
+[2024-12-16T21:22:47.876Z] DEBUG: Parsed event data
+{
+  "title": "test",
+  "date": "2024-12-17T00:00:00.000Z",
+  "startTime": "2024-12-17T18:00:00.000Z",
+  "duration": 15,
+  "location": "",
+  "room": "",
+  "description": "",
+  "price": 15,
+  "maxBookings": 10,
+  "visibility": true
+}
+[2024-12-16T21:22:47.888Z] INFO: Successfully created event
+{
+  "event": {
+    "id": 2,
+    "title": "test",
+    "date": "2024-12-17T00:00:00.000Z",
+    "startTime": "2024-12-17T18:00:00.000Z",
+    "duration": 15,
+    "location": "",
+    "room": "",
+    "description": "",
+    "status": "available",
+    "bookerName": null,
+    "bookerEmail": null,
+    "bookerPhone": null,
+    "price": 15,
+    "visibility": true,
+    "maxBookings": 10,
+    "createdAt": "2024-12-16T21:22:47.879Z",
+    "updatedAt": "2024-12-16T21:22:47.879Z"
+  }
+}
+[2024-12-16T21:22:53.005Z] INFO: Updating event
+{
+  "id": "2",
+  "body": {
+    "title": "test",
+    "date": "2024-12-17T00:00:00.000Z",
+    "startTime": "2024-12-17T00:00:00.000ZT2024-12-17T18:00:00.000Z",
+    "duration": 15,
+    "location": "",
+    "room": "",
+    "description": "",
+    "price": 15,
+    "maxBookings": null,
+    "visibility": true
+  }
+}
+[2024-12-16T21:22:53.010Z] ERROR: Failed to update event
+{
+  "message": "\nInvalid `prisma.event.update()` invocation in\nC:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\packages\\backend\\src\\routes\\events.js:68:38\n\n  65 router.put('/:id', async (req, res) => {\n  66   try {\n  67     logger.info('Updating event', { id: req.params.id, body: req.body });\n→ 68     const event = await prisma.event.update({\n           where: {\n             id: 2\n           },\n           data: {\n             title: \"test\",\n             date: new Date(\"2024-12-17T00:00:00.000Z\"),\n             startTime: new Date(\"Invalid Date\"),\n                        ~~~~~~~~~~~~~~~~~~~~~~~~\n             duration: 15,\n             location: \"\",\n             room: \"\",\n             description: \"\",\n             price: 15,\n             maxBookings: undefined,\n             visibility: true\n           }\n         })\n\nInvalid value for argument `startTime`: Provided Date object is invalid. Expected Date.",
+  "stack": "PrismaClientValidationError: \nInvalid `prisma.event.update()` invocation in\nC:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\packages\\backend\\src\\routes\\events.js:68:38\n\n  65 router.put('/:id', async (req, res) => {\n  66   try {\n  67     logger.info('Updating event', { id: req.params.id, body: req.body });\n→ 68     const event = await prisma.event.update({\n           where: {\n             id: 2\n           },\n           data: {\n             title: \"test\",\n             date: new Date(\"2024-12-17T00:00:00.000Z\"),\n             startTime: new Date(\"Invalid Date\"),\n                        ~~~~~~~~~~~~~~~~~~~~~~~~\n             duration: 15,\n             location: \"\",\n             room: \"\",\n             description: \"\",\n             price: 15,\n             maxBookings: undefined,\n             visibility: true\n           }\n         })\n\nInvalid value for argument `startTime`: Provided Date object is invalid. Expected Date.\n    at En (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:29:1363)\n    at e.throwValidationError (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:29:10253)\n    at na (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:29:7746)\n    at ia (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:29:8955)\n    at na (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:29:8486)\n    at ia (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:29:8955)\n    at pr (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:29:6037)\n    at Pn (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:29:5902)\n    at C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:130:10186\n    at Object.runInChildSpan (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:121:1509)"
+}
