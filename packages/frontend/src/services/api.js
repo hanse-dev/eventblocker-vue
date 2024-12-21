@@ -89,6 +89,12 @@ class ApiService {
     return this.request(`/dates/${id}/book`, {
       method: 'POST',
       body: JSON.stringify(bookingData),
+      requiresAuth: false
+    });
+  }
+
+  async getEventBookings(id) {
+    return this.request(`/dates/${id}/bookings`, {
       requiresAuth: true
     });
   }

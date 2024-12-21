@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue';
+import BookingsList from './BookingsList.vue';
 
 const props = defineProps({
   appointments: {
@@ -14,6 +15,7 @@ const props = defineProps({
 });
 
 const emit = defineEmits(['edit', 'delete', 'book']);
+const selectedEventId = ref(null);
 
 const formatDate = (dateStr) => {
   return new Date(dateStr).toLocaleDateString('de-DE');
@@ -24,6 +26,10 @@ const formatTime = (timeStr) => {
     hour: '2-digit', 
     minute: '2-digit' 
   });
+};
+
+const toggleBookings = (eventId) => {
+  selectedEventId.value = selectedEventId.value === eventId ? null : eventId;
 };
 
 const currentPage = ref(1);
@@ -99,6 +105,14 @@ const hasAppointments = computed(() => {
                     </button>
                     <button
                       v-if="isAdmin"
+                      class="btn btn-outline-info btn-sm"
+                      @click="toggleBookings(item.id)"
+                      title="Buchungen anzeigen"
+                    >
+                      <i class="bi bi-list-ul"></i>
+                    </button>
+                    <button
+                      v-if="isAdmin"
                       class="btn btn-outline-danger btn-sm"
                       @click="emit('delete', item)"
                       title="Löschen"
@@ -114,6 +128,11 @@ const hasAppointments = computed(() => {
                       Buchen
                     </button>
                   </div>
+                </td>
+              </tr>
+              <tr v-if="selectedEventId === item.id">
+                <td colspan="6" class="p-3 bg-light">
+                  <BookingsList :event-id="item.id" />
                 </td>
               </tr>
             </template>

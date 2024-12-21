@@ -69,3 +69,33 @@
   "message": "\nInvalid `prisma.event.update()` invocation in\nC:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\packages\\backend\\src\\routes\\events.js:68:38\n\n  65 router.put('/:id', async (req, res) => {\n  66   try {\n  67     logger.info('Updating event', { id: req.params.id, body: req.body });\n→ 68     const event = await prisma.event.update({\n           where: {\n             id: 2\n           },\n           data: {\n             title: \"test\",\n             date: new Date(\"2024-12-17T00:00:00.000Z\"),\n             startTime: new Date(\"Invalid Date\"),\n                        ~~~~~~~~~~~~~~~~~~~~~~~~\n             duration: 15,\n             location: \"\",\n             room: \"\",\n             description: \"\",\n             price: 15,\n             maxBookings: undefined,\n             visibility: true\n           }\n         })\n\nInvalid value for argument `startTime`: Provided Date object is invalid. Expected Date.",
   "stack": "PrismaClientValidationError: \nInvalid `prisma.event.update()` invocation in\nC:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\packages\\backend\\src\\routes\\events.js:68:38\n\n  65 router.put('/:id', async (req, res) => {\n  66   try {\n  67     logger.info('Updating event', { id: req.params.id, body: req.body });\n→ 68     const event = await prisma.event.update({\n           where: {\n             id: 2\n           },\n           data: {\n             title: \"test\",\n             date: new Date(\"2024-12-17T00:00:00.000Z\"),\n             startTime: new Date(\"Invalid Date\"),\n                        ~~~~~~~~~~~~~~~~~~~~~~~~\n             duration: 15,\n             location: \"\",\n             room: \"\",\n             description: \"\",\n             price: 15,\n             maxBookings: undefined,\n             visibility: true\n           }\n         })\n\nInvalid value for argument `startTime`: Provided Date object is invalid. Expected Date.\n    at En (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:29:1363)\n    at e.throwValidationError (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:29:10253)\n    at na (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:29:7746)\n    at ia (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:29:8955)\n    at na (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:29:8486)\n    at ia (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:29:8955)\n    at pr (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:29:6037)\n    at Pn (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:29:5902)\n    at C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:130:10186\n    at Object.runInChildSpan (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:121:1509)"
 }
+[2024-12-21T20:28:52.751Z] INFO: Fetching all events
+[2024-12-21T20:28:52.758Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-21T20:30:43.200Z] INFO: Fetching all events
+[2024-12-21T20:30:43.214Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-21T20:30:48.827Z] INFO: Fetching all events
+[2024-12-21T20:30:48.830Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-21T20:31:14.391Z] INFO: Fetching all events
+[2024-12-21T20:31:14.395Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-21T20:32:42.968Z] INFO: Fetching all events
+[2024-12-21T20:32:42.971Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-21T20:35:22.460Z] INFO: Fetching all events
+[2024-12-21T20:35:22.463Z] INFO: Successfully fetched events
+{
+  "count": 2
+}

@@ -31,10 +31,6 @@ const fetchAppointments = async () => {
 };
 
 const handleBook = (appointment) => {
-  if (!authStore.isAuthenticated) {
-    notificationStore.error('Bitte melden Sie sich an, um einen Termin zu buchen');
-    return;
-  }
   selectedAppointment.value = appointment;
   showBookingDialog.value = true;
 };
@@ -43,6 +39,7 @@ const submitBooking = async (bookingData) => {
   try {
     await apiService.bookEvent(bookingData.appointmentId, bookingData);
     await fetchAppointments();
+    showBookingDialog.value = false;
     notificationStore.success('Termin erfolgreich gebucht');
   } catch (error) {
     console.error('Failed to book appointment:', error);

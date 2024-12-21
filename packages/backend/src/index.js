@@ -12,11 +12,13 @@ app.use(express.json());
 // Auth routes (no authentication required)
 app.use('/api/auth', authRoutes);
 
-// Public event routes
-app.get('/api/dates', eventRoutes);
-
-// Protected event routes
-app.use('/api/dates', authenticateToken, eventRoutes);
+// Public event routes (GET and booking) and protected event routes
+app.use('/api/dates', (req, res, next) => {
+  if (req.method === 'GET' || (req.method === 'POST' && req.path.endsWith('/book'))) {
+    return next();
+  }
+  return authenticateToken(req, res, next);
+}, eventRoutes);
 
 // Basic route for testing
 app.get('/', (req, res) => {
