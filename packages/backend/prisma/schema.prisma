@@ -16,7 +16,7 @@ model User {
 }
 
 model Event {
-  id          Int      @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   title       String
   date        DateTime
   startTime   DateTime
@@ -25,12 +25,23 @@ model Event {
   room        String?
   description String?
   status      String   @default("available") // available/booked
-  bookerName  String?
-  bookerEmail String?
-  bookerPhone String?
   price       Float?
   visibility  Boolean  @default(true)
   maxBookings Int      @default(1)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  bookings    Booking[]
+}
+
+model Booking {
+  id        Int      @id @default(autoincrement())
+  eventId   Int
+  event     Event    @relation(fields: [eventId], references: [id])
+  name      String
+  email     String
+  phone     String?
+  notes     String?
+  status    String   @default("confirmed") // confirmed/cancelled
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

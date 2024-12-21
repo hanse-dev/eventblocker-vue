@@ -4,6 +4,7 @@ import { useAuthStore } from '../stores/auth';
 import { useNotificationStore } from '../stores/notification';
 import { apiService } from '../services/api';
 import { config } from '../config';
+import EventDetailsModal from '../components/EventDetailsModal.vue';
 
 const authStore = useAuthStore();
 const notificationStore = useNotificationStore();
@@ -17,6 +18,8 @@ const loading = ref({
 
 const dialog = ref(false);
 const editedIndex = ref(-1);
+const showDetailsModal = ref(false);
+const selectedEvent = ref(null);
 
 const getDefaultDate = () => {
   const today = new Date();
@@ -131,6 +134,11 @@ const deleteItem = async (item) => {
       loading.value.delete = false;
     }
   }
+};
+
+const showDetails = (event) => {
+  selectedEvent.value = event;
+  showDetailsModal.value = true;
 };
 
 const close = () => {
@@ -258,18 +266,28 @@ onMounted(fetchEvents);
                 <td class="text-end">
                   <div class="btn-group">
                     <button
-                      class="btn btn-outline-primary btn-sm"
-                      @click="editItem(item)"
+                      class="btn btn-outline-info btn-sm d-flex align-items-center"
+                      @click="showDetails(item)"
                       :disabled="loading.delete"
+                      title="Details anzeigen"
                     >
-                      <i class="bi bi-pencil"></i>
+                      👁️
                     </button>
                     <button
-                      class="btn btn-outline-danger btn-sm"
+                      class="btn btn-outline-primary btn-sm d-flex align-items-center"
+                      @click="editItem(item)"
+                      :disabled="loading.delete"
+                      title="Bearbeiten"
+                    >
+                      ✏️
+                    </button>
+                    <button
+                      class="btn btn-outline-danger btn-sm d-flex align-items-center"
                       @click="deleteItem(item)"
                       :disabled="loading.delete"
+                      title="Löschen"
                     >
-                      <i class="bi bi-trash"></i>
+                      🗑️
                     </button>
                   </div>
                 </td>
@@ -461,6 +479,13 @@ onMounted(fetchEvents);
         </div>
       </div>
     </div>
+
+    <!-- Event Details Modal -->
+    <EventDetailsModal
+      v-if="selectedEvent"
+      v-model="showDetailsModal"
+      :event="selectedEvent"
+    />
   </div>
 </template>
 

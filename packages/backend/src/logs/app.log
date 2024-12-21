@@ -99,3 +99,85 @@
 {
   "count": 2
 }
+[2024-12-21T20:37:47.988Z] INFO: Fetching all events
+[2024-12-21T20:37:47.990Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-21T20:38:08.008Z] INFO: Fetching all events
+[2024-12-21T20:38:08.010Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-21T20:40:03.379Z] INFO: Fetching all events
+[2024-12-21T20:40:03.381Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-21T20:40:29.195Z] INFO: Fetching all events
+[2024-12-21T20:40:29.197Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-21T20:40:39.191Z] INFO: Fetching all events
+[2024-12-21T20:40:39.193Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-21T20:40:44.766Z] INFO: Fetching all events
+[2024-12-21T20:40:44.768Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-21T20:41:41.214Z] INFO: Fetching all events
+[2024-12-21T20:41:41.216Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-21T20:42:32.198Z] INFO: Fetching all events
+[2024-12-21T20:42:32.200Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-21T20:43:30.706Z] INFO: Fetching all events
+[2024-12-21T20:43:30.707Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-21T20:44:10.183Z] INFO: Fetching all events
+[2024-12-21T20:44:10.185Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-21T20:44:17.266Z] INFO: Fetching bookings for event
+{
+  "eventId": "1"
+}
+[2024-12-21T20:44:17.268Z] ERROR: Failed to fetch bookings
+{
+  "message": "Cannot read properties of undefined (reading 'findMany')",
+  "stack": "TypeError: Cannot read properties of undefined (reading 'findMany')\n    at C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\packages\\backend\\src\\routes\\events.js:177:43"
+}
+[2024-12-21T20:44:30.075Z] INFO: Fetching bookings for event
+{
+  "eventId": "2"
+}
+[2024-12-21T20:44:30.077Z] ERROR: Failed to fetch bookings
+{
+  "message": "Cannot read properties of undefined (reading 'findMany')",
+  "stack": "TypeError: Cannot read properties of undefined (reading 'findMany')\n    at C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\packages\\backend\\src\\routes\\events.js:177:43"
+}
+[2024-12-21T20:46:01.124Z] INFO: Fetching all events
+[2024-12-21T20:46:01.126Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-21T20:46:02.755Z] INFO: Fetching bookings for event
+{
+  "eventId": "1"
+}
+[2024-12-21T20:46:02.758Z] INFO: Successfully fetched bookings
+{
+  "eventId": "1",
+  "count": 0
+}

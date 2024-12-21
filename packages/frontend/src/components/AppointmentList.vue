@@ -1,6 +1,8 @@
 <script setup>
 import { ref, computed } from 'vue';
 import BookingsList from './BookingsList.vue';
+import EventDetailsModal from './EventDetailsModal.vue';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const props = defineProps({
   appointments: {
@@ -16,6 +18,8 @@ const props = defineProps({
 
 const emit = defineEmits(['edit', 'delete', 'book']);
 const selectedEventId = ref(null);
+const showDetailsModal = ref(false);
+const selectedEvent = ref(null);
 
 const formatDate = (dateStr) => {
   return new Date(dateStr).toLocaleDateString('de-DE');
@@ -30,6 +34,11 @@ const formatTime = (timeStr) => {
 
 const toggleBookings = (eventId) => {
   selectedEventId.value = selectedEventId.value === eventId ? null : eventId;
+};
+
+const showDetails = (event) => {
+  selectedEvent.value = event;
+  showDetailsModal.value = true;
 };
 
 const currentPage = ref(1);
@@ -97,42 +106,36 @@ const hasAppointments = computed(() => {
                   <div class="btn-group">
                     <button
                       v-if="isAdmin"
-                      class="btn btn-outline-primary btn-sm"
+                      class="btn btn-outline-primary btn-sm d-flex align-items-center"
                       @click="emit('edit', item)"
                       title="Bearbeiten"
                     >
-                      <i class="bi bi-pencil"></i>
+                      ✏️
                     </button>
                     <button
                       v-if="isAdmin"
-                      class="btn btn-outline-info btn-sm"
-                      @click="toggleBookings(item.id)"
-                      title="Buchungen anzeigen"
+                      class="btn btn-outline-info btn-sm d-flex align-items-center"
+                      @click="showDetails(item)"
+                      title="Details anzeigen"
                     >
-                      <i class="bi bi-list-ul"></i>
+                      👁️
                     </button>
                     <button
                       v-if="isAdmin"
-                      class="btn btn-outline-danger btn-sm"
+                      class="btn btn-outline-danger btn-sm d-flex align-items-center"
                       @click="emit('delete', item)"
                       title="Löschen"
                     >
-                      <i class="bi bi-trash"></i>
+                      🗑️
                     </button>
                     <button
                       v-if="!isAdmin && item.status === 'available'"
-                      class="btn btn-success btn-sm"
+                      class="btn btn-success btn-sm d-flex align-items-center gap-1"
                       @click="emit('book', item)"
                     >
-                      <i class="bi bi-calendar-check me-1"></i>
-                      Buchen
+                      📅 Buchen
                     </button>
                   </div>
-                </td>
-              </tr>
-              <tr v-if="selectedEventId === item.id">
-                <td colspan="6" class="p-3 bg-light">
-                  <BookingsList :event-id="item.id" />
                 </td>
               </tr>
             </template>
@@ -181,6 +184,13 @@ const hasAppointments = computed(() => {
       </nav>
     </div>
   </div>
+
+  <!-- Event Details Modal -->
+  <EventDetailsModal
+    v-if="selectedEvent"
+    v-model="showDetailsModal"
+    :event="selectedEvent"
+  />
 </template>
 
 <style lang="scss" scoped>

@@ -103,54 +103,69 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-// POST /api/dates/:id/book - Book a date
+// POST /api/dates/:id/book - Book an event
 router.post('/:id/book', async (req, res) => {
   try {
-    logger.info('Booking event', { eventId: req.params.id, body: req.body });
-    
+    const eventId = parseInt(req.params.id);
+    const { name, email, phone, notes } = req.body;
+
+    logger.info('Attempting to book event', { eventId, email });
+
+    // Validate required fields
+    if (!name || !email) {
+      logger.warn('Missing required fields', { name, email });
+      return res.status(400).json({ error: 'Name and email are required' });
+    }
+
+    // Check if event exists and is available
     const event = await prisma.event.findUnique({
-      where: { id: parseInt(req.params.id) }
+      where: { id: eventId },
+      include: {
+        bookings: {
+          where: {
+            status: 'confirmed'
+          }
+        }
+      }
     });
-    
+
     if (!event) {
-      logger.warn('Event not found for booking', { eventId: req.params.id });
+      logger.warn('Event not found', { eventId });
       return res.status(404).json({ error: 'Event not found' });
     }
-    
-    if (!event.visibility || event.status !== 'available') {
-      logger.warn('Event not available for booking', { eventId: req.params.id, status: event.status });
+
+    if (!event.visibility) {
+      logger.warn('Event is not visible', { eventId });
       return res.status(400).json({ error: 'Event is not available for booking' });
     }
 
-    const bookingData = {
-      eventId: parseInt(req.params.id),
-      name: req.body.name,
-      email: req.body.email,
-      phone: req.body.phone,
-      notes: req.body.notes,
-      status: 'confirmed'
-    };
-    
+    if (event.bookings.length >= event.maxBookings) {
+      logger.warn('Event is fully booked', { eventId });
+      return res.status(400).json({ error: 'Event is fully booked' });
+    }
+
+    // Create booking
     const booking = await prisma.booking.create({
-      data: bookingData
-    });
-    
-    // Update event status if max bookings reached
-    const bookingsCount = await prisma.booking.count({
-      where: { 
-        eventId: event.id,
+      data: {
+        eventId,
+        name,
+        email,
+        phone,
+        notes,
         status: 'confirmed'
       }
     });
-    
-    if (bookingsCount >= event.maxBookings) {
+
+    // Update event status if it's now fully booked
+    const updatedBookingsCount = event.bookings.length + 1;
+    if (updatedBookingsCount >= event.maxBookings) {
       await prisma.event.update({
-        where: { id: event.id },
+        where: { id: eventId },
         data: { status: 'booked' }
       });
     }
-    
-    logger.info('Event booked successfully', { bookingId: booking.id });
+
+    logger.info('Successfully booked event', { eventId, bookingId: booking.id });
     res.json(booking);
   } catch (error) {
     logger.error('Failed to book event', error);
@@ -180,6 +195,15 @@ router.get('/:id/bookings', async (req, res) => {
       },
       orderBy: {
         createdAt: 'desc'
+      },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        phone: true,
+        notes: true,
+        status: true,
+        createdAt: true
       }
     });
     
