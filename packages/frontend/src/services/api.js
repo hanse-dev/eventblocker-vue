@@ -19,13 +19,6 @@ class ApiService {
     };
 
     try {
-      console.log('Full request details:', {
-        url,
-        method: options.method || 'GET',
-        headers,
-        requiresAuth: options.requiresAuth
-      });
-
       const requestBody = options.body ? JSON.parse(options.body) : undefined;
       console.log('API Request Details:', {
         url,
@@ -35,8 +28,9 @@ class ApiService {
       });
 
       const response = await fetch(url, {
-        ...options,
-        headers
+        method: options.method || 'GET',
+        headers,
+        body: options.body,
       });
 
       if (!response.ok) {
@@ -119,6 +113,13 @@ class ApiService {
 
   async getEventBookings(id) {
     return this.request(`/dates/${id}/bookings`, {
+      requiresAuth: true
+    });
+  }
+
+  async deleteBooking(eventId, bookingId) {
+    return this.request(`/dates/${eventId}/bookings/${bookingId}`, {
+      method: 'DELETE',
       requiresAuth: true
     });
   }

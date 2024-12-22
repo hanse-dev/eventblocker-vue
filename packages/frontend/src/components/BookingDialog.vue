@@ -44,16 +44,34 @@
 
           <!-- Booking Form -->
           <form @submit.prevent="handleSubmit" class="booking-form">
-            <div class="form-group">
-              <label class="form-label required">Name</label>
-              <input
-                v-model="formData.name"
-                type="text"
-                class="form-control"
-                required
-                placeholder="Ihr Name"
-                :disabled="loading"
-              />
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-label required">Vorname</label>
+                  <input
+                    v-model="formData.firstName"
+                    type="text"
+                    class="form-control"
+                    required
+                    placeholder="Ihr Vorname"
+                    :disabled="loading"
+                  />
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-label required">Nachname</label>
+                  <input
+                    v-model="formData.lastName"
+                    type="text"
+                    class="form-control"
+                    required
+                    placeholder="Ihr Nachname"
+                    :disabled="loading"
+                  />
+                </div>
+              </div>
             </div>
 
             <div class="row">
@@ -143,19 +161,21 @@ const props = defineProps({
 const emit = defineEmits(['close', 'submit']);
 
 const formData = ref({
-  name: '',
+  firstName: '',
+  lastName: '',
   email: '',
   phone: '',
   notes: ''
 });
 
 const handleSubmit = () => {
-  if (!formData.value.name || !formData.value.email) {
+  if (!formData.value.firstName || !formData.value.lastName || !formData.value.email) {
     return;
   }
   
   emit('submit', {
-    name: formData.value.name,
+    firstName: formData.value.firstName,
+    lastName: formData.value.lastName,
     email: formData.value.email,
     phone: formData.value.phone || null,
     notes: formData.value.notes || null

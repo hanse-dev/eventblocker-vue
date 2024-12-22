@@ -34,9 +34,11 @@
         <EventCard
           :event="item"
           :loading="loading.save || loading.delete"
+          :is-admin="true"
           @edit="editItem"
           @copy="copyItem"
           @delete="deleteItem"
+          @refresh="fetchEvents"
         />
       </div>
     </div>

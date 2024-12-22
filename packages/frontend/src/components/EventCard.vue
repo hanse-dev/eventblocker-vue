@@ -1,3 +1,55 @@
+<script setup>
+import { computed, defineProps, defineEmits, ref } from 'vue';
+import BookingsModal from './BookingsModal.vue';
+
+const props = defineProps({
+  event: {
+    type: Object,
+    required: true
+  },
+  loading: {
+    type: Boolean,
+    default: false
+  },
+  isAdmin: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const showBookingsModal = ref(false);
+
+const emit = defineEmits(['edit', 'copy', 'delete', 'book', 'refresh']);
+
+const bookedSeats = computed(() => {
+  return props.event.bookings?.length || 0;
+});
+
+const isFullyBooked = computed(() => {
+  return bookedSeats.value >= props.event.maxBookings;
+});
+
+const formatDate = (date) => {
+  if (!date) return '';
+  const d = new Date(date);
+  return d.toLocaleDateString('de-DE', { 
+    day: '2-digit', 
+    month: '2-digit',
+    year: 'numeric'
+  });
+};
+
+const formatTime = (timeStr) => {
+  if (!timeStr) return '';
+  const date = new Date(timeStr);
+  return date.toLocaleTimeString('de-DE', { 
+    hour: '2-digit', 
+    minute: '2-digit',
+    hour12: false
+  }) + ' Uhr';
+};
+</script>
+
 <template>
   <div class="card h-100">
     <div class="card-body p-3">
@@ -29,7 +81,7 @@
         </div>
         <div class="detail-item">
           <i class="bi bi-people text-primary"></i>
-          <span>{{ event.bookedSeats || 0 }} / {{ event.maxBookings }}</span>
+          <span>{{ bookedSeats }} / {{ event.maxBookings }}</span>
         </div>
         <div class="detail-item">
           <i class="bi bi-currency-euro text-primary"></i>
@@ -37,15 +89,15 @@
         </div>
       </div>
 
-      <!-- Bookings section (admin only) -->
+      <!-- Bookings summary (admin only) -->
       <div v-if="isAdmin" class="mt-2 border-top pt-2">
-        <h6 class="mb-2">
+        <button 
+          class="btn btn-outline-primary btn-sm w-100"
+          @click="showBookingsModal = true"
+        >
           <i class="bi bi-person-lines-fill me-1"></i>
-          Buchungen ({{ event.bookings?.length || 0 }})
-        </h6>
-        <div class="bookings-list">
-          <slot name="bookings"></slot>
-        </div>
+          Buchungen anzeigen ({{ event.bookings?.length || 0 }})
+        </button>
       </div>
 
       <!-- Actions -->
@@ -76,53 +128,16 @@
         </template>
       </div>
     </div>
+
+    <!-- Bookings Modal -->
+    <BookingsModal
+      v-if="showBookingsModal"
+      :event="event"
+      @close="showBookingsModal = false"
+      @booking-deleted="$emit('refresh')"
+    />
   </div>
 </template>
-
-<script setup>
-import { computed, defineProps, defineEmits } from 'vue';
-
-const props = defineProps({
-  event: {
-    type: Object,
-    required: true
-  },
-  loading: {
-    type: Boolean,
-    default: false
-  },
-  isAdmin: {
-    type: Boolean,
-    default: false
-  }
-});
-
-const emit = defineEmits(['edit', 'copy', 'delete', 'book']);
-
-const isFullyBooked = computed(() => {
-  return (props.event.bookedSeats || 0) >= props.event.maxBookings;
-});
-
-const formatDate = (date) => {
-  if (!date) return '';
-  const d = new Date(date);
-  return d.toLocaleDateString('de-DE', { 
-    day: '2-digit', 
-    month: '2-digit',
-    year: 'numeric'
-  });
-};
-
-const formatTime = (timeStr) => {
-  if (!timeStr) return '';
-  const date = new Date(timeStr);
-  return date.toLocaleTimeString('de-DE', { 
-    hour: '2-digit', 
-    minute: '2-digit',
-    hour12: false
-  }) + ' Uhr';
-};
-</script>
 
 <style scoped>
 .card {

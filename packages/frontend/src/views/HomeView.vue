@@ -3,9 +3,13 @@ import { ref, onMounted } from 'vue';
 import EventCard from '../components/EventCard.vue';
 import BookingDialog from '../components/BookingDialog.vue';
 import { useNotificationStore } from '../stores/notification';
+import { useAuthStore } from '../stores/auth';
 import { apiService } from '../services/api';
+import { useRouter } from 'vue-router';
 
 const notificationStore = useNotificationStore();
+const authStore = useAuthStore();
+const router = useRouter();
 const appointments = ref([]);
 const selectedAppointment = ref(null);
 const showBookingDialog = ref(false);
@@ -18,8 +22,7 @@ const fetchAppointments = async () => {
   error.value = null;
   try {
     const events = await apiService.getEvents();
-    // Filter only visible events
-    appointments.value = Array.isArray(events) ? events.filter(event => event.visibility) : [];
+    appointments.value = Array.isArray(events) ? events : [];
   } catch (err) {
     console.error('Failed to fetch appointments:', err);
     error.value = 'Fehler beim Laden der Termine. Bitte versuchen Sie es später erneut.';
@@ -34,6 +37,39 @@ const handleBook = (appointment) => {
   showBookingDialog.value = true;
 };
 
+const handleEdit = async (event) => {
+  try {
+    // Redirect to admin view for editing
+    router.push('/admin');
+  } catch (error) {
+    console.error('Failed to handle edit:', error);
+    notificationStore.error('Fehler beim Bearbeiten des Termins');
+  }
+};
+
+const handleCopy = async (event) => {
+  try {
+    // Redirect to admin view for copying
+    router.push('/admin');
+  } catch (error) {
+    console.error('Failed to handle copy:', error);
+    notificationStore.error('Fehler beim Kopieren des Termins');
+  }
+};
+
+const handleDelete = async (event) => {
+  try {
+    if (!confirm('Möchten Sie diesen Termin wirklich löschen?')) return;
+    
+    await apiService.deleteEvent(event.id);
+    notificationStore.success('Termin erfolgreich gelöscht');
+    await fetchAppointments();
+  } catch (error) {
+    console.error('Failed to delete event:', error);
+    notificationStore.error('Fehler beim Löschen des Termins');
+  }
+};
+
 const submitBooking = async (bookingData) => {
   if (bookingLoading.value) return;
   
@@ -42,11 +78,12 @@ const submitBooking = async (bookingData) => {
     console.log('Submitting booking:', { id: selectedAppointment.value.id, bookingData });
     const response = await apiService.bookEvent(selectedAppointment.value.id, bookingData);
     
-    if (response) {
-      notificationStore.success('Termin erfolgreich gebucht');
-      showBookingDialog.value = false;
-      await fetchAppointments();
-    }
+    console.log('Booking response:', response);
+    
+    // Always close dialog and refresh on successful response
+    notificationStore.success('Termin erfolgreich gebucht');
+    showBookingDialog.value = false;
+    await fetchAppointments();
   } catch (error) {
     console.error('Failed to book appointment:', error);
     if (error.message?.includes('fully booked')) {
@@ -93,8 +130,11 @@ onMounted(() => {
         <EventCard
           :event="appointment"
           :loading="loading"
-          :is-admin="false"
+          :is-admin="authStore.isAuthenticated"
           @book="handleBook"
+          @edit="handleEdit"
+          @copy="handleCopy"
+          @delete="handleDelete"
         />
       </div>
     </div>

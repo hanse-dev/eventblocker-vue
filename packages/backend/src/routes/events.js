@@ -25,54 +25,42 @@ router.get('/', async (req, res) => {
 
     logger.info('Using where clause:', where);
 
-    // First get all events
+    // Get events with bookings count for all users
     const events = await prisma.event.findMany({
       where,
       orderBy: {
         date: 'asc'
-      }
-    });
-
-    // If admin, fetch bookings for each event
-    if (req.user?.role === 'admin') {
-      logger.info('Fetching bookings for admin');
-      const eventsWithBookings = await Promise.all(events.map(async (event) => {
-        const bookings = await prisma.booking.findMany({
-          where: { eventId: event.id },
-          select: {
+      },
+      include: {
+        bookings: {
+          where: {
+            status: 'confirmed'
+          },
+          select: req.user?.role === 'admin' ? {
             id: true,
             name: true,
             email: true,
             phone: true,
             notes: true,
             createdAt: true
-          },
-          orderBy: {
-            createdAt: 'desc'
+          } : {
+            id: true
           }
-        });
-        logger.info(`Found ${bookings.length} bookings for event ${event.id}`);
-        return {
-          ...event,
-          bookings
-        };
-      }));
-      
-      logger.info('Successfully fetched events with bookings', { 
-        count: eventsWithBookings.length,
-        eventsWithBookings: eventsWithBookings.map(e => ({
-          id: e.id,
-          title: e.title,
-          bookingsCount: e.bookings.length
-        }))
-      });
-      res.json(eventsWithBookings);
-    } else {
-      logger.info('Successfully fetched events (no bookings)', { 
-        count: events.length
-      });
-      res.json(events);
-    }
+        }
+      }
+    });
+
+    // For non-admin users, only return necessary data
+    const sanitizedEvents = events.map(event => {
+      const { bookings, ...eventData } = event;
+      return {
+        ...eventData,
+        bookings: req.user?.role === 'admin' ? bookings : bookings.map(b => ({ id: b.id }))
+      };
+    });
+
+    logger.info('Returning events', { count: sanitizedEvents.length });
+    res.json(sanitizedEvents);
   } catch (error) {
     logger.error('Failed to fetch events', error);
     res.status(500).json({ error: 'Failed to fetch events' });
@@ -206,14 +194,18 @@ router.delete('/:id', async (req, res) => {
 router.post('/:id/book', async (req, res) => {
   try {
     const eventId = parseInt(req.params.id);
-    const { name, email, phone, notes } = req.body;
+    const { firstName, lastName, email, phone, notes } = req.body;
 
-    logger.info('Attempting to book event', { eventId, email });
+    logger.info('Attempting to book event', { 
+      eventId, 
+      requestBody: req.body,
+      bookingData: { firstName, lastName, email, phone, notes }
+    });
 
     // Validate required fields
-    if (!name || !email) {
-      logger.warn('Missing required fields', { name, email });
-      return res.status(400).json({ error: 'Name and email are required' });
+    if (!firstName || !lastName || !email) {
+      logger.warn('Missing required fields', { firstName, lastName, email });
+      return res.status(400).json({ error: 'First name, last name and email are required' });
     }
 
     // Check if event exists and is available
@@ -228,6 +220,8 @@ router.post('/:id/book', async (req, res) => {
       }
     });
 
+    logger.info('Found event', { event });
+
     if (!event) {
       logger.warn('Event not found', { eventId });
       return res.status(404).json({ error: 'Event not found' });
@@ -239,15 +233,26 @@ router.post('/:id/book', async (req, res) => {
     }
 
     if (event.bookings.length >= event.maxBookings) {
-      logger.warn('Event is fully booked', { eventId });
+      logger.warn('Event is fully booked', { eventId, currentBookings: event.bookings.length, maxBookings: event.maxBookings });
       return res.status(400).json({ error: 'Event is fully booked' });
     }
 
     // Create booking
+    logger.info('Creating booking', {
+      eventId,
+      firstName,
+      lastName,
+      email,
+      phone,
+      notes
+    });
+
     const booking = await prisma.booking.create({
       data: {
         eventId,
-        name,
+        firstName,
+        lastName,
+        name: `${firstName} ${lastName}`,
         email,
         phone,
         notes,
@@ -255,9 +260,12 @@ router.post('/:id/book', async (req, res) => {
       }
     });
 
+    logger.info('Successfully created booking', { booking });
+
     // Update event status if it's now fully booked
     const updatedBookingsCount = event.bookings.length + 1;
     if (updatedBookingsCount >= event.maxBookings) {
+      logger.info('Updating event status to booked', { eventId });
       await prisma.event.update({
         where: { id: eventId },
         data: { status: 'booked' }
@@ -267,8 +275,8 @@ router.post('/:id/book', async (req, res) => {
     logger.info('Successfully booked event', { eventId, bookingId: booking.id });
     res.json(booking);
   } catch (error) {
-    logger.error('Failed to book event', error);
-    res.status(500).json({ error: 'Failed to book event' });
+    logger.error('Failed to book event', { error: error.message, stack: error.stack });
+    res.status(500).json({ error: 'Failed to book event', details: error.message });
   }
 });
 
@@ -315,6 +323,58 @@ router.get('/:id/bookings', async (req, res) => {
   } catch (error) {
     logger.error('Failed to fetch bookings', error);
     res.status(500).json({ error: 'Failed to fetch bookings' });
+  }
+});
+
+// DELETE /api/dates/:id/bookings/:bookingId - Delete a booking (admin only)
+router.delete('/:id/bookings/:bookingId', async (req, res) => {
+  try {
+    const eventId = parseInt(req.params.id);
+    const bookingId = parseInt(req.params.bookingId);
+    
+    logger.info('Deleting booking', { eventId, bookingId });
+
+    // Check if event exists
+    const event = await prisma.event.findUnique({
+      where: { id: eventId }
+    });
+
+    if (!event) {
+      logger.warn('Event not found', { eventId });
+      return res.status(404).json({ error: 'Event not found' });
+    }
+
+    // Check if booking exists and belongs to the event
+    const booking = await prisma.booking.findFirst({
+      where: {
+        id: bookingId,
+        eventId: eventId
+      }
+    });
+
+    if (!booking) {
+      logger.warn('Booking not found', { eventId, bookingId });
+      return res.status(404).json({ error: 'Booking not found' });
+    }
+
+    // Delete the booking
+    await prisma.booking.delete({
+      where: { id: bookingId }
+    });
+
+    // Update event status if it was fully booked
+    if (event.status === 'booked') {
+      await prisma.event.update({
+        where: { id: eventId },
+        data: { status: 'available' }
+      });
+    }
+
+    logger.info('Successfully deleted booking', { eventId, bookingId });
+    res.status(204).send();
+  } catch (error) {
+    logger.error('Failed to delete booking', error);
+    res.status(500).json({ error: 'Failed to delete booking' });
   }
 });
 
