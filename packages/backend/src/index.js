@@ -14,9 +14,20 @@ app.use('/api/auth', authRoutes);
 
 // Public event routes (GET and booking) and protected event routes
 app.use('/api/dates', (req, res, next) => {
-  if (req.method === 'GET' || (req.method === 'POST' && req.path.endsWith('/book'))) {
+  // For GET requests, check if admin token is provided
+  if (req.method === 'GET') {
+    if (req.headers.authorization) {
+      return authenticateToken(req, res, next);
+    }
     return next();
   }
+  
+  // For booking requests, no auth needed
+  if (req.method === 'POST' && req.path.endsWith('/book')) {
+    return next();
+  }
+  
+  // All other routes require authentication
   return authenticateToken(req, res, next);
 }, eventRoutes);
 

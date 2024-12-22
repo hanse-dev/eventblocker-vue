@@ -7,18 +7,72 @@ const logger = require('../utils/logger');
 // GET /api/dates - Get all available dates
 router.get('/', async (req, res) => {
   try {
-    logger.info('Fetching all events');
-    const events = await prisma.event.findMany({
-      where: {
+    logger.info('Fetching events', { user: req.user });
+    
+    const now = new Date();
+    logger.info('Current time:', now.toISOString());
+    
+    // Build where clause based on user role
+    const where = {
+      date: {
+        gte: now // Only show future events
+      },
+      ...(req.user?.role !== 'admin' ? {
         visibility: true,
         status: 'available'
-      },
+      } : {})
+    };
+
+    logger.info('Using where clause:', where);
+
+    // First get all events
+    const events = await prisma.event.findMany({
+      where,
       orderBy: {
         date: 'asc'
       }
     });
-    logger.info('Successfully fetched events', { count: events.length });
-    res.json(events);
+
+    // If admin, fetch bookings for each event
+    if (req.user?.role === 'admin') {
+      logger.info('Fetching bookings for admin');
+      const eventsWithBookings = await Promise.all(events.map(async (event) => {
+        const bookings = await prisma.booking.findMany({
+          where: { eventId: event.id },
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            phone: true,
+            notes: true,
+            createdAt: true
+          },
+          orderBy: {
+            createdAt: 'desc'
+          }
+        });
+        logger.info(`Found ${bookings.length} bookings for event ${event.id}`);
+        return {
+          ...event,
+          bookings
+        };
+      }));
+      
+      logger.info('Successfully fetched events with bookings', { 
+        count: eventsWithBookings.length,
+        eventsWithBookings: eventsWithBookings.map(e => ({
+          id: e.id,
+          title: e.title,
+          bookingsCount: e.bookings.length
+        }))
+      });
+      res.json(eventsWithBookings);
+    } else {
+      logger.info('Successfully fetched events (no bookings)', { 
+        count: events.length
+      });
+      res.json(events);
+    }
   } catch (error) {
     logger.error('Failed to fetch events', error);
     res.status(500).json({ error: 'Failed to fetch events' });
@@ -35,9 +89,8 @@ router.post('/', async (req, res) => {
       date: new Date(req.body.date),
       startTime: new Date(req.body.startTime),
       duration: parseInt(req.body.duration),
-      location: req.body.location,
-      room: req.body.room,
-      description: req.body.description,
+      location: req.body.location || '',
+      room: req.body.room || '',
       price: req.body.price ? parseFloat(req.body.price) : null,
       maxBookings: req.body.maxBookings ? parseInt(req.body.maxBookings) : 1,
       visibility: req.body.visibility !== false
@@ -64,27 +117,73 @@ router.post('/', async (req, res) => {
 // PUT /api/dates/:id - Update date
 router.put('/:id', async (req, res) => {
   try {
-    logger.info('Updating event', { id: req.params.id, body: req.body });
+    const id = parseInt(req.params.id);
+    logger.info('Updating event', { id, body: req.body });
+
+    // Validate that the event exists
+    const existingEvent = await prisma.event.findUnique({
+      where: { id }
+    });
+
+    if (!existingEvent) {
+      logger.warn('Event not found', { id });
+      return res.status(404).json({ error: 'Event not found' });
+    }
+
+    // Prepare update data
+    const updateData = {
+      title: req.body.title,
+      location: req.body.location,
+      room: req.body.room,
+      duration: req.body.duration ? parseInt(req.body.duration) : undefined,
+      maxBookings: req.body.maxBookings ? parseInt(req.body.maxBookings) : undefined,
+      price: req.body.price ? parseFloat(req.body.price) : undefined,
+      visibility: req.body.visibility
+    };
+
+    // Handle date and time fields
+    if (req.body.date) {
+      updateData.date = new Date(req.body.date);
+    }
+    if (req.body.startTime) {
+      updateData.startTime = new Date(req.body.startTime);
+    }
+
+    // Remove undefined values
+    Object.keys(updateData).forEach(key => 
+      updateData[key] === undefined && delete updateData[key]
+    );
+
+    logger.debug('Update data:', updateData);
+
     const event = await prisma.event.update({
-      where: { id: parseInt(req.params.id) },
-      data: {
-        title: req.body.title,
-        date: req.body.date ? new Date(req.body.date) : undefined,
-        startTime: req.body.startTime ? new Date(req.body.startTime) : undefined,
-        duration: req.body.duration ? parseInt(req.body.duration) : undefined,
-        location: req.body.location,
-        room: req.body.room,
-        description: req.body.description,
-        price: req.body.price ? parseFloat(req.body.price) : undefined,
-        maxBookings: req.body.maxBookings ? parseInt(req.body.maxBookings) : undefined,
-        visibility: req.body.visibility
+      where: { id },
+      data: updateData,
+      include: {
+        bookings: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            phone: true,
+            notes: true,
+            createdAt: true
+          },
+          orderBy: {
+            createdAt: 'desc'
+          }
+        }
       }
     });
+
     logger.info('Successfully updated event', { event });
     res.json(event);
   } catch (error) {
     logger.error('Failed to update event', error);
-    res.status(404).json({ error: 'Event not found or update failed' });
+    res.status(500).json({ 
+      error: 'Failed to update event',
+      details: error.message
+    });
   }
 });
 

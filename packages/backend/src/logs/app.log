@@ -181,3 +181,2795 @@
   "eventId": "1",
   "count": 0
 }
+[2024-12-21T20:46:40.989Z] INFO: Fetching bookings for event
+{
+  "eventId": "1"
+}
+[2024-12-21T20:46:40.991Z] INFO: Successfully fetched bookings
+{
+  "eventId": "1",
+  "count": 0
+}
+[2024-12-22T18:58:47.413Z] INFO: Fetching all events
+[2024-12-22T18:58:47.418Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T18:58:51.674Z] INFO: Fetching all events
+[2024-12-22T18:58:51.676Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:00:25.563Z] INFO: Fetching all events
+[2024-12-22T19:00:25.565Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:02:48.483Z] INFO: Fetching all events
+[2024-12-22T19:02:48.486Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:03:32.838Z] INFO: Fetching all events
+[2024-12-22T19:03:32.840Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:03:52.364Z] INFO: Fetching all events
+[2024-12-22T19:03:52.366Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:04:02.398Z] INFO: Fetching all events
+[2024-12-22T19:04:02.400Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:04:54.875Z] INFO: Fetching all events
+[2024-12-22T19:04:54.877Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:05:47.294Z] INFO: Fetching all events
+[2024-12-22T19:05:47.296Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:05:57.575Z] INFO: Fetching bookings for event
+{
+  "eventId": "2"
+}
+[2024-12-22T19:05:57.577Z] INFO: Successfully fetched bookings
+{
+  "eventId": "2",
+  "count": 0
+}
+[2024-12-22T19:06:42.319Z] INFO: Fetching all events
+[2024-12-22T19:06:42.321Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:06:57.042Z] INFO: Fetching all events
+[2024-12-22T19:06:57.044Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:07:11.163Z] INFO: Updating event
+{
+  "id": "2",
+  "body": {
+    "id": 2,
+    "title": "test",
+    "date": "2024-12-17",
+    "startTime": "2024-12-17T18:00:00.000Z",
+    "duration": 60,
+    "location": "",
+    "room": "",
+    "description": "",
+    "status": "available",
+    "price": 15,
+    "visibility": true,
+    "maxBookings": 10,
+    "createdAt": "2024-12-16T21:22:47.879Z",
+    "updatedAt": "2024-12-16T21:22:47.879Z"
+  }
+}
+[2024-12-22T19:07:11.174Z] INFO: Successfully updated event
+{
+  "event": {
+    "id": 2,
+    "title": "test",
+    "date": "2024-12-17T00:00:00.000Z",
+    "startTime": "2024-12-17T18:00:00.000Z",
+    "duration": 60,
+    "location": "",
+    "room": "",
+    "description": "",
+    "status": "available",
+    "price": 15,
+    "visibility": true,
+    "maxBookings": 10,
+    "createdAt": "2024-12-16T21:22:47.879Z",
+    "updatedAt": "2024-12-22T19:07:11.165Z"
+  }
+}
+[2024-12-22T19:07:14.252Z] INFO: Fetching all events
+[2024-12-22T19:07:14.254Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:07:17.428Z] INFO: Fetching all events
+[2024-12-22T19:07:17.430Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:07:36.085Z] INFO: Updating event
+{
+  "id": "2",
+  "body": {
+    "id": 2,
+    "title": "test",
+    "date": "2024-12-17",
+    "startTime": "2024-12-17T18:00:00.000Z",
+    "duration": 60,
+    "location": "",
+    "room": "",
+    "description": "",
+    "status": "available",
+    "price": 15,
+    "visibility": true,
+    "maxBookings": 10,
+    "createdAt": "2024-12-16T21:22:47.879Z",
+    "updatedAt": "2024-12-22T19:07:11.165Z",
+    "maxParticipants": 10
+  }
+}
+[2024-12-22T19:07:36.101Z] INFO: Successfully updated event
+{
+  "event": {
+    "id": 2,
+    "title": "test",
+    "date": "2024-12-17T00:00:00.000Z",
+    "startTime": "2024-12-17T18:00:00.000Z",
+    "duration": 60,
+    "location": "",
+    "room": "",
+    "description": "",
+    "status": "available",
+    "price": 15,
+    "visibility": true,
+    "maxBookings": 10,
+    "createdAt": "2024-12-16T21:22:47.879Z",
+    "updatedAt": "2024-12-22T19:07:36.086Z"
+  }
+}
+[2024-12-22T19:08:52.862Z] INFO: Fetching all events
+[2024-12-22T19:08:52.863Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:09:24.758Z] INFO: Fetching all events
+[2024-12-22T19:09:24.759Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:09:37.294Z] INFO: Updating event
+{
+  "id": "2",
+  "body": {
+    "id": 2,
+    "title": "test",
+    "date": "2024-12-17",
+    "startTime": "2024-12-17T18:00:00.000Z",
+    "duration": 60,
+    "location": "",
+    "room": "",
+    "description": "",
+    "status": "available",
+    "price": 15,
+    "visibility": true,
+    "maxBookings": 10,
+    "createdAt": "2024-12-16T21:22:47.879Z",
+    "updatedAt": "2024-12-22T19:07:36.086Z",
+    "maxParticipants": 10
+  }
+}
+[2024-12-22T19:09:37.311Z] INFO: Successfully updated event
+{
+  "event": {
+    "id": 2,
+    "title": "test",
+    "date": "2024-12-17T00:00:00.000Z",
+    "startTime": "2024-12-17T18:00:00.000Z",
+    "duration": 60,
+    "location": "",
+    "room": "",
+    "description": "",
+    "status": "available",
+    "price": 15,
+    "visibility": true,
+    "maxBookings": 10,
+    "createdAt": "2024-12-16T21:22:47.879Z",
+    "updatedAt": "2024-12-22T19:09:37.296Z"
+  }
+}
+[2024-12-22T19:09:41.268Z] INFO: Fetching all events
+[2024-12-22T19:09:41.270Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:10:33.183Z] INFO: Fetching all events
+[2024-12-22T19:10:33.184Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:10:51.907Z] INFO: Updating event
+{
+  "id": "2",
+  "body": {
+    "id": 2,
+    "title": "test",
+    "date": "2024-12-17",
+    "startTime": "2024-12-17T18:00:00.000Z",
+    "duration": 60,
+    "location": "",
+    "room": "",
+    "description": "",
+    "status": "available",
+    "price": 15,
+    "visibility": true,
+    "maxBookings": 15,
+    "createdAt": "2024-12-16T21:22:47.879Z",
+    "updatedAt": "2024-12-22T19:09:37.296Z"
+  }
+}
+[2024-12-22T19:10:51.916Z] INFO: Successfully updated event
+{
+  "event": {
+    "id": 2,
+    "title": "test",
+    "date": "2024-12-17T00:00:00.000Z",
+    "startTime": "2024-12-17T18:00:00.000Z",
+    "duration": 60,
+    "location": "",
+    "room": "",
+    "description": "",
+    "status": "available",
+    "price": 15,
+    "visibility": true,
+    "maxBookings": 15,
+    "createdAt": "2024-12-16T21:22:47.879Z",
+    "updatedAt": "2024-12-22T19:10:51.909Z"
+  }
+}
+[2024-12-22T19:10:55.853Z] INFO: Fetching all events
+[2024-12-22T19:10:55.855Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:12:38.101Z] INFO: Fetching all events
+[2024-12-22T19:12:38.102Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:13:12.077Z] INFO: Fetching all events
+[2024-12-22T19:13:12.078Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:13:26.656Z] INFO: Updating event
+{
+  "id": "2",
+  "body": {
+    "id": 2,
+    "title": "test",
+    "date": "2024-12-17",
+    "startTime": "2024-12-17T18:00:00.000Z",
+    "duration": 60,
+    "location": "",
+    "room": "",
+    "description": "hier steht was drinnen",
+    "status": "available",
+    "price": 15,
+    "visibility": true,
+    "maxBookings": 15,
+    "createdAt": "2024-12-16T21:22:47.879Z",
+    "updatedAt": "2024-12-22T19:10:51.909Z"
+  }
+}
+[2024-12-22T19:13:26.673Z] INFO: Successfully updated event
+{
+  "event": {
+    "id": 2,
+    "title": "test",
+    "date": "2024-12-17T00:00:00.000Z",
+    "startTime": "2024-12-17T18:00:00.000Z",
+    "duration": 60,
+    "location": "",
+    "room": "",
+    "description": "hier steht was drinnen",
+    "status": "available",
+    "price": 15,
+    "visibility": true,
+    "maxBookings": 15,
+    "createdAt": "2024-12-16T21:22:47.879Z",
+    "updatedAt": "2024-12-22T19:13:26.658Z"
+  }
+}
+[2024-12-22T19:13:36.759Z] INFO: Fetching all events
+[2024-12-22T19:13:36.760Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:13:38.677Z] INFO: Fetching all events
+[2024-12-22T19:13:38.679Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:13:48.617Z] INFO: Updating event
+{
+  "id": "2",
+  "body": {
+    "id": 2,
+    "title": "test",
+    "date": "2024-12-17",
+    "startTime": "2024-12-17T18:00:00.000Z",
+    "duration": 60,
+    "location": "Standort",
+    "room": "Raum",
+    "description": "hier steht was drinnen",
+    "status": "available",
+    "price": 15,
+    "visibility": true,
+    "maxBookings": 15,
+    "createdAt": "2024-12-16T21:22:47.879Z",
+    "updatedAt": "2024-12-22T19:13:26.658Z"
+  }
+}
+[2024-12-22T19:13:48.634Z] INFO: Successfully updated event
+{
+  "event": {
+    "id": 2,
+    "title": "test",
+    "date": "2024-12-17T00:00:00.000Z",
+    "startTime": "2024-12-17T18:00:00.000Z",
+    "duration": 60,
+    "location": "Standort",
+    "room": "Raum",
+    "description": "hier steht was drinnen",
+    "status": "available",
+    "price": 15,
+    "visibility": true,
+    "maxBookings": 15,
+    "createdAt": "2024-12-16T21:22:47.879Z",
+    "updatedAt": "2024-12-22T19:13:48.619Z"
+  }
+}
+[2024-12-22T19:15:31.597Z] INFO: Fetching all events
+[2024-12-22T19:15:31.599Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:16:13.426Z] INFO: Fetching all events
+[2024-12-22T19:16:13.427Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:17:28.098Z] INFO: Fetching all events
+[2024-12-22T19:17:28.099Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:17:33.599Z] INFO: Fetching bookings for event
+{
+  "eventId": "1"
+}
+[2024-12-22T19:17:33.601Z] INFO: Successfully fetched bookings
+{
+  "eventId": "1",
+  "count": 0
+}
+[2024-12-22T19:17:39.882Z] INFO: Fetching bookings for event
+{
+  "eventId": "2"
+}
+[2024-12-22T19:17:39.884Z] INFO: Successfully fetched bookings
+{
+  "eventId": "2",
+  "count": 0
+}
+[2024-12-22T19:18:57.327Z] INFO: Fetching all events
+[2024-12-22T19:18:57.329Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:19:52.394Z] INFO: Fetching all events
+[2024-12-22T19:19:52.396Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:19:55.682Z] INFO: Creating new event
+{
+  "body": {
+    "title": "test (copy)",
+    "date": "2024-12-17",
+    "startTime": "2024-12-17T18:00:00.000Z",
+    "duration": 60,
+    "location": "Standort",
+    "room": "Raum",
+    "description": "hier steht was drinnen",
+    "status": "available",
+    "price": 15,
+    "visibility": false,
+    "maxBookings": 15,
+    "createdAt": "2024-12-16T21:22:47.879Z",
+    "updatedAt": "2024-12-22T19:13:48.619Z",
+    "bookedSeats": 0
+  }
+}
+[2024-12-22T19:19:55.682Z] DEBUG: Parsed event data
+{
+  "title": "test (copy)",
+  "date": "2024-12-17T00:00:00.000Z",
+  "startTime": "2024-12-17T18:00:00.000Z",
+  "duration": 60,
+  "location": "Standort",
+  "room": "Raum",
+  "description": "hier steht was drinnen",
+  "price": 15,
+  "maxBookings": 15,
+  "visibility": false
+}
+[2024-12-22T19:19:55.699Z] INFO: Successfully created event
+{
+  "event": {
+    "id": 3,
+    "title": "test (copy)",
+    "date": "2024-12-17T00:00:00.000Z",
+    "startTime": "2024-12-17T18:00:00.000Z",
+    "duration": 60,
+    "location": "Standort",
+    "room": "Raum",
+    "description": "hier steht was drinnen",
+    "status": "available",
+    "price": 15,
+    "visibility": false,
+    "maxBookings": 15,
+    "createdAt": "2024-12-22T19:19:55.684Z",
+    "updatedAt": "2024-12-22T19:19:55.684Z"
+  }
+}
+[2024-12-22T19:19:58.834Z] INFO: Fetching all events
+[2024-12-22T19:19:58.836Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:20:01.058Z] INFO: Fetching all events
+[2024-12-22T19:20:01.060Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:20:36.867Z] INFO: Fetching all events
+[2024-12-22T19:20:36.868Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:20:42.875Z] INFO: Creating new event
+{
+  "body": {
+    "title": "test (copy)",
+    "date": "2024-12-17",
+    "startTime": "2024-12-17T18:00:00.000Z",
+    "duration": 60,
+    "location": "Standort",
+    "room": "Raum",
+    "description": "hier steht was drinnen",
+    "status": "available",
+    "price": 15,
+    "visibility": false,
+    "maxBookings": 15,
+    "createdAt": "2024-12-16T21:22:47.879Z",
+    "updatedAt": "2024-12-22T19:13:48.619Z",
+    "bookedSeats": 0
+  }
+}
+[2024-12-22T19:20:42.875Z] DEBUG: Parsed event data
+{
+  "title": "test (copy)",
+  "date": "2024-12-17T00:00:00.000Z",
+  "startTime": "2024-12-17T18:00:00.000Z",
+  "duration": 60,
+  "location": "Standort",
+  "room": "Raum",
+  "description": "hier steht was drinnen",
+  "price": 15,
+  "maxBookings": 15,
+  "visibility": false
+}
+[2024-12-22T19:20:42.884Z] INFO: Successfully created event
+{
+  "event": {
+    "id": 4,
+    "title": "test (copy)",
+    "date": "2024-12-17T00:00:00.000Z",
+    "startTime": "2024-12-17T18:00:00.000Z",
+    "duration": 60,
+    "location": "Standort",
+    "room": "Raum",
+    "description": "hier steht was drinnen",
+    "status": "available",
+    "price": 15,
+    "visibility": false,
+    "maxBookings": 15,
+    "createdAt": "2024-12-22T19:20:42.876Z",
+    "updatedAt": "2024-12-22T19:20:42.876Z"
+  }
+}
+[2024-12-22T19:20:44.680Z] INFO: Fetching all events
+[2024-12-22T19:20:44.682Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:20:53.091Z] INFO: Creating new event
+{
+  "body": {
+    "title": "test (copy)",
+    "date": "2024-12-17",
+    "startTime": "2024-12-17T18:00:00.000Z",
+    "duration": 60,
+    "location": "Standort",
+    "room": "Raum",
+    "description": "hier steht was drinnen",
+    "status": "available",
+    "price": 15,
+    "visibility": false,
+    "maxBookings": 15,
+    "createdAt": "2024-12-16T21:22:47.879Z",
+    "updatedAt": "2024-12-22T19:13:48.619Z",
+    "bookedSeats": 0
+  }
+}
+[2024-12-22T19:20:53.091Z] DEBUG: Parsed event data
+{
+  "title": "test (copy)",
+  "date": "2024-12-17T00:00:00.000Z",
+  "startTime": "2024-12-17T18:00:00.000Z",
+  "duration": 60,
+  "location": "Standort",
+  "room": "Raum",
+  "description": "hier steht was drinnen",
+  "price": 15,
+  "maxBookings": 15,
+  "visibility": false
+}
+[2024-12-22T19:20:53.108Z] INFO: Successfully created event
+{
+  "event": {
+    "id": 5,
+    "title": "test (copy)",
+    "date": "2024-12-17T00:00:00.000Z",
+    "startTime": "2024-12-17T18:00:00.000Z",
+    "duration": 60,
+    "location": "Standort",
+    "room": "Raum",
+    "description": "hier steht was drinnen",
+    "status": "available",
+    "price": 15,
+    "visibility": false,
+    "maxBookings": 15,
+    "createdAt": "2024-12-22T19:20:53.093Z",
+    "updatedAt": "2024-12-22T19:20:53.093Z"
+  }
+}
+[2024-12-22T19:21:01.733Z] INFO: Fetching all events
+[2024-12-22T19:21:01.735Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:21:02.607Z] INFO: Fetching all events
+[2024-12-22T19:21:02.608Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:21:41.263Z] INFO: Fetching all events
+[2024-12-22T19:21:41.265Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:21:50.866Z] INFO: Creating new event
+{
+  "body": {
+    "title": "test (copy)",
+    "date": "2024-12-17",
+    "startTime": "2024-12-17T18:00:00.000Z",
+    "duration": 60,
+    "location": "Standort",
+    "room": "Raum",
+    "description": "hier steht was drinnen",
+    "status": "available",
+    "price": 15,
+    "visibility": false,
+    "maxBookings": 15,
+    "createdAt": "2024-12-16T21:22:47.879Z",
+    "updatedAt": "2024-12-22T19:13:48.619Z",
+    "bookedSeats": 0
+  }
+}
+[2024-12-22T19:21:50.866Z] DEBUG: Parsed event data
+{
+  "title": "test (copy)",
+  "date": "2024-12-17T00:00:00.000Z",
+  "startTime": "2024-12-17T18:00:00.000Z",
+  "duration": 60,
+  "location": "Standort",
+  "room": "Raum",
+  "description": "hier steht was drinnen",
+  "price": 15,
+  "maxBookings": 15,
+  "visibility": false
+}
+[2024-12-22T19:21:50.883Z] INFO: Successfully created event
+{
+  "event": {
+    "id": 6,
+    "title": "test (copy)",
+    "date": "2024-12-17T00:00:00.000Z",
+    "startTime": "2024-12-17T18:00:00.000Z",
+    "duration": 60,
+    "location": "Standort",
+    "room": "Raum",
+    "description": "hier steht was drinnen",
+    "status": "available",
+    "price": 15,
+    "visibility": false,
+    "maxBookings": 15,
+    "createdAt": "2024-12-22T19:21:50.868Z",
+    "updatedAt": "2024-12-22T19:21:50.868Z"
+  }
+}
+[2024-12-22T19:21:50.887Z] INFO: Fetching all events
+[2024-12-22T19:21:50.888Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:21:53.304Z] INFO: Fetching all events
+[2024-12-22T19:21:53.306Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:22:35.319Z] INFO: Fetching all events
+[2024-12-22T19:22:35.321Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:23:02.629Z] INFO: Creating new event
+{
+  "body": {
+    "title": "test (copy)",
+    "date": "2024-12-17",
+    "startTime": "2024-12-17T18:00:00.000Z",
+    "duration": 60,
+    "location": "Standort",
+    "room": "Raum",
+    "description": "hier steht was drinnen",
+    "status": "available",
+    "price": 15,
+    "visibility": false,
+    "maxBookings": 15,
+    "createdAt": "2024-12-16T21:22:47.879Z",
+    "updatedAt": "2024-12-22T19:13:48.619Z",
+    "bookedSeats": 0
+  }
+}
+[2024-12-22T19:23:02.629Z] DEBUG: Parsed event data
+{
+  "title": "test (copy)",
+  "date": "2024-12-17T00:00:00.000Z",
+  "startTime": "2024-12-17T18:00:00.000Z",
+  "duration": 60,
+  "location": "Standort",
+  "room": "Raum",
+  "description": "hier steht was drinnen",
+  "price": 15,
+  "maxBookings": 15,
+  "visibility": false
+}
+[2024-12-22T19:23:02.645Z] INFO: Successfully created event
+{
+  "event": {
+    "id": 7,
+    "title": "test (copy)",
+    "date": "2024-12-17T00:00:00.000Z",
+    "startTime": "2024-12-17T18:00:00.000Z",
+    "duration": 60,
+    "location": "Standort",
+    "room": "Raum",
+    "description": "hier steht was drinnen",
+    "status": "available",
+    "price": 15,
+    "visibility": false,
+    "maxBookings": 15,
+    "createdAt": "2024-12-22T19:23:02.631Z",
+    "updatedAt": "2024-12-22T19:23:02.631Z"
+  }
+}
+[2024-12-22T19:23:02.649Z] INFO: Fetching all events
+[2024-12-22T19:23:02.650Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:23:05.007Z] INFO: Fetching all events
+[2024-12-22T19:23:05.008Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:23:42.373Z] INFO: Updating event
+{
+  "id": "2",
+  "body": {
+    "id": 2,
+    "title": "test",
+    "date": "2024-12-17",
+    "startTime": "2024-12-17T18:00:00.000Z",
+    "duration": 60,
+    "location": "Standort",
+    "room": "Raum",
+    "description": "hier steht was drinnen",
+    "status": "available",
+    "price": 15,
+    "visibility": false,
+    "maxBookings": 15,
+    "createdAt": "2024-12-16T21:22:47.879Z",
+    "updatedAt": "2024-12-22T19:13:48.619Z"
+  }
+}
+[2024-12-22T19:23:42.389Z] INFO: Successfully updated event
+{
+  "event": {
+    "id": 2,
+    "title": "test",
+    "date": "2024-12-17T00:00:00.000Z",
+    "startTime": "2024-12-17T18:00:00.000Z",
+    "duration": 60,
+    "location": "Standort",
+    "room": "Raum",
+    "description": "hier steht was drinnen",
+    "status": "available",
+    "price": 15,
+    "visibility": false,
+    "maxBookings": 15,
+    "createdAt": "2024-12-16T21:22:47.879Z",
+    "updatedAt": "2024-12-22T19:23:42.376Z"
+  }
+}
+[2024-12-22T19:23:42.393Z] INFO: Fetching all events
+[2024-12-22T19:23:42.394Z] INFO: Successfully fetched events
+{
+  "count": 1
+}
+[2024-12-22T19:24:23.740Z] INFO: Fetching all events
+[2024-12-22T19:24:23.742Z] INFO: Successfully fetched events
+{
+  "count": 1
+}
+[2024-12-22T19:24:32.110Z] INFO: Fetching all events
+[2024-12-22T19:24:32.112Z] INFO: Successfully fetched events
+{
+  "count": 1
+}
+[2024-12-22T19:24:37.989Z] INFO: Fetching all events
+[2024-12-22T19:24:37.991Z] INFO: Successfully fetched events
+{
+  "count": 1
+}
+[2024-12-22T19:24:59.568Z] INFO: Fetching all events
+[2024-12-22T19:24:59.571Z] INFO: Successfully fetched events
+{
+  "count": 1
+}
+[2024-12-22T19:25:27.489Z] INFO: Fetching all events
+[2024-12-22T19:25:27.493Z] INFO: Successfully fetched events
+{
+  "count": 1
+}
+[2024-12-22T19:25:29.899Z] INFO: Fetching all events
+[2024-12-22T19:25:29.900Z] INFO: Successfully fetched events
+{
+  "count": 1
+}
+[2024-12-22T19:30:01.758Z] INFO: Fetching all events
+[2024-12-22T19:30:01.759Z] INFO: Successfully fetched events
+{
+  "count": 1
+}
+[2024-12-22T19:31:14.846Z] INFO: Fetching all events
+[2024-12-22T19:31:14.848Z] INFO: Successfully fetched events
+{
+  "count": 1
+}
+[2024-12-22T19:31:29.747Z] INFO: Creating new event
+{
+  "body": {
+    "title": "Test3",
+    "date": "2024-12-27",
+    "startTime": "2024-12-27T18:00:00.000Z",
+    "duration": 60,
+    "maxBookings": 1,
+    "price": 0,
+    "location": "",
+    "room": "",
+    "description": "",
+    "visibility": true,
+    "bookedSeats": 0
+  }
+}
+[2024-12-22T19:31:29.747Z] DEBUG: Parsed event data
+{
+  "title": "Test3",
+  "date": "2024-12-27T00:00:00.000Z",
+  "startTime": "2024-12-27T18:00:00.000Z",
+  "duration": 60,
+  "location": "",
+  "room": "",
+  "description": "",
+  "price": null,
+  "maxBookings": 1,
+  "visibility": true
+}
+[2024-12-22T19:31:29.757Z] INFO: Successfully created event
+{
+  "event": {
+    "id": 8,
+    "title": "Test3",
+    "date": "2024-12-27T00:00:00.000Z",
+    "startTime": "2024-12-27T18:00:00.000Z",
+    "duration": 60,
+    "location": "",
+    "room": "",
+    "description": "",
+    "status": "available",
+    "price": null,
+    "visibility": true,
+    "maxBookings": 1,
+    "createdAt": "2024-12-22T19:31:29.749Z",
+    "updatedAt": "2024-12-22T19:31:29.749Z"
+  }
+}
+[2024-12-22T19:31:29.762Z] INFO: Fetching all events
+[2024-12-22T19:31:29.763Z] INFO: Successfully fetched events
+{
+  "count": 2
+}
+[2024-12-22T19:31:42.260Z] INFO: Deleting event
+{
+  "id": "1"
+}
+[2024-12-22T19:31:42.280Z] INFO: Successfully deleted event
+{
+  "id": "1"
+}
+[2024-12-22T19:32:01.569Z] INFO: Updating event
+{
+  "id": "8",
+  "body": {
+    "id": 8,
+    "title": "Test3",
+    "date": "2024-12-27",
+    "startTime": "2024-12-27T18:00:00.000Z",
+    "duration": 60,
+    "location": "",
+    "room": "",
+    "description": "",
+    "status": "available",
+    "price": 0,
+    "visibility": false,
+    "maxBookings": 1,
+    "createdAt": "2024-12-22T19:31:29.749Z",
+    "updatedAt": "2024-12-22T19:31:29.749Z"
+  }
+}
+[2024-12-22T19:32:01.586Z] INFO: Successfully updated event
+{
+  "event": {
+    "id": 8,
+    "title": "Test3",
+    "date": "2024-12-27T00:00:00.000Z",
+    "startTime": "2024-12-27T18:00:00.000Z",
+    "duration": 60,
+    "location": "",
+    "room": "",
+    "description": "",
+    "status": "available",
+    "price": null,
+    "visibility": false,
+    "maxBookings": 1,
+    "createdAt": "2024-12-22T19:31:29.749Z",
+    "updatedAt": "2024-12-22T19:32:01.571Z"
+  }
+}
+[2024-12-22T19:32:01.591Z] INFO: Fetching all events
+[2024-12-22T19:32:01.593Z] INFO: Successfully fetched events
+{
+  "count": 0
+}
+[2024-12-22T19:32:02.804Z] INFO: Fetching all events
+[2024-12-22T19:32:02.806Z] INFO: Successfully fetched events
+{
+  "count": 0
+}
+[2024-12-22T19:32:03.576Z] INFO: Fetching all events
+[2024-12-22T19:32:03.577Z] INFO: Successfully fetched events
+{
+  "count": 0
+}
+[2024-12-22T19:32:11.503Z] INFO: Fetching all events
+[2024-12-22T19:32:11.505Z] INFO: Successfully fetched events
+{
+  "count": 0
+}
+[2024-12-22T19:32:31.143Z] INFO: Fetching all events
+[2024-12-22T19:32:31.146Z] INFO: Successfully fetched events
+{
+  "count": 0
+}
+[2024-12-22T19:32:52.928Z] INFO: Fetching all events
+[2024-12-22T19:32:52.930Z] INFO: Successfully fetched events
+{
+  "count": 0
+}
+[2024-12-22T19:32:58.639Z] INFO: Fetching all events
+[2024-12-22T19:32:58.640Z] INFO: Successfully fetched events
+{
+  "count": 0
+}
+[2024-12-22T19:33:05.420Z] INFO: Fetching all events
+[2024-12-22T19:33:05.422Z] INFO: Successfully fetched events
+{
+  "count": 0
+}
+[2024-12-22T19:33:08.250Z] INFO: Fetching all events
+[2024-12-22T19:33:08.253Z] INFO: Successfully fetched events
+{
+  "count": 0
+}
+[2024-12-22T19:33:32.585Z] INFO: Fetching all events
+[2024-12-22T19:33:32.588Z] INFO: Successfully fetched events
+{
+  "count": 0
+}
+[2024-12-22T19:33:57.011Z] INFO: Fetching all events
+[2024-12-22T19:33:57.012Z] INFO: Successfully fetched events
+{
+  "count": 0
+}
+[2024-12-22T19:34:06.602Z] INFO: Fetching all events
+[2024-12-22T19:34:06.604Z] INFO: Successfully fetched events
+{
+  "count": 0
+}
+[2024-12-22T19:34:23.269Z] INFO: Fetching all events
+[2024-12-22T19:34:23.272Z] INFO: Successfully fetched events
+{
+  "count": 0
+}
+[2024-12-22T19:36:06.596Z] INFO: Fetching all events
+[2024-12-22T19:36:06.598Z] INFO: Successfully fetched events
+{
+  "count": 0
+}
+[2024-12-22T19:37:43.699Z] INFO: Fetching events
+{}
+[2024-12-22T19:37:43.702Z] INFO: Successfully fetched events
+{
+  "count": 0
+}
+[2024-12-22T19:37:50.697Z] INFO: Fetching events
+{}
+[2024-12-22T19:37:50.700Z] INFO: Successfully fetched events
+{
+  "count": 0
+}
+[2024-12-22T19:38:21.636Z] INFO: Fetching events
+{}
+[2024-12-22T19:38:21.638Z] INFO: Successfully fetched events
+{
+  "count": 0
+}
+[2024-12-22T19:38:53.699Z] INFO: Fetching events
+{}
+[2024-12-22T19:38:53.700Z] INFO: Using where clause:
+{
+  "visibility": true,
+  "status": "available"
+}
+[2024-12-22T19:38:53.705Z] INFO: Successfully fetched events
+{
+  "count": 0,
+  "isAdmin": false
+}
+[2024-12-22T19:38:57.812Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734896337,
+    "exp": 1734982737
+  }
+}
+[2024-12-22T19:38:57.812Z] INFO: Using where clause:
+{}
+[2024-12-22T19:38:57.814Z] INFO: Successfully fetched events
+{
+  "count": 7,
+  "isAdmin": true,
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734896337,
+    "exp": 1734982737
+  }
+}
+[2024-12-22T19:39:03.964Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734896337,
+    "exp": 1734982737
+  }
+}
+[2024-12-22T19:39:03.964Z] INFO: Using where clause:
+{}
+[2024-12-22T19:39:03.966Z] INFO: Successfully fetched events
+{
+  "count": 7,
+  "isAdmin": true,
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734896337,
+    "exp": 1734982737
+  }
+}
+[2024-12-22T19:39:04.659Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734896337,
+    "exp": 1734982737
+  }
+}
+[2024-12-22T19:39:04.660Z] INFO: Using where clause:
+{}
+[2024-12-22T19:39:04.662Z] INFO: Successfully fetched events
+{
+  "count": 7,
+  "isAdmin": true,
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734896337,
+    "exp": 1734982737
+  }
+}
+[2024-12-22T19:39:32.771Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734896337,
+    "exp": 1734982737
+  }
+}
+[2024-12-22T19:39:32.772Z] INFO: Using where clause:
+{}
+[2024-12-22T19:39:32.773Z] INFO: Successfully fetched events
+{
+  "count": 7,
+  "isAdmin": true,
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734896337,
+    "exp": 1734982737
+  }
+}
+[2024-12-22T19:40:12.206Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734896337,
+    "exp": 1734982737
+  }
+}
+[2024-12-22T19:40:12.207Z] INFO: Current time:
+"2024-12-22T19:40:12.207Z"
+[2024-12-22T19:40:12.208Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T19:40:12.207Z"
+  }
+}
+[2024-12-22T19:40:12.211Z] INFO: Successfully fetched events
+{
+  "count": 1,
+  "isAdmin": true,
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734896337,
+    "exp": 1734982737
+  }
+}
+[2024-12-22T19:40:23.841Z] INFO: Updating event
+{
+  "id": "8",
+  "body": {
+    "id": 8,
+    "title": "Test3",
+    "date": "2024-12-27",
+    "startTime": "2024-12-27T18:00:00.000Z",
+    "duration": 60,
+    "location": "",
+    "room": "",
+    "description": "",
+    "status": "available",
+    "price": 15,
+    "visibility": true,
+    "maxBookings": 1,
+    "createdAt": "2024-12-22T19:31:29.749Z",
+    "updatedAt": "2024-12-22T19:32:01.571Z"
+  }
+}
+[2024-12-22T19:40:23.858Z] INFO: Successfully updated event
+{
+  "event": {
+    "id": 8,
+    "title": "Test3",
+    "date": "2024-12-27T00:00:00.000Z",
+    "startTime": "2024-12-27T18:00:00.000Z",
+    "duration": 60,
+    "location": "",
+    "room": "",
+    "description": "",
+    "status": "available",
+    "price": 15,
+    "visibility": true,
+    "maxBookings": 1,
+    "createdAt": "2024-12-22T19:31:29.749Z",
+    "updatedAt": "2024-12-22T19:40:23.843Z"
+  }
+}
+[2024-12-22T19:40:23.863Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734896337,
+    "exp": 1734982737
+  }
+}
+[2024-12-22T19:40:23.864Z] INFO: Current time:
+"2024-12-22T19:40:23.864Z"
+[2024-12-22T19:40:23.864Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T19:40:23.864Z"
+  }
+}
+[2024-12-22T19:40:23.865Z] INFO: Successfully fetched events
+{
+  "count": 1,
+  "isAdmin": true,
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734896337,
+    "exp": 1734982737
+  }
+}
+[2024-12-22T19:40:26.326Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734896337,
+    "exp": 1734982737
+  }
+}
+[2024-12-22T19:40:26.327Z] INFO: Current time:
+"2024-12-22T19:40:26.327Z"
+[2024-12-22T19:40:26.327Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T19:40:26.327Z"
+  }
+}
+[2024-12-22T19:40:26.329Z] INFO: Successfully fetched events
+{
+  "count": 1,
+  "isAdmin": true,
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734896337,
+    "exp": 1734982737
+  }
+}
+[2024-12-22T19:40:27.693Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734896337,
+    "exp": 1734982737
+  }
+}
+[2024-12-22T19:40:27.693Z] INFO: Current time:
+"2024-12-22T19:40:27.693Z"
+[2024-12-22T19:40:27.693Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T19:40:27.693Z"
+  }
+}
+[2024-12-22T19:40:27.695Z] INFO: Successfully fetched events
+{
+  "count": 1,
+  "isAdmin": true,
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734896337,
+    "exp": 1734982737
+  }
+}
+[2024-12-22T19:42:03.207Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734896337,
+    "exp": 1734982737
+  }
+}
+[2024-12-22T19:42:03.208Z] INFO: Current time:
+"2024-12-22T19:42:03.208Z"
+[2024-12-22T19:42:03.208Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T19:42:03.208Z"
+  }
+}
+[2024-12-22T19:42:03.213Z] INFO: Successfully fetched events
+{
+  "count": 1,
+  "isAdmin": true,
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734896337,
+    "exp": 1734982737
+  }
+}
+[2024-12-22T19:42:20.372Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734896337,
+    "exp": 1734982737
+  }
+}
+[2024-12-22T19:42:20.373Z] INFO: Current time:
+"2024-12-22T19:42:20.373Z"
+[2024-12-22T19:42:20.373Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T19:42:20.373Z"
+  }
+}
+[2024-12-22T19:42:20.375Z] INFO: Successfully fetched events
+{
+  "count": 1,
+  "isAdmin": true,
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734896337,
+    "exp": 1734982737
+  }
+}
+[2024-12-22T19:42:21.817Z] INFO: Fetching events
+{}
+[2024-12-22T19:42:21.818Z] INFO: Current time:
+"2024-12-22T19:42:21.818Z"
+[2024-12-22T19:42:21.818Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T19:42:21.818Z"
+  },
+  "visibility": true,
+  "status": "available"
+}
+[2024-12-22T19:42:21.820Z] INFO: Successfully fetched events
+{
+  "count": 1,
+  "isAdmin": false
+}
+[2024-12-22T19:42:26.662Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734896546,
+    "exp": 1734982946
+  }
+}
+[2024-12-22T19:42:26.662Z] INFO: Current time:
+"2024-12-22T19:42:26.662Z"
+[2024-12-22T19:42:26.663Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T19:42:26.662Z"
+  }
+}
+[2024-12-22T19:42:26.664Z] INFO: Successfully fetched events
+{
+  "count": 1,
+  "isAdmin": true,
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734896546,
+    "exp": 1734982946
+  }
+}
+[2024-12-22T19:43:14.608Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734896546,
+    "exp": 1734982946
+  }
+}
+[2024-12-22T19:43:14.609Z] INFO: Current time:
+"2024-12-22T19:43:14.609Z"
+[2024-12-22T19:43:14.609Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T19:43:14.609Z"
+  }
+}
+[2024-12-22T19:43:14.613Z] INFO: Fetching bookings for admin
+[2024-12-22T19:43:14.614Z] INFO: Found 0 bookings for event 8
+[2024-12-22T19:43:14.614Z] INFO: Successfully fetched events with bookings
+{
+  "count": 1,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T19:43:52.189Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734896546,
+    "exp": 1734982946
+  }
+}
+[2024-12-22T19:43:52.190Z] INFO: Current time:
+"2024-12-22T19:43:52.190Z"
+[2024-12-22T19:43:52.190Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T19:43:52.190Z"
+  }
+}
+[2024-12-22T19:43:52.192Z] INFO: Fetching bookings for admin
+[2024-12-22T19:43:52.193Z] INFO: Found 0 bookings for event 8
+[2024-12-22T19:43:52.194Z] INFO: Successfully fetched events with bookings
+{
+  "count": 1,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T19:45:33.921Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734896546,
+    "exp": 1734982946
+  }
+}
+[2024-12-22T19:45:33.921Z] INFO: Current time:
+"2024-12-22T19:45:33.921Z"
+[2024-12-22T19:45:33.922Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T19:45:33.921Z"
+  }
+}
+[2024-12-22T19:45:33.924Z] INFO: Fetching bookings for admin
+[2024-12-22T19:45:33.925Z] INFO: Found 0 bookings for event 8
+[2024-12-22T19:45:33.925Z] INFO: Successfully fetched events with bookings
+{
+  "count": 1,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T19:50:34.850Z] INFO: Fetching events
+{}
+[2024-12-22T19:50:34.851Z] INFO: Current time:
+"2024-12-22T19:50:34.851Z"
+[2024-12-22T19:50:34.851Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T19:50:34.851Z"
+  },
+  "visibility": true,
+  "status": "available"
+}
+[2024-12-22T19:50:34.853Z] INFO: Successfully fetched events (no bookings)
+{
+  "count": 1
+}
+[2024-12-22T19:51:28.549Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734897039,
+    "exp": 1734983439
+  }
+}
+[2024-12-22T19:51:28.549Z] INFO: Current time:
+"2024-12-22T19:51:28.549Z"
+[2024-12-22T19:51:28.550Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T19:51:28.549Z"
+  }
+}
+[2024-12-22T19:51:28.551Z] INFO: Fetching bookings for admin
+[2024-12-22T19:51:28.552Z] INFO: Found 0 bookings for event 8
+[2024-12-22T19:51:28.553Z] INFO: Successfully fetched events with bookings
+{
+  "count": 1,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T19:51:44.963Z] INFO: Updating event
+{
+  "id": "8",
+  "body": {
+    "id": 8,
+    "title": "Test3",
+    "date": "2024-12-27",
+    "startTime": "19:00",
+    "duration": 60,
+    "location": "",
+    "room": "",
+    "description": "",
+    "status": "available",
+    "price": 15,
+    "visibility": true,
+    "maxBookings": 1,
+    "createdAt": "2024-12-22T19:31:29.749Z",
+    "updatedAt": "2024-12-22T19:40:23.843Z",
+    "bookings": []
+  }
+}
+[2024-12-22T19:51:44.968Z] ERROR: Failed to update event
+{
+  "message": "\nInvalid `prisma.event.update()` invocation in\nC:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\packages\\backend\\src\\routes\\events.js:122:38\n\n  119 router.put('/:id', async (req, res) => {\n  120   try {\n  121     logger.info('Updating event', { id: req.params.id, body: req.body });\n→ 122     const event = await prisma.event.update({\n            where: {\n              id: 8\n            },\n            data: {\n              title: \"Test3\",\n              date: new Date(\"2024-12-27T00:00:00.000Z\"),\n              startTime: new Date(\"Invalid Date\"),\n                         ~~~~~~~~~~~~~~~~~~~~~~~~\n              duration: 60,\n              location: \"\",\n              room: \"\",\n              description: \"\",\n              price: 15,\n              maxBookings: 1,\n              visibility: true\n            }\n          })\n\nInvalid value for argument `startTime`: Provided Date object is invalid. Expected Date.",
+  "stack": "PrismaClientValidationError: \nInvalid `prisma.event.update()` invocation in\nC:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\packages\\backend\\src\\routes\\events.js:122:38\n\n  119 router.put('/:id', async (req, res) => {\n  120   try {\n  121     logger.info('Updating event', { id: req.params.id, body: req.body });\n→ 122     const event = await prisma.event.update({\n            where: {\n              id: 8\n            },\n            data: {\n              title: \"Test3\",\n              date: new Date(\"2024-12-27T00:00:00.000Z\"),\n              startTime: new Date(\"Invalid Date\"),\n                         ~~~~~~~~~~~~~~~~~~~~~~~~\n              duration: 60,\n              location: \"\",\n              room: \"\",\n              description: \"\",\n              price: 15,\n              maxBookings: 1,\n              visibility: true\n            }\n          })\n\nInvalid value for argument `startTime`: Provided Date object is invalid. Expected Date.\n    at En (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:29:1363)\n    at e.throwValidationError (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:29:10253)\n    at na (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:29:7746)\n    at ia (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:29:8955)\n    at na (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:29:8486)\n    at ia (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:29:8955)\n    at pr (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:29:6037)\n    at Pn (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:29:5902)\n    at C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:130:10186\n    at Object.runInChildSpan (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:121:1509)"
+}
+[2024-12-22T19:52:48.225Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734897039,
+    "exp": 1734983439
+  }
+}
+[2024-12-22T19:52:48.226Z] INFO: Current time:
+"2024-12-22T19:52:48.226Z"
+[2024-12-22T19:52:48.226Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T19:52:48.226Z"
+  }
+}
+[2024-12-22T19:52:48.229Z] INFO: Fetching bookings for admin
+[2024-12-22T19:52:48.231Z] INFO: Found 0 bookings for event 8
+[2024-12-22T19:52:48.231Z] INFO: Successfully fetched events with bookings
+{
+  "count": 1,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T19:52:54.476Z] INFO: Updating event
+{
+  "id": 8,
+  "body": {
+    "id": 8,
+    "title": "Test3",
+    "date": "2024-12-27",
+    "startTime": "2024-12-27T18:00:00.000Z",
+    "duration": 60,
+    "location": "",
+    "room": "",
+    "description": "",
+    "status": "available",
+    "price": 15,
+    "visibility": true,
+    "maxBookings": 1,
+    "createdAt": "2024-12-22T19:31:29.749Z",
+    "updatedAt": "2024-12-22T19:40:23.843Z",
+    "bookings": []
+  }
+}
+[2024-12-22T19:52:54.478Z] DEBUG: Update data:
+{
+  "title": "Test3",
+  "duration": 60,
+  "maxBookings": 1,
+  "price": 15,
+  "visibility": true,
+  "date": "2024-12-27T00:00:00.000Z",
+  "startTime": "2024-12-27T18:00:00.000Z"
+}
+[2024-12-22T19:52:54.496Z] INFO: Successfully updated event
+{
+  "event": {
+    "id": 8,
+    "title": "Test3",
+    "date": "2024-12-27T00:00:00.000Z",
+    "startTime": "2024-12-27T18:00:00.000Z",
+    "duration": 60,
+    "location": "",
+    "room": "",
+    "description": "",
+    "status": "available",
+    "price": 15,
+    "visibility": true,
+    "maxBookings": 1,
+    "createdAt": "2024-12-22T19:31:29.749Z",
+    "updatedAt": "2024-12-22T19:52:54.480Z",
+    "bookings": []
+  }
+}
+[2024-12-22T19:52:54.501Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734897039,
+    "exp": 1734983439
+  }
+}
+[2024-12-22T19:52:54.501Z] INFO: Current time:
+"2024-12-22T19:52:54.501Z"
+[2024-12-22T19:52:54.502Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T19:52:54.501Z"
+  }
+}
+[2024-12-22T19:52:54.503Z] INFO: Fetching bookings for admin
+[2024-12-22T19:52:54.504Z] INFO: Found 0 bookings for event 8
+[2024-12-22T19:52:54.504Z] INFO: Successfully fetched events with bookings
+{
+  "count": 1,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T19:52:56.082Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734897039,
+    "exp": 1734983439
+  }
+}
+[2024-12-22T19:52:56.083Z] INFO: Current time:
+"2024-12-22T19:52:56.083Z"
+[2024-12-22T19:52:56.083Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T19:52:56.083Z"
+  }
+}
+[2024-12-22T19:52:56.090Z] INFO: Fetching bookings for admin
+[2024-12-22T19:52:56.092Z] INFO: Found 0 bookings for event 8
+[2024-12-22T19:52:56.092Z] INFO: Successfully fetched events with bookings
+{
+  "count": 1,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T19:53:03.858Z] INFO: Updating event
+{
+  "id": 8,
+  "body": {
+    "id": 8,
+    "title": "Test3",
+    "date": "2024-12-27",
+    "startTime": "2024-12-27T20:00:00.000Z",
+    "duration": 60,
+    "location": "",
+    "room": "",
+    "description": "",
+    "status": "available",
+    "price": 15,
+    "visibility": true,
+    "maxBookings": 1,
+    "createdAt": "2024-12-22T19:31:29.749Z",
+    "updatedAt": "2024-12-22T19:52:54.480Z",
+    "bookings": []
+  }
+}
+[2024-12-22T19:53:03.860Z] DEBUG: Update data:
+{
+  "title": "Test3",
+  "duration": 60,
+  "maxBookings": 1,
+  "price": 15,
+  "visibility": true,
+  "date": "2024-12-27T00:00:00.000Z",
+  "startTime": "2024-12-27T20:00:00.000Z"
+}
+[2024-12-22T19:53:03.876Z] INFO: Successfully updated event
+{
+  "event": {
+    "id": 8,
+    "title": "Test3",
+    "date": "2024-12-27T00:00:00.000Z",
+    "startTime": "2024-12-27T20:00:00.000Z",
+    "duration": 60,
+    "location": "",
+    "room": "",
+    "description": "",
+    "status": "available",
+    "price": 15,
+    "visibility": true,
+    "maxBookings": 1,
+    "createdAt": "2024-12-22T19:31:29.749Z",
+    "updatedAt": "2024-12-22T19:53:03.861Z",
+    "bookings": []
+  }
+}
+[2024-12-22T19:53:03.881Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734897039,
+    "exp": 1734983439
+  }
+}
+[2024-12-22T19:53:03.882Z] INFO: Current time:
+"2024-12-22T19:53:03.882Z"
+[2024-12-22T19:53:03.882Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T19:53:03.882Z"
+  }
+}
+[2024-12-22T19:53:03.883Z] INFO: Fetching bookings for admin
+[2024-12-22T19:53:03.884Z] INFO: Found 0 bookings for event 8
+[2024-12-22T19:53:03.884Z] INFO: Successfully fetched events with bookings
+{
+  "count": 1,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T19:53:07.057Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734897039,
+    "exp": 1734983439
+  }
+}
+[2024-12-22T19:53:07.058Z] INFO: Current time:
+"2024-12-22T19:53:07.058Z"
+[2024-12-22T19:53:07.058Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T19:53:07.058Z"
+  }
+}
+[2024-12-22T19:53:07.060Z] INFO: Fetching bookings for admin
+[2024-12-22T19:53:07.061Z] INFO: Found 0 bookings for event 8
+[2024-12-22T19:53:07.061Z] INFO: Successfully fetched events with bookings
+{
+  "count": 1,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T19:55:00.179Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734897039,
+    "exp": 1734983439
+  }
+}
+[2024-12-22T19:55:00.179Z] INFO: Current time:
+"2024-12-22T19:55:00.179Z"
+[2024-12-22T19:55:00.180Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T19:55:00.179Z"
+  }
+}
+[2024-12-22T19:55:00.181Z] INFO: Fetching bookings for admin
+[2024-12-22T19:55:00.182Z] INFO: Found 0 bookings for event 8
+[2024-12-22T19:55:00.183Z] INFO: Successfully fetched events with bookings
+{
+  "count": 1,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T19:55:08.675Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734897039,
+    "exp": 1734983439
+  }
+}
+[2024-12-22T19:55:08.676Z] INFO: Current time:
+"2024-12-22T19:55:08.676Z"
+[2024-12-22T19:55:08.676Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T19:55:08.676Z"
+  }
+}
+[2024-12-22T19:55:08.678Z] INFO: Fetching bookings for admin
+[2024-12-22T19:55:08.679Z] INFO: Found 0 bookings for event 8
+[2024-12-22T19:55:08.679Z] INFO: Successfully fetched events with bookings
+{
+  "count": 1,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T19:55:20.462Z] INFO: Fetching events
+{}
+[2024-12-22T19:55:20.463Z] INFO: Current time:
+"2024-12-22T19:55:20.463Z"
+[2024-12-22T19:55:20.463Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T19:55:20.463Z"
+  },
+  "visibility": true,
+  "status": "available"
+}
+[2024-12-22T19:55:20.465Z] INFO: Successfully fetched events (no bookings)
+{
+  "count": 1
+}
+[2024-12-22T19:55:24.639Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734897324,
+    "exp": 1734983724
+  }
+}
+[2024-12-22T19:55:24.639Z] INFO: Current time:
+"2024-12-22T19:55:24.639Z"
+[2024-12-22T19:55:24.640Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T19:55:24.639Z"
+  }
+}
+[2024-12-22T19:55:24.641Z] INFO: Fetching bookings for admin
+[2024-12-22T19:55:24.642Z] INFO: Found 0 bookings for event 8
+[2024-12-22T19:55:24.642Z] INFO: Successfully fetched events with bookings
+{
+  "count": 1,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T19:55:59.930Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734897324,
+    "exp": 1734983724
+  }
+}
+[2024-12-22T19:55:59.931Z] INFO: Current time:
+"2024-12-22T19:55:59.931Z"
+[2024-12-22T19:55:59.931Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T19:55:59.931Z"
+  }
+}
+[2024-12-22T19:55:59.933Z] INFO: Fetching bookings for admin
+[2024-12-22T19:55:59.934Z] INFO: Found 0 bookings for event 8
+[2024-12-22T19:55:59.935Z] INFO: Successfully fetched events with bookings
+{
+  "count": 1,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T19:56:15.557Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734897324,
+    "exp": 1734983724
+  }
+}
+[2024-12-22T19:56:15.558Z] INFO: Current time:
+"2024-12-22T19:56:15.558Z"
+[2024-12-22T19:56:15.558Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T19:56:15.558Z"
+  }
+}
+[2024-12-22T19:56:15.560Z] INFO: Fetching bookings for admin
+[2024-12-22T19:56:15.561Z] INFO: Found 0 bookings for event 8
+[2024-12-22T19:56:15.562Z] INFO: Successfully fetched events with bookings
+{
+  "count": 1,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T19:56:30.195Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734897324,
+    "exp": 1734983724
+  }
+}
+[2024-12-22T19:56:30.195Z] INFO: Current time:
+"2024-12-22T19:56:30.195Z"
+[2024-12-22T19:56:30.196Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T19:56:30.195Z"
+  }
+}
+[2024-12-22T19:56:30.198Z] INFO: Fetching bookings for admin
+[2024-12-22T19:56:30.199Z] INFO: Found 0 bookings for event 8
+[2024-12-22T19:56:30.200Z] INFO: Successfully fetched events with bookings
+{
+  "count": 1,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T19:57:08.761Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734897324,
+    "exp": 1734983724
+  }
+}
+[2024-12-22T19:57:08.762Z] INFO: Current time:
+"2024-12-22T19:57:08.762Z"
+[2024-12-22T19:57:08.763Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T19:57:08.762Z"
+  }
+}
+[2024-12-22T19:57:08.765Z] INFO: Fetching bookings for admin
+[2024-12-22T19:57:08.766Z] INFO: Found 0 bookings for event 8
+[2024-12-22T19:57:08.766Z] INFO: Successfully fetched events with bookings
+{
+  "count": 1,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T19:57:38.920Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734897324,
+    "exp": 1734983724
+  }
+}
+[2024-12-22T19:57:38.920Z] INFO: Current time:
+"2024-12-22T19:57:38.920Z"
+[2024-12-22T19:57:38.921Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T19:57:38.920Z"
+  }
+}
+[2024-12-22T19:57:38.922Z] INFO: Fetching bookings for admin
+[2024-12-22T19:57:38.923Z] INFO: Found 0 bookings for event 8
+[2024-12-22T19:57:38.924Z] INFO: Successfully fetched events with bookings
+{
+  "count": 1,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T19:58:17.171Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734897324,
+    "exp": 1734983724
+  }
+}
+[2024-12-22T19:58:17.171Z] INFO: Current time:
+"2024-12-22T19:58:17.171Z"
+[2024-12-22T19:58:17.172Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T19:58:17.171Z"
+  }
+}
+[2024-12-22T19:58:17.173Z] INFO: Fetching bookings for admin
+[2024-12-22T19:58:17.174Z] INFO: Found 0 bookings for event 8
+[2024-12-22T19:58:17.175Z] INFO: Successfully fetched events with bookings
+{
+  "count": 1,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T19:59:45.755Z] INFO: Creating new event
+{
+  "body": {
+    "title": "Test3 (Kopie)",
+    "date": "2024-12-27",
+    "startTime": "2024-12-27T21:00:00.000Z",
+    "duration": 60,
+    "maxBookings": 1,
+    "price": 15,
+    "visibility": true
+  }
+}
+[2024-12-22T19:59:45.756Z] DEBUG: Parsed event data
+{
+  "title": "Test3 (Kopie)",
+  "date": "2024-12-27T00:00:00.000Z",
+  "startTime": "2024-12-27T21:00:00.000Z",
+  "duration": 60,
+  "price": 15,
+  "maxBookings": 1,
+  "visibility": true
+}
+[2024-12-22T19:59:45.761Z] ERROR: Failed to create event
+{
+  "message": "\nInvalid `prisma.event.create()` invocation in\nC:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\packages\\backend\\src\\routes\\events.js:102:38\n\n   99 \n  100 logger.debug('Parsed event data', eventData);\n  101 \n→ 102 const event = await prisma.event.create({\n        data: {\n          title: \"Test3 (Kopie)\",\n          date: new Date(\"2024-12-27T00:00:00.000Z\"),\n          startTime: new Date(\"2024-12-27T21:00:00.000Z\"),\n          duration: 60,\n          room: undefined,\n          description: undefined,\n          price: 15,\n          maxBookings: 1,\n          visibility: true,\n      +   location: String\n        }\n      })\n\nArgument `location` is missing.",
+  "stack": "PrismaClientValidationError: \nInvalid `prisma.event.create()` invocation in\nC:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\packages\\backend\\src\\routes\\events.js:102:38\n\n   99 \n  100 logger.debug('Parsed event data', eventData);\n  101 \n→ 102 const event = await prisma.event.create({\n        data: {\n          title: \"Test3 (Kopie)\",\n          date: new Date(\"2024-12-27T00:00:00.000Z\"),\n          startTime: new Date(\"2024-12-27T21:00:00.000Z\"),\n          duration: 60,\n          room: undefined,\n          description: undefined,\n          price: 15,\n          maxBookings: 1,\n          visibility: true,\n      +   location: String\n        }\n      })\n\nArgument `location` is missing.\n    at En (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:29:1363)\n    at Mn.handleRequestError (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:121:6981)\n    at Mn.handleAndLogRequestError (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:121:6663)\n    at Mn.request (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:121:6370)\n    at async l (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:130:9633)\n    at async C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\packages\\backend\\src\\routes\\events.js:102:19"
+}
+[2024-12-22T19:59:50.999Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734897324,
+    "exp": 1734983724
+  }
+}
+[2024-12-22T19:59:51.000Z] INFO: Current time:
+"2024-12-22T19:59:51.000Z"
+[2024-12-22T19:59:51.000Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T19:59:51.000Z"
+  }
+}
+[2024-12-22T19:59:51.003Z] INFO: Fetching bookings for admin
+[2024-12-22T19:59:51.004Z] INFO: Found 0 bookings for event 8
+[2024-12-22T19:59:51.005Z] INFO: Successfully fetched events with bookings
+{
+  "count": 1,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T19:59:53.719Z] INFO: Creating new event
+{
+  "body": {
+    "title": "Test3 (Kopie)",
+    "date": "2024-12-27",
+    "startTime": "2024-12-27T21:00:00.000Z",
+    "duration": 60,
+    "maxBookings": 1,
+    "price": 15,
+    "visibility": true
+  }
+}
+[2024-12-22T19:59:53.720Z] DEBUG: Parsed event data
+{
+  "title": "Test3 (Kopie)",
+  "date": "2024-12-27T00:00:00.000Z",
+  "startTime": "2024-12-27T21:00:00.000Z",
+  "duration": 60,
+  "price": 15,
+  "maxBookings": 1,
+  "visibility": true
+}
+[2024-12-22T19:59:53.722Z] ERROR: Failed to create event
+{
+  "message": "\nInvalid `prisma.event.create()` invocation in\nC:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\packages\\backend\\src\\routes\\events.js:102:38\n\n   99 \n  100 logger.debug('Parsed event data', eventData);\n  101 \n→ 102 const event = await prisma.event.create({\n        data: {\n          title: \"Test3 (Kopie)\",\n          date: new Date(\"2024-12-27T00:00:00.000Z\"),\n          startTime: new Date(\"2024-12-27T21:00:00.000Z\"),\n          duration: 60,\n          room: undefined,\n          description: undefined,\n          price: 15,\n          maxBookings: 1,\n          visibility: true,\n      +   location: String\n        }\n      })\n\nArgument `location` is missing.",
+  "stack": "PrismaClientValidationError: \nInvalid `prisma.event.create()` invocation in\nC:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\packages\\backend\\src\\routes\\events.js:102:38\n\n   99 \n  100 logger.debug('Parsed event data', eventData);\n  101 \n→ 102 const event = await prisma.event.create({\n        data: {\n          title: \"Test3 (Kopie)\",\n          date: new Date(\"2024-12-27T00:00:00.000Z\"),\n          startTime: new Date(\"2024-12-27T21:00:00.000Z\"),\n          duration: 60,\n          room: undefined,\n          description: undefined,\n          price: 15,\n          maxBookings: 1,\n          visibility: true,\n      +   location: String\n        }\n      })\n\nArgument `location` is missing.\n    at En (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:29:1363)\n    at Mn.handleRequestError (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:121:6981)\n    at Mn.handleAndLogRequestError (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:121:6663)\n    at Mn.request (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:121:6370)\n    at async l (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:130:9633)\n    at async C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\packages\\backend\\src\\routes\\events.js:102:19"
+}
+[2024-12-22T20:00:32.927Z] INFO: Creating new event
+{
+  "body": {
+    "title": "Test3 (Kopie)",
+    "date": "2024-12-27",
+    "startTime": "2024-12-27T20:00:00.000Z",
+    "duration": 60,
+    "maxBookings": 1,
+    "price": 15,
+    "visibility": true
+  }
+}
+[2024-12-22T20:00:32.928Z] DEBUG: Parsed event data
+{
+  "title": "Test3 (Kopie)",
+  "date": "2024-12-27T00:00:00.000Z",
+  "startTime": "2024-12-27T20:00:00.000Z",
+  "duration": 60,
+  "price": 15,
+  "maxBookings": 1,
+  "visibility": true
+}
+[2024-12-22T20:00:32.929Z] ERROR: Failed to create event
+{
+  "message": "\nInvalid `prisma.event.create()` invocation in\nC:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\packages\\backend\\src\\routes\\events.js:102:38\n\n   99 \n  100 logger.debug('Parsed event data', eventData);\n  101 \n→ 102 const event = await prisma.event.create({\n        data: {\n          title: \"Test3 (Kopie)\",\n          date: new Date(\"2024-12-27T00:00:00.000Z\"),\n          startTime: new Date(\"2024-12-27T20:00:00.000Z\"),\n          duration: 60,\n          room: undefined,\n          description: undefined,\n          price: 15,\n          maxBookings: 1,\n          visibility: true,\n      +   location: String\n        }\n      })\n\nArgument `location` is missing.",
+  "stack": "PrismaClientValidationError: \nInvalid `prisma.event.create()` invocation in\nC:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\packages\\backend\\src\\routes\\events.js:102:38\n\n   99 \n  100 logger.debug('Parsed event data', eventData);\n  101 \n→ 102 const event = await prisma.event.create({\n        data: {\n          title: \"Test3 (Kopie)\",\n          date: new Date(\"2024-12-27T00:00:00.000Z\"),\n          startTime: new Date(\"2024-12-27T20:00:00.000Z\"),\n          duration: 60,\n          room: undefined,\n          description: undefined,\n          price: 15,\n          maxBookings: 1,\n          visibility: true,\n      +   location: String\n        }\n      })\n\nArgument `location` is missing.\n    at En (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:29:1363)\n    at Mn.handleRequestError (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:121:6981)\n    at Mn.handleAndLogRequestError (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:121:6663)\n    at Mn.request (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:121:6370)\n    at async l (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:130:9633)\n    at async C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\packages\\backend\\src\\routes\\events.js:102:19"
+}
+[2024-12-22T20:00:34.807Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734897324,
+    "exp": 1734983724
+  }
+}
+[2024-12-22T20:00:34.808Z] INFO: Current time:
+"2024-12-22T20:00:34.808Z"
+[2024-12-22T20:00:34.808Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:00:34.808Z"
+  }
+}
+[2024-12-22T20:00:34.810Z] INFO: Fetching bookings for admin
+[2024-12-22T20:00:34.811Z] INFO: Found 0 bookings for event 8
+[2024-12-22T20:00:34.811Z] INFO: Successfully fetched events with bookings
+{
+  "count": 1,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T20:00:36.770Z] INFO: Creating new event
+{
+  "body": {
+    "title": "Test3 (Kopie)",
+    "date": "2024-12-27",
+    "startTime": "2024-12-27T20:00:00.000Z",
+    "duration": 60,
+    "maxBookings": 1,
+    "price": 15,
+    "visibility": true
+  }
+}
+[2024-12-22T20:00:36.771Z] DEBUG: Parsed event data
+{
+  "title": "Test3 (Kopie)",
+  "date": "2024-12-27T00:00:00.000Z",
+  "startTime": "2024-12-27T20:00:00.000Z",
+  "duration": 60,
+  "price": 15,
+  "maxBookings": 1,
+  "visibility": true
+}
+[2024-12-22T20:00:36.772Z] ERROR: Failed to create event
+{
+  "message": "\nInvalid `prisma.event.create()` invocation in\nC:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\packages\\backend\\src\\routes\\events.js:102:38\n\n   99 \n  100 logger.debug('Parsed event data', eventData);\n  101 \n→ 102 const event = await prisma.event.create({\n        data: {\n          title: \"Test3 (Kopie)\",\n          date: new Date(\"2024-12-27T00:00:00.000Z\"),\n          startTime: new Date(\"2024-12-27T20:00:00.000Z\"),\n          duration: 60,\n          room: undefined,\n          description: undefined,\n          price: 15,\n          maxBookings: 1,\n          visibility: true,\n      +   location: String\n        }\n      })\n\nArgument `location` is missing.",
+  "stack": "PrismaClientValidationError: \nInvalid `prisma.event.create()` invocation in\nC:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\packages\\backend\\src\\routes\\events.js:102:38\n\n   99 \n  100 logger.debug('Parsed event data', eventData);\n  101 \n→ 102 const event = await prisma.event.create({\n        data: {\n          title: \"Test3 (Kopie)\",\n          date: new Date(\"2024-12-27T00:00:00.000Z\"),\n          startTime: new Date(\"2024-12-27T20:00:00.000Z\"),\n          duration: 60,\n          room: undefined,\n          description: undefined,\n          price: 15,\n          maxBookings: 1,\n          visibility: true,\n      +   location: String\n        }\n      })\n\nArgument `location` is missing.\n    at En (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:29:1363)\n    at Mn.handleRequestError (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:121:6981)\n    at Mn.handleAndLogRequestError (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:121:6663)\n    at Mn.request (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:121:6370)\n    at async l (C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\node_modules\\@prisma\\client\\runtime\\library.js:130:9633)\n    at async C:\\Users\\eikew\\MyStuff\\projects\\nada\\eventblocker-vue\\packages\\backend\\src\\routes\\events.js:102:19"
+}
+[2024-12-22T20:10:04.370Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734897324,
+    "exp": 1734983724
+  }
+}
+[2024-12-22T20:10:04.371Z] INFO: Current time:
+"2024-12-22T20:10:04.371Z"
+[2024-12-22T20:10:04.371Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:10:04.371Z"
+  }
+}
+[2024-12-22T20:10:04.374Z] INFO: Fetching bookings for admin
+[2024-12-22T20:10:04.376Z] INFO: Found 0 bookings for event 8
+[2024-12-22T20:10:04.376Z] INFO: Successfully fetched events with bookings
+{
+  "count": 1,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T20:10:46.143Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734897324,
+    "exp": 1734983724
+  }
+}
+[2024-12-22T20:10:46.144Z] INFO: Current time:
+"2024-12-22T20:10:46.144Z"
+[2024-12-22T20:10:46.144Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:10:46.144Z"
+  }
+}
+[2024-12-22T20:10:46.146Z] INFO: Fetching bookings for admin
+[2024-12-22T20:10:46.148Z] INFO: Found 0 bookings for event 8
+[2024-12-22T20:10:46.148Z] INFO: Successfully fetched events with bookings
+{
+  "count": 1,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T20:10:54.635Z] INFO: Creating new event
+{
+  "body": {
+    "title": "Test3 (Kopie)",
+    "date": "2024-12-27",
+    "startTime": "2024-12-27T20:00:00.000Z",
+    "location": "ort",
+    "room": "raum",
+    "duration": 60,
+    "maxBookings": 1,
+    "price": 15,
+    "visibility": true
+  }
+}
+[2024-12-22T20:10:54.635Z] DEBUG: Parsed event data
+{
+  "title": "Test3 (Kopie)",
+  "date": "2024-12-27T00:00:00.000Z",
+  "startTime": "2024-12-27T20:00:00.000Z",
+  "duration": 60,
+  "location": "ort",
+  "room": "raum",
+  "price": 15,
+  "maxBookings": 1,
+  "visibility": true
+}
+[2024-12-22T20:10:54.652Z] INFO: Successfully created event
+{
+  "event": {
+    "id": 9,
+    "title": "Test3 (Kopie)",
+    "date": "2024-12-27T00:00:00.000Z",
+    "startTime": "2024-12-27T20:00:00.000Z",
+    "duration": 60,
+    "location": "ort",
+    "room": "raum",
+    "description": null,
+    "status": "available",
+    "price": 15,
+    "visibility": true,
+    "maxBookings": 1,
+    "createdAt": "2024-12-22T20:10:54.637Z",
+    "updatedAt": "2024-12-22T20:10:54.637Z"
+  }
+}
+[2024-12-22T20:10:54.656Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734897324,
+    "exp": 1734983724
+  }
+}
+[2024-12-22T20:10:54.657Z] INFO: Current time:
+"2024-12-22T20:10:54.657Z"
+[2024-12-22T20:10:54.657Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:10:54.657Z"
+  }
+}
+[2024-12-22T20:10:54.658Z] INFO: Fetching bookings for admin
+[2024-12-22T20:10:54.659Z] INFO: Found 0 bookings for event 8
+[2024-12-22T20:10:54.660Z] INFO: Found 0 bookings for event 9
+[2024-12-22T20:10:54.660Z] INFO: Successfully fetched events with bookings
+{
+  "count": 2,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 0
+    },
+    {
+      "id": 9,
+      "title": "Test3 (Kopie)",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T20:13:55.986Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734897324,
+    "exp": 1734983724
+  }
+}
+[2024-12-22T20:13:55.986Z] INFO: Current time:
+"2024-12-22T20:13:55.986Z"
+[2024-12-22T20:13:55.987Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:13:55.986Z"
+  }
+}
+[2024-12-22T20:13:55.989Z] INFO: Fetching bookings for admin
+[2024-12-22T20:13:55.990Z] INFO: Found 0 bookings for event 8
+[2024-12-22T20:13:56.003Z] INFO: Found 0 bookings for event 9
+[2024-12-22T20:13:56.003Z] INFO: Successfully fetched events with bookings
+{
+  "count": 2,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 0
+    },
+    {
+      "id": 9,
+      "title": "Test3 (Kopie)",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T20:13:59.016Z] INFO: Creating new event
+{
+  "body": {
+    "title": "Test3",
+    "date": "2024-12-27",
+    "startTime": "2024-12-27T20:00:00.000Z",
+    "location": "",
+    "room": "",
+    "duration": 60,
+    "maxBookings": 1,
+    "price": 15,
+    "visibility": true
+  }
+}
+[2024-12-22T20:13:59.017Z] DEBUG: Parsed event data
+{
+  "title": "Test3",
+  "date": "2024-12-27T00:00:00.000Z",
+  "startTime": "2024-12-27T20:00:00.000Z",
+  "duration": 60,
+  "location": "",
+  "room": "",
+  "price": 15,
+  "maxBookings": 1,
+  "visibility": true
+}
+[2024-12-22T20:13:59.033Z] INFO: Successfully created event
+{
+  "event": {
+    "id": 10,
+    "title": "Test3",
+    "date": "2024-12-27T00:00:00.000Z",
+    "startTime": "2024-12-27T20:00:00.000Z",
+    "duration": 60,
+    "location": "",
+    "room": "",
+    "description": null,
+    "status": "available",
+    "price": 15,
+    "visibility": true,
+    "maxBookings": 1,
+    "createdAt": "2024-12-22T20:13:59.018Z",
+    "updatedAt": "2024-12-22T20:13:59.018Z"
+  }
+}
+[2024-12-22T20:13:59.037Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734897324,
+    "exp": 1734983724
+  }
+}
+[2024-12-22T20:13:59.038Z] INFO: Current time:
+"2024-12-22T20:13:59.038Z"
+[2024-12-22T20:13:59.038Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:13:59.038Z"
+  }
+}
+[2024-12-22T20:13:59.039Z] INFO: Fetching bookings for admin
+[2024-12-22T20:13:59.040Z] INFO: Found 0 bookings for event 8
+[2024-12-22T20:13:59.040Z] INFO: Found 0 bookings for event 9
+[2024-12-22T20:13:59.040Z] INFO: Found 0 bookings for event 10
+[2024-12-22T20:13:59.041Z] INFO: Successfully fetched events with bookings
+{
+  "count": 3,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 0
+    },
+    {
+      "id": 9,
+      "title": "Test3 (Kopie)",
+      "bookingsCount": 0
+    },
+    {
+      "id": 10,
+      "title": "Test3",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T20:14:02.541Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734897324,
+    "exp": 1734983724
+  }
+}
+[2024-12-22T20:14:02.542Z] INFO: Current time:
+"2024-12-22T20:14:02.542Z"
+[2024-12-22T20:14:02.542Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:14:02.542Z"
+  }
+}
+[2024-12-22T20:14:02.544Z] INFO: Fetching bookings for admin
+[2024-12-22T20:14:02.545Z] INFO: Found 0 bookings for event 8
+[2024-12-22T20:14:02.545Z] INFO: Found 0 bookings for event 9
+[2024-12-22T20:14:02.555Z] INFO: Found 0 bookings for event 10
+[2024-12-22T20:14:02.556Z] INFO: Successfully fetched events with bookings
+{
+  "count": 3,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 0
+    },
+    {
+      "id": 9,
+      "title": "Test3 (Kopie)",
+      "bookingsCount": 0
+    },
+    {
+      "id": 10,
+      "title": "Test3",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T20:14:22.714Z] INFO: Deleting event
+{
+  "id": "10"
+}
+[2024-12-22T20:14:22.729Z] INFO: Successfully deleted event
+{
+  "id": "10"
+}
+[2024-12-22T20:14:22.747Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734897324,
+    "exp": 1734983724
+  }
+}
+[2024-12-22T20:14:22.747Z] INFO: Current time:
+"2024-12-22T20:14:22.747Z"
+[2024-12-22T20:14:22.747Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:14:22.747Z"
+  }
+}
+[2024-12-22T20:14:22.748Z] INFO: Fetching bookings for admin
+[2024-12-22T20:14:22.749Z] INFO: Found 0 bookings for event 8
+[2024-12-22T20:14:22.750Z] INFO: Found 0 bookings for event 9
+[2024-12-22T20:14:22.750Z] INFO: Successfully fetched events with bookings
+{
+  "count": 2,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 0
+    },
+    {
+      "id": 9,
+      "title": "Test3 (Kopie)",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T20:14:26.464Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734897324,
+    "exp": 1734983724
+  }
+}
+[2024-12-22T20:14:26.464Z] INFO: Current time:
+"2024-12-22T20:14:26.464Z"
+[2024-12-22T20:14:26.465Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:14:26.464Z"
+  }
+}
+[2024-12-22T20:14:26.466Z] INFO: Fetching bookings for admin
+[2024-12-22T20:14:26.467Z] INFO: Found 0 bookings for event 8
+[2024-12-22T20:14:26.468Z] INFO: Found 0 bookings for event 9
+[2024-12-22T20:14:26.468Z] INFO: Successfully fetched events with bookings
+{
+  "count": 2,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 0
+    },
+    {
+      "id": 9,
+      "title": "Test3 (Kopie)",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T20:14:47.894Z] INFO: Fetching events
+{}
+[2024-12-22T20:14:47.895Z] INFO: Current time:
+"2024-12-22T20:14:47.895Z"
+[2024-12-22T20:14:47.895Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:14:47.895Z"
+  },
+  "visibility": true,
+  "status": "available"
+}
+[2024-12-22T20:14:47.897Z] INFO: Successfully fetched events (no bookings)
+{
+  "count": 2
+}
+[2024-12-22T20:14:54.682Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734898494,
+    "exp": 1734984894
+  }
+}
+[2024-12-22T20:14:54.683Z] INFO: Current time:
+"2024-12-22T20:14:54.683Z"
+[2024-12-22T20:14:54.683Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:14:54.683Z"
+  }
+}
+[2024-12-22T20:14:54.684Z] INFO: Fetching bookings for admin
+[2024-12-22T20:14:54.685Z] INFO: Found 0 bookings for event 8
+[2024-12-22T20:14:54.686Z] INFO: Found 0 bookings for event 9
+[2024-12-22T20:14:54.686Z] INFO: Successfully fetched events with bookings
+{
+  "count": 2,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 0
+    },
+    {
+      "id": 9,
+      "title": "Test3 (Kopie)",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T20:17:21.041Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734898494,
+    "exp": 1734984894
+  }
+}
+[2024-12-22T20:17:21.042Z] INFO: Current time:
+"2024-12-22T20:17:21.042Z"
+[2024-12-22T20:17:21.042Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:17:21.042Z"
+  }
+}
+[2024-12-22T20:17:21.044Z] INFO: Fetching bookings for admin
+[2024-12-22T20:17:21.044Z] INFO: Found 0 bookings for event 8
+[2024-12-22T20:17:21.045Z] INFO: Found 0 bookings for event 9
+[2024-12-22T20:17:21.045Z] INFO: Successfully fetched events with bookings
+{
+  "count": 2,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 0
+    },
+    {
+      "id": 9,
+      "title": "Test3 (Kopie)",
+      "bookingsCount": 0
+    }
+  ]
+}

@@ -9,13 +9,23 @@ class ApiService {
 
   async request(endpoint, options = {}) {
     const url = `${API_URL}${endpoint}`;
+    const authHeader = options.requiresAuth ? this.authStore.getAuthHeader() : {};
+    console.log('Auth header for request:', authHeader);
+
     const headers = {
       'Content-Type': 'application/json',
-      ...(options.requiresAuth ? this.authStore.getAuthHeader() : {}),
+      ...authHeader,
       ...options.headers
     };
 
     try {
+      console.log('Full request details:', {
+        url,
+        method: options.method || 'GET',
+        headers,
+        requiresAuth: options.requiresAuth
+      });
+
       const requestBody = options.body ? JSON.parse(options.body) : undefined;
       console.log('API Request Details:', {
         url,
@@ -29,19 +39,26 @@ class ApiService {
         headers
       });
 
-      const responseData = await response.json();
-      console.log('API Response:', {
-        status: response.status,
-        statusText: response.statusText,
-        headers: Object.fromEntries(response.headers.entries()),
-        data: responseData
-      });
-
       if (!response.ok) {
-        throw new Error(responseData.message || responseData.error || `Server returned ${response.status}`);
+        throw new Error(`Server returned ${response.status}: ${response.statusText}`);
       }
 
-      return responseData;
+      // Check if there's content to parse
+      const contentType = response.headers.get('content-type');
+      if (contentType && contentType.includes('application/json')) {
+        const responseData = await response.json();
+        console.log('API Response:', {
+          status: response.status,
+          statusText: response.statusText,
+          headers: Object.fromEntries(response.headers.entries()),
+          data: responseData
+        });
+        return responseData;
+      }
+
+      // For empty responses (like DELETE)
+      return null;
+
     } catch (error) {
       console.error(`API Error (${endpoint}):`, error);
       throw error;
@@ -57,8 +74,16 @@ class ApiService {
   }
 
   // Event endpoints
-  async getEvents() {
-    return this.request('/dates', { requiresAuth: false });
+  async getEvents(includeHidden = false) {
+    const authHeader = this.authStore.getAuthHeader();
+    console.log('Getting events with auth:', authHeader);
+    
+    return this.request('/dates', { 
+      requiresAuth: true,
+      headers: {
+        ...authHeader
+      }
+    });
   }
 
   async createEvent(eventData) {
@@ -101,3 +126,4 @@ class ApiService {
 }
 
 export const apiService = new ApiService();
+export default apiService;
