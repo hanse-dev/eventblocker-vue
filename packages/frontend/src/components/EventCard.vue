@@ -4,7 +4,7 @@
       <!-- Event header -->
       <div class="d-flex justify-content-between align-items-start mb-2">
         <h6 class="card-title mb-0">{{ event.title }}</h6>
-        <span :class="['badge', event.visibility ? 'bg-success' : 'bg-warning']">
+        <span v-if="isAdmin" :class="['badge', event.visibility ? 'bg-success' : 'bg-warning']">
           {{ event.visibility ? 'Sichtbar' : 'Versteckt' }}
         </span>
       </div>
@@ -37,50 +37,50 @@
         </div>
       </div>
 
-      <!-- Bookings section -->
-      <div class="mt-2 border-top pt-2">
+      <!-- Bookings section (admin only) -->
+      <div v-if="isAdmin" class="mt-2 border-top pt-2">
         <h6 class="mb-2">
           <i class="bi bi-person-lines-fill me-1"></i>
           Buchungen ({{ event.bookings?.length || 0 }})
         </h6>
-        <div v-if="event.bookings && event.bookings.length > 0" class="list-group list-group-flush">
-          <div v-for="booking in event.bookings" :key="booking.id" class="list-group-item px-0">
-            <div class="d-flex justify-content-between align-items-start">
-              <div>
-                <div class="fw-bold">{{ booking.name }}</div>
-                <div class="small">{{ booking.email }}</div>
-                <div v-if="booking.phone" class="small">Tel: {{ booking.phone }}</div>
-                <div v-if="booking.notes" class="small text-muted">{{ booking.notes }}</div>
-              </div>
-              <small class="text-muted">
-                {{ new Date(booking.createdAt).toLocaleString() }}
-              </small>
-            </div>
-          </div>
-        </div>
-        <div v-else class="text-muted small">
-          Keine Buchungen vorhanden
+        <div class="bookings-list">
+          <slot name="bookings"></slot>
         </div>
       </div>
 
       <!-- Actions -->
       <div class="card-actions mt-2 pt-2 border-top">
-        <button class="btn btn-primary btn-sm" @click="$emit('edit', event)" :disabled="loading">
-          <i class="bi bi-pencil"></i> Bearbeiten
-        </button>
-        <button class="btn btn-secondary btn-sm" @click="$emit('copy', event)" :disabled="loading">
-          <i class="bi bi-files"></i> Kopieren
-        </button>
-        <button class="btn btn-danger btn-sm" @click="$emit('delete', event)" :disabled="loading">
-          <i class="bi bi-trash"></i> Löschen
-        </button>
+        <!-- Admin actions -->
+        <template v-if="isAdmin">
+          <button class="btn btn-primary btn-sm" @click="$emit('edit', event)" :disabled="loading">
+            <i class="bi bi-pencil"></i> Bearbeiten
+          </button>
+          <button class="btn btn-info btn-sm" @click="$emit('copy', event)" :disabled="loading">
+            <i class="bi bi-files"></i> Kopieren
+          </button>
+          <button class="btn btn-danger btn-sm" @click="$emit('delete', event)" :disabled="loading">
+            <i class="bi bi-trash"></i> Löschen
+          </button>
+        </template>
+        
+        <!-- User actions -->
+        <template v-else>
+          <button 
+            class="btn btn-primary btn-sm" 
+            @click="$emit('book', event)"
+            :disabled="loading || isFullyBooked"
+          >
+            <i class="bi bi-calendar-check"></i>
+            {{ isFullyBooked ? 'Ausgebucht' : 'Jetzt buchen' }}
+          </button>
+        </template>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { defineProps, defineEmits } from 'vue';
+import { computed, defineProps, defineEmits } from 'vue';
 
 const props = defineProps({
   event: {
@@ -90,10 +90,18 @@ const props = defineProps({
   loading: {
     type: Boolean,
     default: false
+  },
+  isAdmin: {
+    type: Boolean,
+    default: false
   }
 });
 
-defineEmits(['edit', 'copy', 'delete']);
+const emit = defineEmits(['edit', 'copy', 'delete', 'book']);
+
+const isFullyBooked = computed(() => {
+  return (props.event.bookedSeats || 0) >= props.event.maxBookings;
+});
 
 const formatDate = (date) => {
   if (!date) return '';

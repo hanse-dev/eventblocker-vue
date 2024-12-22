@@ -1,17 +1,16 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import AppointmentList from '../components/AppointmentList.vue';
+import EventCard from '../components/EventCard.vue';
 import BookingDialog from '../components/BookingDialog.vue';
 import { useNotificationStore } from '../stores/notification';
-import { useAuthStore } from '../stores/auth';
 import { apiService } from '../services/api';
 
 const notificationStore = useNotificationStore();
-const authStore = useAuthStore();
 const appointments = ref([]);
 const selectedAppointment = ref(null);
 const showBookingDialog = ref(false);
 const loading = ref(false);
+const bookingLoading = ref(false);
 const error = ref(null);
 
 const fetchAppointments = async () => {
@@ -19,7 +18,7 @@ const fetchAppointments = async () => {
   error.value = null;
   try {
     const events = await apiService.getEvents();
-    // Filter only visible events for non-authenticated users
+    // Filter only visible events
     appointments.value = Array.isArray(events) ? events.filter(event => event.visibility) : [];
   } catch (err) {
     console.error('Failed to fetch appointments:', err);
@@ -36,14 +35,29 @@ const handleBook = (appointment) => {
 };
 
 const submitBooking = async (bookingData) => {
+  if (bookingLoading.value) return;
+  
+  bookingLoading.value = true;
   try {
-    await apiService.bookEvent(bookingData.appointmentId, bookingData);
-    await fetchAppointments();
-    showBookingDialog.value = false;
-    notificationStore.success('Termin erfolgreich gebucht');
+    console.log('Submitting booking:', { id: selectedAppointment.value.id, bookingData });
+    const response = await apiService.bookEvent(selectedAppointment.value.id, bookingData);
+    
+    if (response) {
+      notificationStore.success('Termin erfolgreich gebucht');
+      showBookingDialog.value = false;
+      await fetchAppointments();
+    }
   } catch (error) {
     console.error('Failed to book appointment:', error);
-    notificationStore.error('Fehler beim Buchen des Termins');
+    if (error.message?.includes('fully booked')) {
+      notificationStore.error('Dieser Termin ist leider bereits ausgebucht');
+    } else if (error.message?.includes('not available')) {
+      notificationStore.error('Dieser Termin ist nicht mehr verfügbar');
+    } else {
+      notificationStore.error('Fehler beim Buchen des Termins. Bitte versuchen Sie es später erneut.');
+    }
+  } finally {
+    bookingLoading.value = false;
   }
 };
 
@@ -53,37 +67,44 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="home-view container-fluid py-4">
-    <div class="row">
-      <div class="col-12">
-        <div class="card shadow-sm">
-          <div class="card-header bg-primary text-white py-3">
-            <h5 class="card-title mb-0">Verfügbare Termine</h5>
-          </div>
-          <div class="card-body">
-            <div v-if="loading" class="text-center py-4">
-              <div class="spinner-border text-primary" role="status">
-                <span class="visually-hidden">Termine werden geladen...</span>
-              </div>
-            </div>
-            <div v-else-if="error" class="alert alert-danger" role="alert">
-              {{ error }}
-            </div>
-            <AppointmentList
-              v-else
-              :appointments="appointments"
-              :is-admin="false"
-              @book="handleBook"
-            />
-          </div>
-        </div>
+  <div class="container-fluid py-3">
+    <h1 class="h3 mb-4">Verfügbare Termine</h1>
+
+    <!-- Loading state -->
+    <div v-if="loading" class="text-center py-4">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
       </div>
     </div>
 
+    <!-- Error state -->
+    <div v-else-if="error" class="alert alert-danger" role="alert">
+      {{ error }}
+    </div>
+
+    <!-- Empty state -->
+    <div v-else-if="!appointments.length" class="text-center py-4">
+      <p class="text-muted mb-0">Keine Termine verfügbar</p>
+    </div>
+
+    <!-- Events grid -->
+    <div v-else class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
+      <div v-for="appointment in appointments" :key="appointment.id" class="col">
+        <EventCard
+          :event="appointment"
+          :loading="loading"
+          :is-admin="false"
+          @book="handleBook"
+        />
+      </div>
+    </div>
+
+    <!-- Booking dialog -->
     <BookingDialog
       v-if="showBookingDialog"
-      v-model="showBookingDialog"
       :appointment="selectedAppointment"
+      :loading="bookingLoading"
+      @close="showBookingDialog = false"
       @submit="submitBooking"
     />
   </div>

@@ -2973,3 +2973,697 @@
     }
   ]
 }
+[2024-12-22T20:19:01.452Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734898494,
+    "exp": 1734984894
+  }
+}
+[2024-12-22T20:19:01.453Z] INFO: Current time:
+"2024-12-22T20:19:01.453Z"
+[2024-12-22T20:19:01.453Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:19:01.453Z"
+  }
+}
+[2024-12-22T20:19:01.455Z] INFO: Fetching bookings for admin
+[2024-12-22T20:19:01.456Z] INFO: Found 0 bookings for event 8
+[2024-12-22T20:19:01.456Z] INFO: Found 0 bookings for event 9
+[2024-12-22T20:19:01.457Z] INFO: Successfully fetched events with bookings
+{
+  "count": 2,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 0
+    },
+    {
+      "id": 9,
+      "title": "Test3 (Kopie)",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T20:22:17.354Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734898494,
+    "exp": 1734984894
+  }
+}
+[2024-12-22T20:22:17.354Z] INFO: Current time:
+"2024-12-22T20:22:17.354Z"
+[2024-12-22T20:22:17.355Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:22:17.354Z"
+  }
+}
+[2024-12-22T20:22:17.356Z] INFO: Fetching bookings for admin
+[2024-12-22T20:22:17.357Z] INFO: Found 0 bookings for event 9
+[2024-12-22T20:22:17.358Z] INFO: Found 0 bookings for event 8
+[2024-12-22T20:22:17.358Z] INFO: Successfully fetched events with bookings
+{
+  "count": 2,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 0
+    },
+    {
+      "id": 9,
+      "title": "Test3 (Kopie)",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T20:26:24.086Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734898494,
+    "exp": 1734984894
+  }
+}
+[2024-12-22T20:26:24.087Z] INFO: Current time:
+"2024-12-22T20:26:24.087Z"
+[2024-12-22T20:26:24.087Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:26:24.087Z"
+  }
+}
+[2024-12-22T20:26:24.089Z] INFO: Fetching bookings for admin
+[2024-12-22T20:26:24.091Z] INFO: Found 0 bookings for event 9
+[2024-12-22T20:26:24.091Z] INFO: Found 0 bookings for event 8
+[2024-12-22T20:26:24.091Z] INFO: Successfully fetched events with bookings
+{
+  "count": 2,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 0
+    },
+    {
+      "id": 9,
+      "title": "Test3 (Kopie)",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T20:27:29.825Z] INFO: Attempting to book event
+{
+  "eventId": 8,
+  "email": "eikowi@mailbox.org"
+}
+[2024-12-22T20:27:29.845Z] INFO: Successfully booked event
+{
+  "eventId": 8,
+  "bookingId": 1
+}
+[2024-12-22T20:27:29.849Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734898494,
+    "exp": 1734984894
+  }
+}
+[2024-12-22T20:27:29.849Z] INFO: Current time:
+"2024-12-22T20:27:29.849Z"
+[2024-12-22T20:27:29.849Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:27:29.849Z"
+  }
+}
+[2024-12-22T20:27:29.850Z] INFO: Fetching bookings for admin
+[2024-12-22T20:27:29.851Z] INFO: Found 1 bookings for event 8
+[2024-12-22T20:27:29.852Z] INFO: Found 0 bookings for event 9
+[2024-12-22T20:27:29.852Z] INFO: Successfully fetched events with bookings
+{
+  "count": 2,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 1
+    },
+    {
+      "id": 9,
+      "title": "Test3 (Kopie)",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T20:27:44.929Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734898494,
+    "exp": 1734984894
+  }
+}
+[2024-12-22T20:27:44.929Z] INFO: Current time:
+"2024-12-22T20:27:44.929Z"
+[2024-12-22T20:27:44.929Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:27:44.929Z"
+  }
+}
+[2024-12-22T20:27:44.931Z] INFO: Fetching bookings for admin
+[2024-12-22T20:27:44.931Z] INFO: Found 0 bookings for event 9
+[2024-12-22T20:27:44.932Z] INFO: Found 1 bookings for event 8
+[2024-12-22T20:27:44.932Z] INFO: Successfully fetched events with bookings
+{
+  "count": 2,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 1
+    },
+    {
+      "id": 9,
+      "title": "Test3 (Kopie)",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T20:27:48.023Z] INFO: Fetching events
+{}
+[2024-12-22T20:27:48.024Z] INFO: Current time:
+"2024-12-22T20:27:48.024Z"
+[2024-12-22T20:27:48.024Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:27:48.024Z"
+  },
+  "visibility": true,
+  "status": "available"
+}
+[2024-12-22T20:27:48.025Z] INFO: Successfully fetched events (no bookings)
+{
+  "count": 1
+}
+[2024-12-22T20:27:56.907Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734899276,
+    "exp": 1734985676
+  }
+}
+[2024-12-22T20:27:56.908Z] INFO: Current time:
+"2024-12-22T20:27:56.908Z"
+[2024-12-22T20:27:56.908Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:27:56.908Z"
+  }
+}
+[2024-12-22T20:27:56.909Z] INFO: Fetching bookings for admin
+[2024-12-22T20:27:56.910Z] INFO: Found 1 bookings for event 8
+[2024-12-22T20:27:56.910Z] INFO: Found 0 bookings for event 9
+[2024-12-22T20:27:56.911Z] INFO: Successfully fetched events with bookings
+{
+  "count": 2,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 1
+    },
+    {
+      "id": 9,
+      "title": "Test3 (Kopie)",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T20:28:01.497Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734899276,
+    "exp": 1734985676
+  }
+}
+[2024-12-22T20:28:01.498Z] INFO: Current time:
+"2024-12-22T20:28:01.498Z"
+[2024-12-22T20:28:01.498Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:28:01.498Z"
+  }
+}
+[2024-12-22T20:28:01.499Z] INFO: Fetching bookings for admin
+[2024-12-22T20:28:01.500Z] INFO: Found 0 bookings for event 9
+[2024-12-22T20:28:01.501Z] INFO: Found 1 bookings for event 8
+[2024-12-22T20:28:01.501Z] INFO: Successfully fetched events with bookings
+{
+  "count": 2,
+  "eventsWithBookings": [
+    {
+      "id": 8,
+      "title": "Test3",
+      "bookingsCount": 1
+    },
+    {
+      "id": 9,
+      "title": "Test3 (Kopie)",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T20:28:32.935Z] INFO: Fetching events
+{}
+[2024-12-22T20:28:32.936Z] INFO: Current time:
+"2024-12-22T20:28:32.936Z"
+[2024-12-22T20:28:32.936Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:28:32.936Z"
+  },
+  "visibility": true,
+  "status": "available"
+}
+[2024-12-22T20:28:32.938Z] INFO: Successfully fetched events (no bookings)
+{
+  "count": 1
+}
+[2024-12-22T20:28:38.826Z] INFO: Fetching events
+{}
+[2024-12-22T20:28:38.826Z] INFO: Current time:
+"2024-12-22T20:28:38.826Z"
+[2024-12-22T20:28:38.827Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:28:38.826Z"
+  },
+  "visibility": true,
+  "status": "available"
+}
+[2024-12-22T20:28:38.828Z] INFO: Successfully fetched events (no bookings)
+{
+  "count": 1
+}
+[2024-12-22T20:29:11.417Z] INFO: Fetching events
+{}
+[2024-12-22T20:29:11.418Z] INFO: Current time:
+"2024-12-22T20:29:11.418Z"
+[2024-12-22T20:29:11.418Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:29:11.418Z"
+  },
+  "visibility": true,
+  "status": "available"
+}
+[2024-12-22T20:29:11.420Z] INFO: Successfully fetched events (no bookings)
+{
+  "count": 1
+}
+[2024-12-22T20:29:42.631Z] INFO: Fetching events
+{}
+[2024-12-22T20:29:42.632Z] INFO: Current time:
+"2024-12-22T20:29:42.632Z"
+[2024-12-22T20:29:42.632Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:29:42.632Z"
+  },
+  "visibility": true,
+  "status": "available"
+}
+[2024-12-22T20:29:42.635Z] INFO: Successfully fetched events (no bookings)
+{
+  "count": 1
+}
+[2024-12-22T20:29:51.791Z] INFO: Attempting to book event
+{
+  "eventId": 9,
+  "email": "e@e.de"
+}
+[2024-12-22T20:29:51.816Z] INFO: Successfully booked event
+{
+  "eventId": 9,
+  "bookingId": 2
+}
+[2024-12-22T20:29:51.820Z] INFO: Fetching events
+{}
+[2024-12-22T20:29:51.820Z] INFO: Current time:
+"2024-12-22T20:29:51.820Z"
+[2024-12-22T20:29:51.821Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:29:51.820Z"
+  },
+  "visibility": true,
+  "status": "available"
+}
+[2024-12-22T20:29:51.822Z] INFO: Successfully fetched events (no bookings)
+{
+  "count": 0
+}
+[2024-12-22T20:29:54.190Z] INFO: Fetching events
+{}
+[2024-12-22T20:29:54.191Z] INFO: Current time:
+"2024-12-22T20:29:54.190Z"
+[2024-12-22T20:29:54.191Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:29:54.190Z"
+  },
+  "visibility": true,
+  "status": "available"
+}
+[2024-12-22T20:29:54.192Z] INFO: Successfully fetched events (no bookings)
+{
+  "count": 0
+}
+[2024-12-22T20:29:54.936Z] INFO: Fetching events
+{}
+[2024-12-22T20:29:54.937Z] INFO: Current time:
+"2024-12-22T20:29:54.937Z"
+[2024-12-22T20:29:54.937Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:29:54.937Z"
+  },
+  "visibility": true,
+  "status": "available"
+}
+[2024-12-22T20:29:54.939Z] INFO: Successfully fetched events (no bookings)
+{
+  "count": 0
+}
+[2024-12-22T20:30:52.429Z] INFO: Fetching events
+{}
+[2024-12-22T20:30:52.430Z] INFO: Current time:
+"2024-12-22T20:30:52.430Z"
+[2024-12-22T20:30:52.430Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:30:52.430Z"
+  },
+  "visibility": true,
+  "status": "available"
+}
+[2024-12-22T20:30:52.432Z] INFO: Successfully fetched events (no bookings)
+{
+  "count": 0
+}
+[2024-12-22T20:35:22.066Z] INFO: Fetching events
+{}
+[2024-12-22T20:35:22.067Z] INFO: Current time:
+"2024-12-22T20:35:22.067Z"
+[2024-12-22T20:35:22.067Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:35:22.067Z"
+  },
+  "visibility": true,
+  "status": "available"
+}
+[2024-12-22T20:35:22.070Z] INFO: Successfully fetched events (no bookings)
+{
+  "count": 2
+}
+[2024-12-22T20:35:37.427Z] INFO: Attempting to book event
+{
+  "eventId": 1,
+  "email": "e@e.de"
+}
+[2024-12-22T20:35:37.445Z] INFO: Successfully booked event
+{
+  "eventId": 1,
+  "bookingId": 1
+}
+[2024-12-22T20:35:37.449Z] INFO: Fetching events
+{}
+[2024-12-22T20:35:37.450Z] INFO: Current time:
+"2024-12-22T20:35:37.450Z"
+[2024-12-22T20:35:37.450Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:35:37.450Z"
+  },
+  "visibility": true,
+  "status": "available"
+}
+[2024-12-22T20:35:37.452Z] INFO: Successfully fetched events (no bookings)
+{
+  "count": 2
+}
+[2024-12-22T20:35:40.807Z] INFO: Fetching events
+{}
+[2024-12-22T20:35:40.808Z] INFO: Current time:
+"2024-12-22T20:35:40.808Z"
+[2024-12-22T20:35:40.808Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:35:40.808Z"
+  },
+  "visibility": true,
+  "status": "available"
+}
+[2024-12-22T20:35:40.810Z] INFO: Successfully fetched events (no bookings)
+{
+  "count": 2
+}
+[2024-12-22T20:35:42.439Z] INFO: Fetching events
+{}
+[2024-12-22T20:35:42.440Z] INFO: Current time:
+"2024-12-22T20:35:42.440Z"
+[2024-12-22T20:35:42.440Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:35:42.440Z"
+  },
+  "visibility": true,
+  "status": "available"
+}
+[2024-12-22T20:35:42.443Z] INFO: Successfully fetched events (no bookings)
+{
+  "count": 2
+}
+[2024-12-22T20:35:50.771Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734899750,
+    "exp": 1734986150
+  }
+}
+[2024-12-22T20:35:50.771Z] INFO: Current time:
+"2024-12-22T20:35:50.771Z"
+[2024-12-22T20:35:50.772Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:35:50.771Z"
+  }
+}
+[2024-12-22T20:35:50.774Z] INFO: Fetching bookings for admin
+[2024-12-22T20:35:50.775Z] INFO: Found 0 bookings for event 2
+[2024-12-22T20:35:50.776Z] INFO: Found 1 bookings for event 1
+[2024-12-22T20:35:50.776Z] INFO: Successfully fetched events with bookings
+{
+  "count": 2,
+  "eventsWithBookings": [
+    {
+      "id": 1,
+      "title": "Yoga Session",
+      "bookingsCount": 1
+    },
+    {
+      "id": 2,
+      "title": "Meditation Workshop",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T20:35:59.285Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734899750,
+    "exp": 1734986150
+  }
+}
+[2024-12-22T20:35:59.286Z] INFO: Current time:
+"2024-12-22T20:35:59.286Z"
+[2024-12-22T20:35:59.286Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:35:59.286Z"
+  }
+}
+[2024-12-22T20:35:59.288Z] INFO: Fetching bookings for admin
+[2024-12-22T20:35:59.290Z] INFO: Found 0 bookings for event 2
+[2024-12-22T20:35:59.290Z] INFO: Found 1 bookings for event 1
+[2024-12-22T20:35:59.290Z] INFO: Successfully fetched events with bookings
+{
+  "count": 2,
+  "eventsWithBookings": [
+    {
+      "id": 1,
+      "title": "Yoga Session",
+      "bookingsCount": 1
+    },
+    {
+      "id": 2,
+      "title": "Meditation Workshop",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T20:35:59.892Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734899750,
+    "exp": 1734986150
+  }
+}
+[2024-12-22T20:35:59.892Z] INFO: Current time:
+"2024-12-22T20:35:59.892Z"
+[2024-12-22T20:35:59.893Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:35:59.892Z"
+  }
+}
+[2024-12-22T20:35:59.894Z] INFO: Fetching bookings for admin
+[2024-12-22T20:35:59.895Z] INFO: Found 0 bookings for event 2
+[2024-12-22T20:35:59.895Z] INFO: Found 1 bookings for event 1
+[2024-12-22T20:35:59.895Z] INFO: Successfully fetched events with bookings
+{
+  "count": 2,
+  "eventsWithBookings": [
+    {
+      "id": 1,
+      "title": "Yoga Session",
+      "bookingsCount": 1
+    },
+    {
+      "id": 2,
+      "title": "Meditation Workshop",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T20:37:21.633Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734899750,
+    "exp": 1734986150
+  }
+}
+[2024-12-22T20:37:21.634Z] INFO: Current time:
+"2024-12-22T20:37:21.634Z"
+[2024-12-22T20:37:21.634Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:37:21.634Z"
+  }
+}
+[2024-12-22T20:37:21.635Z] INFO: Fetching bookings for admin
+[2024-12-22T20:37:21.636Z] INFO: Found 1 bookings for event 1
+[2024-12-22T20:37:21.636Z] INFO: Found 0 bookings for event 2
+[2024-12-22T20:37:21.637Z] INFO: Successfully fetched events with bookings
+{
+  "count": 2,
+  "eventsWithBookings": [
+    {
+      "id": 1,
+      "title": "Yoga Session",
+      "bookingsCount": 1
+    },
+    {
+      "id": 2,
+      "title": "Meditation Workshop",
+      "bookingsCount": 0
+    }
+  ]
+}
+[2024-12-22T20:37:26.655Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734899750,
+    "exp": 1734986150
+  }
+}
+[2024-12-22T20:37:26.656Z] INFO: Current time:
+"2024-12-22T20:37:26.656Z"
+[2024-12-22T20:37:26.656Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-22T20:37:26.656Z"
+  }
+}
+[2024-12-22T20:37:26.657Z] INFO: Fetching bookings for admin
+[2024-12-22T20:37:26.659Z] INFO: Found 1 bookings for event 1
+[2024-12-22T20:37:26.660Z] INFO: Found 0 bookings for event 2
+[2024-12-22T20:37:26.661Z] INFO: Successfully fetched events with bookings
+{
+  "count": 2,
+  "eventsWithBookings": [
+    {
+      "id": 1,
+      "title": "Yoga Session",
+      "bookingsCount": 1
+    },
+    {
+      "id": 2,
+      "title": "Meditation Workshop",
+      "bookingsCount": 0
+    }
+  ]
+}

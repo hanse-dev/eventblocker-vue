@@ -1,248 +1,367 @@
-<script setup>
-import { ref, computed, watch } from 'vue';
-
-const props = defineProps({
-  modelValue: Boolean,
-  appointment: {
-    type: Object,
-    required: true
-  }
-});
-
-const emit = defineEmits(['update:modelValue', 'book']);
-
-const dialog = computed({
-  get: () => props.modelValue,
-  set: (value) => emit('update:modelValue', value)
-});
-
-const form = ref({
-  name: '',
-  email: '',
-  phone: ''
-});
-
-const errors = ref({
-  name: '',
-  email: '',
-  phone: ''
-});
-
-const validateForm = () => {
-  let isValid = true;
-  errors.value = {
-    name: '',
-    email: '',
-    phone: ''
-  };
-
-  if (!form.value.name) {
-    errors.value.name = 'Name ist erforderlich';
-    isValid = false;
-  }
-
-  if (!form.value.email) {
-    errors.value.email = 'E-Mail ist erforderlich';
-    isValid = false;
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.value.email)) {
-    errors.value.email = 'E-Mail muss gültig sein';
-    isValid = false;
-  }
-
-  if (!form.value.phone) {
-    errors.value.phone = 'Telefon ist erforderlich';
-    isValid = false;
-  }
-
-  return isValid;
-};
-
-const submitForm = () => {
-  if (!validateForm()) return;
-
-  emit('book', {
-    ...form.value,
-    appointmentId: props.appointment.id
-  });
-  emit('update:modelValue', false);
-};
-
-// Reset form when dialog closes
-watch(() => props.modelValue, (newValue) => {
-  if (!newValue) {
-    form.value = {
-      name: '',
-      email: '',
-      phone: ''
-    };
-    errors.value = {
-      name: '',
-      email: '',
-      phone: ''
-    };
-  }
-});
-</script>
-
 <template>
-  <div
-    v-if="dialog"
-    class="modal fade show"
-    style="display: block; z-index: 1050"
-    tabindex="-1"
-    aria-modal="true"
-    role="dialog"
-  >
-    <div class="modal-backdrop fade show"></div>
+  <div>
+    <!-- Backdrop -->
+    <div class="modal-backdrop"></div>
     
-    <div class="modal-dialog modal-dialog-centered">
+    <!-- Dialog -->
+    <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Termin buchen</h5>
-          <button
-            type="button"
-            class="btn-close"
-            @click="dialog = false"
-            aria-label="Close"
-          ></button>
+          <h5 class="modal-title">{{ appointment.title }}</h5>
         </div>
-
         <div class="modal-body">
-          <div class="appointment-details mb-4">
-            <h5 class="mb-3">{{ appointment.title }}</h5>
-            <div class="d-flex align-items-center text-muted mb-2">
-              <i class="bi bi-calendar me-2"></i>
-              <span>{{ new Date(appointment.date).toLocaleDateString('de-DE') }}</span>
+          <!-- Event Details -->
+          <div class="event-details">
+            <div class="detail-grid">
+              <div class="detail-item">
+                <i class="bi bi-calendar me-2"></i>
+                <span>{{ formatDate(appointment.date) }}</span>
+              </div>
+              <div class="detail-item">
+                <i class="bi bi-clock me-2"></i>
+                <span>{{ formatTime(appointment.startTime) }}</span>
+              </div>
+              <div class="detail-item">
+                <i class="bi bi-hourglass me-2"></i>
+                <span>{{ appointment.duration }} Min.</span>
+              </div>
+              <div class="detail-item">
+                <i class="bi bi-currency-euro me-2"></i>
+                <span>{{ appointment.price }}€</span>
+              </div>
             </div>
-            <div class="d-flex align-items-center text-muted">
-              <i class="bi bi-clock me-2"></i>
-              <span>{{ new Date(appointment.startTime).toLocaleTimeString('de-DE', { 
-                hour: '2-digit', 
-                minute: '2-digit' 
-              }) }}</span>
+            <div class="detail-location mt-2">
+              <div class="detail-item">
+                <i class="bi bi-geo-alt me-2"></i>
+                <span>{{ appointment.location || 'Kein Ort' }}</span>
+              </div>
+              <div class="detail-item">
+                <i class="bi bi-door-closed me-2"></i>
+                <span>{{ appointment.room || 'Kein Raum' }}</span>
+              </div>
             </div>
           </div>
 
-          <form @submit.prevent="submitForm" class="needs-validation" novalidate>
-            <div class="mb-3">
-              <div class="form-floating">
-                <input
-                  type="text"
-                  class="form-control"
-                  :class="{ 'is-invalid': errors.name }"
-                  id="name"
-                  v-model="form.name"
-                  placeholder="Name"
-                  required
-                >
-                <label for="name">
-                  <i class="bi bi-person me-2"></i>Name
-                </label>
-                <div class="invalid-feedback">{{ errors.name }}</div>
+          <!-- Booking Form -->
+          <form @submit.prevent="handleSubmit" class="booking-form">
+            <div class="form-group">
+              <label class="form-label required">Name</label>
+              <input
+                v-model="formData.name"
+                type="text"
+                class="form-control"
+                required
+                placeholder="Ihr Name"
+                :disabled="loading"
+              />
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-label required">E-Mail</label>
+                  <input
+                    v-model="formData.email"
+                    type="email"
+                    class="form-control"
+                    required
+                    placeholder="ihre@email.de"
+                    :disabled="loading"
+                  />
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-label">Telefon</label>
+                  <input
+                    v-model="formData.phone"
+                    type="tel"
+                    class="form-control"
+                    placeholder="Optional"
+                    :disabled="loading"
+                  />
+                </div>
               </div>
             </div>
 
-            <div class="mb-3">
-              <div class="form-floating">
-                <input
-                  type="email"
-                  class="form-control"
-                  :class="{ 'is-invalid': errors.email }"
-                  id="email"
-                  v-model="form.email"
-                  placeholder="E-Mail"
-                  required
-                >
-                <label for="email">
-                  <i class="bi bi-envelope me-2"></i>E-Mail
-                </label>
-                <div class="invalid-feedback">{{ errors.email }}</div>
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <div class="form-floating">
-                <input
-                  type="tel"
-                  class="form-control"
-                  :class="{ 'is-invalid': errors.phone }"
-                  id="phone"
-                  v-model="form.phone"
-                  placeholder="Telefon"
-                  required
-                >
-                <label for="phone">
-                  <i class="bi bi-telephone me-2"></i>Telefon
-                </label>
-                <div class="invalid-feedback">{{ errors.phone }}</div>
-              </div>
+            <div class="form-group">
+              <label class="form-label">Anmerkungen</label>
+              <textarea
+                v-model="formData.notes"
+                class="form-control"
+                rows="3"
+                placeholder="Optional"
+                :disabled="loading"
+              ></textarea>
             </div>
           </form>
         </div>
-
         <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-outline-secondary"
-            @click="dialog = false"
-          >
-            Abbrechen
-          </button>
-          <button
-            type="button"
-            class="btn btn-primary"
-            @click="submitForm"
-          >
-            <i class="bi bi-calendar-check me-2"></i>
-            Buchen
-          </button>
+          <div class="d-flex gap-3 w-100 justify-content-end">
+            <button 
+              type="button" 
+              class="btn btn-light" 
+              @click="$emit('close')"
+              :disabled="loading"
+            >
+              <i class="bi bi-x-lg me-1"></i>Abbrechen
+            </button>
+            <button 
+              type="button" 
+              class="btn btn-primary" 
+              @click="handleSubmit"
+              :disabled="loading"
+            >
+              <div v-if="loading" class="spinner-border spinner-border-sm me-2" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              <i v-else class="bi bi-check-lg me-1"></i>
+              {{ loading ? 'Wird gebucht...' : 'Jetzt buchen' }}
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<style lang="scss" scoped>
+<script setup>
+import { ref } from 'vue';
+
+const props = defineProps({
+  appointment: {
+    type: Object,
+    required: true
+  },
+  loading: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const emit = defineEmits(['close', 'submit']);
+
+const formData = ref({
+  name: '',
+  email: '',
+  phone: '',
+  notes: ''
+});
+
+const handleSubmit = () => {
+  if (!formData.value.name || !formData.value.email) {
+    return;
+  }
+  
+  emit('submit', {
+    name: formData.value.name,
+    email: formData.value.email,
+    phone: formData.value.phone || null,
+    notes: formData.value.notes || null
+  });
+};
+
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('de-DE', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+};
+
+const formatTime = (timeString) => {
+  const time = new Date(timeString);
+  return time.toLocaleTimeString('de-DE', {
+    hour: '2-digit',
+    minute: '2-digit'
+  });
+};
+</script>
+
+<style scoped>
 .modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1055;
 }
 
-.form-floating {
-  > label {
-    padding-left: 2.5rem;
-  }
-  
-  .bi {
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 3;
-  }
+.modal-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 500px;
+  margin: 0;
+  z-index: 1056;
+  max-height: 90vh;
 }
 
-.form-control {
-  &:focus {
-    border-color: $primary;
-    box-shadow: 0 0 0 0.25rem rgba($primary, 0.25);
-  }
-}
-
-.btn-primary {
-  &:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  transition: all 0.2s ease-in-out;
-}
-
-.appointment-details {
-  padding: 1rem;
+.modal-content {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   background-color: #f8f9fa;
-  border-radius: 0.5rem;
-  
-  .bi {
-    font-size: 1.1rem;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  background-color: #fff;
+  border-bottom: 1px solid #dee2e6;
+  padding: 1rem 1.5rem;
+  flex-shrink: 0;
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  color: #212529;
+  margin: 0;
+  text-align: center;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.modal-body {
+  padding: 1.5rem;
+  background-color: #f8f9fa;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.modal-footer {
+  background-color: #fff;
+  border-top: 1px solid #dee2e6;
+  padding: 1rem 1.5rem;
+  flex-shrink: 0;
+}
+
+.event-details {
+  padding: 1rem;
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 0.375rem;
+  margin-bottom: 1.5rem;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.detail-location {
+  border-top: 1px solid #dee2e6;
+  padding-top: 0.5rem;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  padding: 0.25rem 0;
+}
+
+.detail-item i {
+  width: 1.5rem;
+  color: #6c757d;
+}
+
+.booking-form .form-group {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid #dee2e6;
+  border-radius: 0.375rem;
+  background-color: #fff;
+}
+
+.booking-form .row {
+  margin: 0 -0.5rem;
+}
+
+.booking-form .row > div {
+  padding: 0 0.5rem;
+}
+
+.form-label {
+  font-weight: 500;
+  color: #495057;
+  margin-bottom: 0.5rem;
+}
+
+.form-label.required::after {
+  content: " *";
+  color: #dc3545;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+}
+
+.btn-light {
+  background-color: #f8f9fa;
+  border-color: #dee2e6;
+}
+
+.btn-light:hover {
+  background-color: #e9ecef;
+  border-color: #dee2e6;
+}
+
+@media (max-width: 576px) {
+  .modal-dialog {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    max-width: none;
+    max-height: none;
+    top: 0;
+    transform: translate(-50%, 0);
+  }
+
+  .modal-content {
+    height: 100vh;
+    border-radius: 0;
+    border: none;
+  }
+
+  .modal-body {
+    padding: 1rem;
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-form .row {
+    flex-direction: column;
+  }
+
+  .booking-form .row > div {
+    width: 100%;
+    padding: 0;
+  }
+
+  .modal-footer {
+    padding: 1rem;
+  }
+
+  .modal-footer .d-flex {
+    flex-direction: column;
+    gap: 0.5rem !important;
+  }
+
+  .modal-footer .btn {
+    width: 100%;
   }
 }
 </style>
