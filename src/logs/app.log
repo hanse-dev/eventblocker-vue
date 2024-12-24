@@ -1,0 +1,137 @@
+[2024-12-24T19:37:06.570Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1735068256,
+    "exp": 1735154656
+  }
+}
+[2024-12-24T19:37:06.570Z] INFO: Current time:
+"2024-12-24T19:37:06.570Z"
+[2024-12-24T19:37:06.570Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-24T19:37:06.570Z"
+  }
+}
+[2024-12-24T19:37:06.578Z] INFO: Returning events
+{
+  "count": 2
+}
+[2024-12-24T19:37:13.623Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1735068256,
+    "exp": 1735154656
+  }
+}
+[2024-12-24T19:37:13.624Z] INFO: Current time:
+"2024-12-24T19:37:13.624Z"
+[2024-12-24T19:37:13.624Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-24T19:37:13.624Z"
+  }
+}
+[2024-12-24T19:37:13.627Z] INFO: Returning events
+{
+  "count": 2
+}
+[2024-12-24T19:37:26.379Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1735068256,
+    "exp": 1735154656
+  }
+}
+[2024-12-24T19:37:26.380Z] INFO: Current time:
+"2024-12-24T19:37:26.380Z"
+[2024-12-24T19:37:26.381Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-24T19:37:26.380Z"
+  }
+}
+[2024-12-24T19:37:26.394Z] INFO: Returning events
+{
+  "count": 2
+}
+[2024-12-24T19:37:35.085Z] INFO: Creating new event
+{
+  "body": {
+    "title": "Meditation Workshop (Kopie)",
+    "date": "2024-12-29",
+    "startTime": "2024-12-29T13:00:00.000Z",
+    "location": "",
+    "room": "",
+    "duration": 90,
+    "maxBookings": 5,
+    "price": 35,
+    "visibility": true
+  }
+}
+[2024-12-24T19:37:35.086Z] DEBUG: Parsed event data
+{
+  "title": "Meditation Workshop (Kopie)",
+  "date": "2024-12-29T00:00:00.000Z",
+  "startTime": "2024-12-29T13:00:00.000Z",
+  "duration": 90,
+  "location": "",
+  "room": "",
+  "price": 35,
+  "maxBookings": 5,
+  "visibility": true
+}
+[2024-12-24T19:37:35.090Z] INFO: Successfully created event
+{
+  "event": {
+    "id": 5,
+    "title": "Meditation Workshop (Kopie)",
+    "date": "2024-12-29T00:00:00.000Z",
+    "startTime": "2024-12-29T13:00:00.000Z",
+    "duration": 90,
+    "location": "",
+    "room": "",
+    "description": null,
+    "status": "available",
+    "price": 35,
+    "visibility": true,
+    "maxBookings": 5,
+    "createdAt": "2024-12-24T19:37:35.087Z",
+    "updatedAt": "2024-12-24T19:37:35.087Z"
+  }
+}
+[2024-12-24T19:37:35.095Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1735068256,
+    "exp": 1735154656
+  }
+}
+[2024-12-24T19:37:35.095Z] INFO: Current time:
+"2024-12-24T19:37:35.095Z"
+[2024-12-24T19:37:35.095Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-24T19:37:35.095Z"
+  }
+}
+[2024-12-24T19:37:35.098Z] INFO: Returning events
+{
+  "count": 3
+}

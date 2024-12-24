@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import apiService from '../services/api'
 
 export const useAppointmentStore = defineStore('appointments', {
   state: () => ({
@@ -11,9 +12,10 @@ export const useAppointmentStore = defineStore('appointments', {
     async fetchAppointments() {
       this.loading = true
       try {
-        const response = await fetch('/api/dates')
-        this.appointments = await response.json()
+        const response = await apiService.request('/events')
+        this.appointments = response
       } catch (error) {
+        console.error('API Error (/events):', error)
         this.error = error.message
       } finally {
         this.loading = false

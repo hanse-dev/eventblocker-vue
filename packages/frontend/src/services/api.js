@@ -69,28 +69,28 @@ class ApiService {
 
   // Event endpoints
   async getEvents(includeHidden = false) {
-    const authHeader = this.authStore.getAuthHeader();
-    console.log('Getting events with auth:', authHeader);
-    
-    return this.request('/dates', { 
-      requiresAuth: true,
-      headers: {
-        ...authHeader
-      }
+    return this.request('/events', { 
+      method: 'GET',
+      requiresAuth: true
     });
   }
 
   async createEvent(eventData) {
-    console.log('Creating event with data:', eventData);
-    return this.request('/dates', {
+    return this.request('/events', {
       method: 'POST',
       body: JSON.stringify(eventData),
       requiresAuth: true
     });
   }
 
+  async getEvent(id) {
+    return this.request(`/events/${id}`, {
+      method: 'GET'
+    });
+  }
+
   async updateEvent(id, eventData) {
-    return this.request(`/dates/${id}`, {
+    return this.request(`/events/${id}`, {
       method: 'PUT',
       body: JSON.stringify(eventData),
       requiresAuth: true
@@ -98,27 +98,28 @@ class ApiService {
   }
 
   async deleteEvent(id) {
-    return this.request(`/dates/${id}`, {
+    return this.request(`/events/${id}`, {
       method: 'DELETE',
       requiresAuth: true
     });
   }
 
   async bookEvent(id, bookingData) {
-    return this.request(`/dates/${id}/book`, {
+    return this.request(`/events/${id}/book`, {
       method: 'POST',
       body: JSON.stringify(bookingData)
     });
   }
 
   async getEventBookings(id) {
-    return this.request(`/dates/${id}/bookings`, {
+    return this.request(`/events/${id}/bookings`, {
+      method: 'GET',
       requiresAuth: true
     });
   }
 
   async deleteBooking(eventId, bookingId) {
-    return this.request(`/dates/${eventId}/bookings/${bookingId}`, {
+    return this.request(`/events/${eventId}/bookings/${bookingId}`, {
       method: 'DELETE',
       requiresAuth: true
     });

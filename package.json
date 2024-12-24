@@ -2,20 +2,36 @@
   "name": "eventblocker-vue",
   "version": "1.0.0",
   "private": true,
+  "main": "app.js",
   "workspaces": [
-    "packages/*"
+    "packages/frontend"
   ],
   "scripts": {
+    "start": "node app.js",
     "dev:frontend": "cd packages/frontend && npm run dev",
-    "dev:backend": "cd packages/backend && npm run dev",
+    "dev:backend": "nodemon app.js",
     "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
-    "build": "npm run build:frontend && npm run copy-dist",
+    "prisma:seed": "node prisma/seed.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate deploy",
+    "setup": "npm install && npm run prisma:generate && npm run prisma:migrate",
     "build:frontend": "cd packages/frontend && npm run build",
-    "copy-dist": "cd packages/frontend && cp -r dist/* ../backend/public/",
-    "start": "cd packages/backend && npm run start",
+    "postbuild:frontend": "rm -rf public/* && cp -r packages/frontend/dist/* public/",
+    "prepare": "npm run build:frontend && npm run postbuild:frontend",
+    "build": "npm run prepare",
     "deploy": "npm install && npm run build && npm run start"
   },
+  "dependencies": {
+    "@prisma/client": "^6.0.1",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "sqlite3": "^5.1.6"
+  },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.0.2",
+    "prisma": "^6.0.1"
   }
 }
