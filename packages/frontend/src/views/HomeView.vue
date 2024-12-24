@@ -125,7 +125,7 @@ onMounted(() => {
     </div>
 
     <!-- Events grid -->
-    <div v-else class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
+    <div v-else class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-3">
       <div v-for="appointment in appointments" :key="appointment.id" class="col">
         <EventCard
           :event="appointment"

@@ -1,0 +1,10 @@
+// Import Bootstrap variables and functions
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+
+// You can override Bootstrap variables here
+// $primary: #your-color;
+
+// Import Bootstrap
+@import "bootstrap/scss/bootstrap";

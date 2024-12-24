@@ -8,7 +8,12 @@
   "scripts": {
     "dev:frontend": "cd packages/frontend && npm run dev",
     "dev:backend": "cd packages/backend && npm run dev",
-    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\""
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "build": "npm run build:frontend && npm run copy-dist",
+    "build:frontend": "cd packages/frontend && npm run build",
+    "copy-dist": "cd packages/frontend && cp -r dist/* ../backend/public/",
+    "start": "cd packages/backend && npm run start",
+    "deploy": "npm install && npm run build && npm run start"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"

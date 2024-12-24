@@ -144,9 +144,11 @@ const login = async () => {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
+@import "@/assets/scss/main.scss";
+
 .login-page {
-  background-color: #f8f9fa;
+  background: linear-gradient(135deg, $primary, darken($primary, 10%));
 }
 
 .login-bg {

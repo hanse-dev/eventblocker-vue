@@ -5127,3 +5127,296 @@
 {
   "count": 4
 }
+[2024-12-23T18:24:14.888Z] INFO: Fetching events
+{}
+[2024-12-23T18:24:14.889Z] INFO: Current time:
+"2024-12-23T18:24:14.889Z"
+[2024-12-23T18:24:14.889Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-23T18:24:14.889Z"
+  },
+  "visibility": true,
+  "status": "available"
+}
+[2024-12-23T18:24:14.893Z] INFO: Returning events
+{
+  "count": 2
+}
+[2024-12-23T18:24:29.836Z] INFO: Fetching events
+{}
+[2024-12-23T18:24:29.837Z] INFO: Current time:
+"2024-12-23T18:24:29.837Z"
+[2024-12-23T18:24:29.837Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-23T18:24:29.837Z"
+  },
+  "visibility": true,
+  "status": "available"
+}
+[2024-12-23T18:24:29.840Z] INFO: Returning events
+{
+  "count": 2
+}
+[2024-12-23T18:24:40.296Z] INFO: Attempting to book event
+{
+  "eventId": 1,
+  "requestBody": {
+    "firstName": "Eike",
+    "lastName": "Koltermann-Wilke",
+    "email": "eike.koltermann-wilke@mailbox.org",
+    "phone": "015122225412",
+    "notes": null
+  },
+  "bookingData": {
+    "firstName": "Eike",
+    "lastName": "Koltermann-Wilke",
+    "email": "eike.koltermann-wilke@mailbox.org",
+    "phone": "015122225412",
+    "notes": null
+  }
+}
+[2024-12-23T18:24:40.297Z] INFO: Found event
+{
+  "event": {
+    "id": 1,
+    "title": "Meditation Workshop",
+    "date": "2024-12-29T13:00:00.000Z",
+    "startTime": "2024-12-29T13:00:00.000Z",
+    "duration": 90,
+    "location": "Studio 2",
+    "room": "Room B",
+    "description": null,
+    "status": "available",
+    "price": 35,
+    "visibility": true,
+    "maxBookings": 5,
+    "createdAt": "2024-12-22T20:57:39.148Z",
+    "updatedAt": "2024-12-22T20:57:39.148Z",
+    "bookings": []
+  }
+}
+[2024-12-23T18:24:40.298Z] INFO: Creating booking
+{
+  "eventId": 1,
+  "firstName": "Eike",
+  "lastName": "Koltermann-Wilke",
+  "email": "eike.koltermann-wilke@mailbox.org",
+  "phone": "015122225412",
+  "notes": null
+}
+[2024-12-23T18:24:40.299Z] INFO: Successfully created booking
+{
+  "booking": {
+    "id": 5,
+    "eventId": 1,
+    "name": "Eike Koltermann-Wilke",
+    "firstName": "Eike",
+    "lastName": "Koltermann-Wilke",
+    "email": "eike.koltermann-wilke@mailbox.org",
+    "phone": "015122225412",
+    "notes": null,
+    "status": "confirmed",
+    "createdAt": "2024-12-23T18:24:40.298Z",
+    "updatedAt": "2024-12-23T18:24:40.298Z"
+  }
+}
+[2024-12-23T18:24:40.299Z] INFO: Successfully booked event
+{
+  "eventId": 1,
+  "bookingId": 5
+}
+[2024-12-23T18:24:40.303Z] INFO: Fetching events
+{}
+[2024-12-23T18:24:40.304Z] INFO: Current time:
+"2024-12-23T18:24:40.304Z"
+[2024-12-23T18:24:40.304Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-23T18:24:40.304Z"
+  },
+  "visibility": true,
+  "status": "available"
+}
+[2024-12-23T18:24:40.305Z] INFO: Returning events
+{
+  "count": 2
+}
+[2024-12-23T18:25:03.173Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734978303,
+    "exp": 1735064703
+  }
+}
+[2024-12-23T18:25:03.173Z] INFO: Current time:
+"2024-12-23T18:25:03.173Z"
+[2024-12-23T18:25:03.173Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-23T18:25:03.173Z"
+  }
+}
+[2024-12-23T18:25:03.175Z] INFO: Returning events
+{
+  "count": 2
+}
+[2024-12-23T18:31:28.082Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734978303,
+    "exp": 1735064703
+  }
+}
+[2024-12-23T18:31:28.083Z] INFO: Current time:
+"2024-12-23T18:31:28.083Z"
+[2024-12-23T18:31:28.083Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-23T18:31:28.083Z"
+  }
+}
+[2024-12-23T18:31:28.087Z] INFO: Returning events
+{
+  "count": 2
+}
+[2024-12-23T18:31:36.698Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734978303,
+    "exp": 1735064703
+  }
+}
+[2024-12-23T18:31:36.699Z] INFO: Current time:
+"2024-12-23T18:31:36.699Z"
+[2024-12-23T18:31:36.700Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-23T18:31:36.699Z"
+  }
+}
+[2024-12-23T18:31:36.702Z] INFO: Returning events
+{
+  "count": 2
+}
+[2024-12-23T18:31:37.637Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734978303,
+    "exp": 1735064703
+  }
+}
+[2024-12-23T18:31:37.638Z] INFO: Current time:
+"2024-12-23T18:31:37.638Z"
+[2024-12-23T18:31:37.638Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-23T18:31:37.638Z"
+  }
+}
+[2024-12-23T18:31:37.642Z] INFO: Returning events
+{
+  "count": 2
+}
+[2024-12-23T18:31:48.368Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734978303,
+    "exp": 1735064703
+  }
+}
+[2024-12-23T18:31:48.368Z] INFO: Current time:
+"2024-12-23T18:31:48.368Z"
+[2024-12-23T18:31:48.369Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-23T18:31:48.368Z"
+  }
+}
+[2024-12-23T18:31:48.372Z] INFO: Returning events
+{
+  "count": 2
+}
+[2024-12-23T18:34:45.325Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734978303,
+    "exp": 1735064703
+  }
+}
+[2024-12-23T18:34:45.326Z] INFO: Current time:
+"2024-12-23T18:34:45.326Z"
+[2024-12-23T18:34:45.326Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-23T18:34:45.326Z"
+  }
+}
+[2024-12-23T18:34:45.329Z] INFO: Returning events
+{
+  "count": 2
+}
+[2024-12-23T18:35:03.142Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1734978303,
+    "exp": 1735064703
+  }
+}
+[2024-12-23T18:35:03.143Z] INFO: Current time:
+"2024-12-23T18:35:03.143Z"
+[2024-12-23T18:35:03.143Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-23T18:35:03.143Z"
+  }
+}
+[2024-12-23T18:35:03.145Z] INFO: Returning events
+{
+  "count": 2
+}
+[2024-12-23T18:35:31.907Z] INFO: Fetching events
+{}
+[2024-12-23T18:35:31.908Z] INFO: Current time:
+"2024-12-23T18:35:31.908Z"
+[2024-12-23T18:35:31.908Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-23T18:35:31.908Z"
+  },
+  "visibility": true,
+  "status": "available"
+}
+[2024-12-23T18:35:31.910Z] INFO: Returning events
+{
+  "count": 2
+}
