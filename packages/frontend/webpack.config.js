@@ -3,6 +3,7 @@ const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
@@ -48,9 +49,15 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css'
     }),
+    new Dotenv({
+      path: process.env.NODE_ENV === 'production' 
+        ? '.env.production'
+        : '.env'
+    }),
     new webpack.DefinePlugin({
       'process.env.BASE_URL': JSON.stringify('/'),
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      'process.env.API_URL': JSON.stringify(process.env.API_URL),
       __VUE_PROD_DEVTOOLS__: false
     })
   ],

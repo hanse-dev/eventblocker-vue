@@ -72,7 +72,7 @@ pm2 startup
 Update `packages/frontend/.env.production`:
 
 ```env
-VITE_API_URL=https://your-api-domain.com
+API_URL=/api
 ```
 
 Build the application:
@@ -101,8 +101,8 @@ server {
     }
 
     # Backend API
-    location /api {
-        proxy_pass http://localhost:3000;
+    location /api/ {
+        proxy_pass http://localhost:3000/;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
@@ -112,121 +112,94 @@ server {
 }
 ```
 
-Enable the site:
+3. **Enable the Site**
 
 ```bash
-sudo ln -s /etc/nginx/sites-available/eventblocker /etc/nginx/sites-enabled/
-sudo nginx -t
-sudo systemctl restart nginx
+ln -s /etc/nginx/sites-available/eventblocker /etc/nginx/sites-enabled/
+nginx -t
+systemctl reload nginx
 ```
 
-3. **SSL Configuration (Recommended)**
+## SSL Configuration (Recommended)
 
-Install Certbot and obtain SSL certificate:
+1. **Install Certbot**
 
 ```bash
-sudo apt install certbot python3-certbot-nginx
-sudo certbot --nginx -d your-domain.com
+apt-get update
+apt-get install certbot python3-certbot-nginx
+```
+
+2. **Obtain SSL Certificate**
+
+```bash
+certbot --nginx -d your-domain.com
 ```
 
 ## Maintenance
 
-### Backup Database
+### Updating the Application
 
-Create a backup script `backup.sh`:
-
-```bash
-#!/bin/bash
-DATE=$(date +%Y%m%d)
-cp /path/to/backend/prod.db /path/to/backups/prod_$DATE.db
-```
-
-Add to crontab:
-
-```bash
-0 0 * * * /path/to/backup.sh
-```
-
-### Updates
-
-To update the application:
-
-1. Pull latest changes:
+1. Pull the latest changes:
 ```bash
 git pull origin main
 ```
 
-2. Update backend:
-```bash
-cd packages/backend
-npm install
-npx prisma generate
-npx prisma migrate deploy
-pm2 restart eventblocker-backend
-```
-
-3. Update frontend:
+2. Rebuild the frontend:
 ```bash
 cd packages/frontend
 npm install
 npm run build
 ```
 
-## Monitoring
-
-1. **Monitor Backend**
+3. Update the backend:
 ```bash
-pm2 monit
+cd ../backend
+npm install
+npx prisma generate
+npx prisma migrate deploy
+pm2 restart eventblocker-backend
+```
+
+### Backup
+
+1. **Database Backup**
+```bash
+cd packages/backend
+cp prod.db prod.db.backup-$(date +%Y%m%d)
+```
+
+2. **Frontend Backup**
+```bash
+cd packages/frontend
+cp -r dist dist.backup-$(date +%Y%m%d)
+```
+
+### Monitoring
+
+1. **View Backend Logs**
+```bash
 pm2 logs eventblocker-backend
 ```
 
 2. **View Nginx Logs**
 ```bash
-sudo tail -f /var/log/nginx/access.log
-sudo tail -f /var/log/nginx/error.log
+tail -f /var/log/nginx/access.log
+tail -f /var/log/nginx/error.log
 ```
-
-## Security Considerations
-
-1. **Firewall Setup**
-```bash
-sudo ufw allow 80/tcp
-sudo ufw allow 443/tcp
-sudo ufw enable
-```
-
-2. **Regular Updates**
-```bash
-sudo apt update
-sudo apt upgrade
-```
-
-3. **Database Backup**
-- Regularly backup the SQLite database
-- Store backups in a secure location
-- Test backup restoration periodically
 
 ## Troubleshooting
 
-1. **Backend Issues**
-- Check PM2 logs: `pm2 logs`
-- Verify database connection
-- Check environment variables
-
-2. **Frontend Issues**
+1. **Frontend Issues**
 - Check browser console for errors
-- Verify API endpoint configuration
-- Check Nginx error logs
+- Verify the API_URL in `.env.production`
+- Check Nginx configuration and logs
 
-3. **Common Solutions**
-- Restart PM2: `pm2 restart all`
-- Restart Nginx: `sudo systemctl restart nginx`
-- Clear browser cache
-- Check file permissions
+2. **Backend Issues**
+- Check PM2 logs: `pm2 logs eventblocker-backend`
+- Verify environment variables
+- Check database connectivity
 
-## Support
-
-For additional support or questions, please refer to:
-- Project documentation
-- GitHub issues
-- Development team contacts
+3. **Database Issues**
+- Check database file permissions
+- Verify DATABASE_URL in backend .env
+- Check Prisma migration status

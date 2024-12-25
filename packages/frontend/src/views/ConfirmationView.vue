@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useNotificationStore } from '../stores/notification';
+import config from '../config';
 
 const route = useRoute();
 const router = useRouter();
@@ -15,7 +16,7 @@ onMounted(async () => {
   }
 
   try {
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/events/${route.params.id}`);
+    const response = await fetch(`${config.apiUrl}/events/${route.params.id}`);
     if (!response.ok) {
       throw new Error('Failed to fetch appointment');
     }

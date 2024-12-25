@@ -4,7 +4,7 @@ const cors = require('cors');
 const app = express();
 
 // Import routes
-const apiRoutes = require('./src/routes');
+const apiRoutes = require('./routes');
 
 // Middleware
 app.use(cors());

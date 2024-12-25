@@ -1,7 +1,8 @@
 import { useAuthStore } from '../stores/auth';
+import config from '../config';
 
 // In production, use relative URLs to automatically use the same domain
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = config.apiUrl;
 
 class ApiService {
   constructor() {
@@ -116,3 +117,23 @@ class ApiService {
 
 export const apiService = new ApiService();
 export default apiService;
+
+export async function fetchEvents() {
+  const response = await apiService.request('/events', { method: 'GET' });
+  if (!response.ok) {
+    throw new Error('Failed to fetch events');
+  }
+  return response;
+}
+
+export async function createEvent(eventData) {
+  const response = await apiService.request('/events', {
+    method: 'POST',
+    body: JSON.stringify(eventData),
+    requiresAuth: true
+  });
+  if (!response.ok) {
+    throw new Error('Failed to create event');
+  }
+  return response;
+}

@@ -20,7 +20,7 @@ The application uses environment variables for configuration. Both the frontend 
 
 3. Update the `.env` file with your configuration:
    - `PORT`: The port the backend server will run on
-   - `DATABASE_URL`: Your PostgreSQL database connection string
+   - `DATABASE_URL`: Your SQLite database connection string
    - `JWT_SECRET`: A secure secret key for JWT token generation
    - `FRONTEND_URL`: The URL where your frontend is running
    - `ADMIN_USERNAME` and `ADMIN_PASSWORD`: Default admin credentials
@@ -38,9 +38,13 @@ The application uses environment variables for configuration. Both the frontend 
    ```
 
 3. Update the `.env` file with your configuration:
-   - `VITE_API_URL`: The URL of your backend API
-   - `VITE_DEFAULT_LOCALE`: The default locale for date formatting
-   - `VITE_DEFAULT_TIMEZONE`: Your application's timezone
+   ```bash
+   # Development (.env)
+   API_URL=http://localhost:3000/api
+
+   # Production (.env.production)
+   API_URL=/api
+   ```
 
 ### Important Notes
 
@@ -70,6 +74,24 @@ The application uses environment variables for configuration. Both the frontend 
    ```
 
 4. Visit `http://localhost:5173` in your browser
+
+## Build for Production
+
+1. Build the frontend:
+   ```bash
+   cd packages/frontend
+   npm run build
+   ```
+
+2. The built files will be in the `dist` directory
+
+## Development Tools
+
+- Vue.js 3
+- Webpack 5
+- Node.js with Express
+- SQLite with Prisma
+- Bootstrap 5 for styling
 
 ## License
 

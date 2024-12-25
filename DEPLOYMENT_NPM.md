@@ -25,32 +25,29 @@ DATABASE_URL="file:./prod.db"
 JWT_SECRET="your-secure-jwt-secret"
 ```
 
-3. Deploy using a single command:
-```bash
-npm run deploy
+Frontend (.env.production in packages/frontend):
+```env
+API_URL=/api
 ```
 
-This command will:
-- Install all dependencies
-- Build the frontend
-- Copy frontend files to backend
-- Start the server
-
-## Manual Deployment Steps
-
-If you prefer to run commands separately:
-
-1. Install dependencies:
+3. Install dependencies and build:
 ```bash
+# Install root dependencies
 npm install
-```
 
-2. Build the frontend and copy to backend:
-```bash
+# Install and build frontend
+cd packages/frontend
+npm install
 npm run build
+
+# Install and setup backend
+cd ../backend
+npm install
+npx prisma generate
+npx prisma migrate deploy
 ```
 
-3. Start the server:
+4. Start the server:
 ```bash
 npm run start
 ```
@@ -58,19 +55,26 @@ npm run start
 ## Environment Variables
 
 ### Backend (packages/backend/.env)
+Required variables:
 - `PORT`: The port to run the server on (default: 3001)
 - `DATABASE_URL`: SQLite database URL
 - `JWT_SECRET`: Secret key for JWT tokens
 
 ### Frontend (packages/frontend/.env.production)
-- `VITE_API_URL`: API URL (default: /api)
+Required variables:
+- `API_URL`: API URL (default: /api)
 
-## Available NPM Commands
+## Available NPM Scripts
 
-- `npm run deploy`: Full deployment (install, build, start)
-- `npm run build`: Build frontend and copy to backend
-- `npm run start`: Start the backend server
-- `npm run dev`: Start development servers
+In the frontend directory:
+- `npm run dev`: Start development server
+- `npm run build`: Build for production
+- `npm run preview`: Preview production build
+
+In the backend directory:
+- `npm run dev`: Start development server
+- `npm run start`: Start production server
+- `npm run migrate`: Run database migrations
 
 ## Maintenance
 
@@ -83,35 +87,82 @@ To update the application:
 git pull origin main
 ```
 
-2. Redeploy:
+2. Rebuild and restart:
 ```bash
-npm run deploy
-```
+# Update and rebuild frontend
+cd packages/frontend
+npm install
+npm run build
 
-### Monitoring
-
-Monitor the application logs:
-```bash
+# Update and restart backend
+cd ../backend
+npm install
+npx prisma generate
+npx prisma migrate deploy
 npm run start
 ```
 
-### Database Management
+### Database Backup
 
-The SQLite database will be created in the packages/backend directory. Make regular backups of the prod.db file.
+Create regular backups of your SQLite database:
+```bash
+cd packages/backend
+cp prod.db prod.db.backup-$(date +%Y%m%d)
+```
+
+### Logs
+
+View application logs:
+```bash
+# Backend logs
+cd packages/backend
+npm run logs
+
+# Or use direct file access
+tail -f logs/app.log
+```
 
 ## Troubleshooting
 
-1. If the server fails to start, check:
-   - Port availability: Make sure port 3001 is free
-   - File permissions: Ensure write access to the public directory
-   - Database: Check if prod.db is writable
+### Common Issues
 
-2. If the frontend doesn't load:
-   - Check if the build was successful
-   - Verify the contents of the public directory
-   - Check the API URL in .env.production
+1. **Build Errors**
+   - Clear node_modules and reinstall dependencies
+   - Verify Node.js version compatibility
+   - Check webpack configuration
 
-3. Common issues:
-   - "EADDRINUSE": Port is already in use, change PORT in .env
-   - "EACCES": Permission denied, check file permissions
-   - Database errors: Check DATABASE_URL and file permissions
+2. **Runtime Errors**
+   - Check environment variables
+   - Verify API URL configuration
+   - Check database connectivity
+   - Review application logs
+
+3. **Database Issues**
+   - Verify database file permissions
+   - Check Prisma schema version
+   - Run migrations manually if needed
+
+### Quick Fixes
+
+1. Clean installation:
+```bash
+rm -rf node_modules
+rm -rf packages/*/node_modules
+npm install
+cd packages/frontend && npm install
+cd ../backend && npm install
+```
+
+2. Reset database:
+```bash
+cd packages/backend
+rm prod.db
+npx prisma migrate reset
+```
+
+3. Rebuild frontend:
+```bash
+cd packages/frontend
+rm -rf dist
+npm run build
+```
