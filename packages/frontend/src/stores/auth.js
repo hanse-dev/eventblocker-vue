@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import { config } from '../config';
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
@@ -14,12 +15,13 @@ export const useAuthStore = defineStore('auth', {
       this.error = null;
       
       try {
-        const response = await fetch('http://localhost:3000/api/auth/login', {
+        const response = await fetch(`${config.apiUrl}/auth/login`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ username, password })
+          body: JSON.stringify({ username, password }),
+          credentials: 'include'
         });
 
         const data = await response.json();
@@ -45,6 +47,10 @@ export const useAuthStore = defineStore('auth', {
       this.error = null;
       localStorage.removeItem('token');
     },
+
+    clearAuth() {
+      this.logout();
+    },
     
     initAuth() {
       const token = localStorage.getItem('token');
@@ -53,9 +59,11 @@ export const useAuthStore = defineStore('auth', {
         this.isAuthenticated = true;
       }
     },
-
+    
     getAuthHeader() {
-      return this.token ? { Authorization: `Bearer ${this.token}` } : {};
+      return this.token ? {
+        'Authorization': `Bearer ${this.token}`
+      } : {};
     }
   }
 });

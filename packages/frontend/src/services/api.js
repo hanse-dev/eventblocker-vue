@@ -1,6 +1,7 @@
 import { useAuthStore } from '../stores/auth';
 
-const API_URL = 'http://localhost:3000/api';
+// In production, use relative URLs to automatically use the same domain
+const API_URL = import.meta.env.VITE_API_URL;
 
 class ApiService {
   constructor() {
@@ -10,49 +11,34 @@ class ApiService {
   async request(endpoint, options = {}) {
     const url = `${API_URL}${endpoint}`;
     const authHeader = options.requiresAuth ? this.authStore.getAuthHeader() : {};
-    console.log('Auth header for request:', authHeader);
-
-    const headers = {
-      'Content-Type': 'application/json',
-      ...authHeader,
-      ...options.headers
-    };
 
     try {
-      const requestBody = options.body ? JSON.parse(options.body) : undefined;
-      console.log('API Request Details:', {
-        url,
-        method: options.method || 'GET',
-        headers,
-        body: requestBody
-      });
-
       const response = await fetch(url, {
         method: options.method || 'GET',
-        headers,
+        headers: {
+          'Content-Type': 'application/json',
+          ...authHeader,
+          ...options.headers
+        },
         body: options.body,
+        credentials: 'include' // Include cookies for session handling
       });
 
       if (!response.ok) {
+        if (response.status === 401) {
+          // Handle unauthorized access
+          this.authStore.clearAuth();
+          throw new Error('Unauthorized access. Please log in.');
+        }
         throw new Error(`Server returned ${response.status}: ${response.statusText}`);
       }
 
-      // Check if there's content to parse
       const contentType = response.headers.get('content-type');
       if (contentType && contentType.includes('application/json')) {
-        const responseData = await response.json();
-        console.log('API Response:', {
-          status: response.status,
-          statusText: response.statusText,
-          headers: Object.fromEntries(response.headers.entries()),
-          data: responseData
-        });
-        return responseData;
+        return await response.json();
       }
 
-      // For empty responses (like DELETE)
       return null;
-
     } catch (error) {
       console.error(`API Error (${endpoint}):`, error);
       throw error;
@@ -85,7 +71,8 @@ class ApiService {
 
   async getEvent(id) {
     return this.request(`/events/${id}`, {
-      method: 'GET'
+      method: 'GET',
+      requiresAuth: true
     });
   }
 
@@ -107,7 +94,8 @@ class ApiService {
   async bookEvent(id, bookingData) {
     return this.request(`/events/${id}/book`, {
       method: 'POST',
-      body: JSON.stringify(bookingData)
+      body: JSON.stringify(bookingData),
+      requiresAuth: true
     });
   }
 

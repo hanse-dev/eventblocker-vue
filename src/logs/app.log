@@ -135,3 +135,26 @@
 {
   "count": 3
 }
+[2024-12-24T22:34:33.203Z] INFO: Fetching events
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "role": "admin",
+    "isAdmin": true,
+    "iat": 1735079673,
+    "exp": 1735166073
+  }
+}
+[2024-12-24T22:34:33.205Z] INFO: Current time:
+"2024-12-24T22:34:33.205Z"
+[2024-12-24T22:34:33.205Z] INFO: Using where clause:
+{
+  "date": {
+    "gte": "2024-12-24T22:34:33.205Z"
+  }
+}
+[2024-12-24T22:34:33.208Z] INFO: Returning events
+{
+  "count": 3
+}

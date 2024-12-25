@@ -1,5 +1,5 @@
 export const config = {
-  apiUrl: 'http://localhost:3000/api',
+  apiUrl: import.meta.env.VITE_API_URL,
   defaultLocale: 'de-DE',
   dateTimeFormats: {
     date: {
